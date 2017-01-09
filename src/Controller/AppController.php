@@ -58,6 +58,7 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('ErrorAdapter');
+        $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
 
         /*
          * Enable the following components for recommended CakePHP security settings.
