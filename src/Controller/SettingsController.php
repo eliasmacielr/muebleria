@@ -37,8 +37,6 @@ class SettingsController extends AppController
     {
         $this->request->allowMethod(['put']);
         $setting = $this->Settings->patchEntity($this->Settings->find()->first(), $this->request->data);
-        dump($setting);
-        die();
         if ($this->Settings->save($setting)) {
             $message = 'Se ha editado el registro';
             $status = true;
