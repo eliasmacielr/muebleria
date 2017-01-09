@@ -4,7 +4,7 @@
 angular.
   module('login').
   component('login', {
-    templateUrl: 'login/login.template.html',
+    templateUrl: 'app/login/login.template.html',
     controller: function LoginController() {
     }
   });

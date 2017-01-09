@@ -5,7 +5,7 @@
 angular.
   module('productList').
   component('productList', {
-    templateUrl: 'product-list/product-list.template.html',
+    templateUrl: 'app/product-list/product-list.template.html',
     controller: ['$routeParams', '$location', 'Product', 'Category',
       function CustomerListController($routeParams, $location, Product, Category) {
 
