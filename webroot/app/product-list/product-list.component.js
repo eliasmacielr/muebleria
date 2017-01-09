@@ -6,41 +6,57 @@ angular.
   module('productList').
   component('productList', {
     templateUrl: 'product-list/product-list.template.html',
-    controller: ['$routeParams', '$location', 'Product',
-      function CustomerListController($routeParams, $location, Product) {
+    controller: ['$routeParams', '$location', 'Product', 'Category',
+      function CustomerListController($routeParams, $location, Product, Category) {
 
-        this.query = {
+        var self = this;
+
+        self.query = {
           order: 'name',
-          limit: 5,
+          limit: 10,
           page: 1
         };
 
-        this.selected = []; // list of selected customers in the table
+        self.selected = []; // list of selected customers in the table
 
-        this.product = null;
+        self.products = Product.list();
 
         // List
-        this.products = Product.list(); //
+        self.getProducts = function() {
+          this.products = Product.list();
+        }
 
         // View
-        this.viewProduct = function() {
-          this.product = Product.view({productId: $routeParams.productId});
-        }
+        // this.viewProduct = function() {
+        //   this.product = Product.view({productId: $routeParams.productId});
+        // }
 
         // Add
-        this.addProduct = function() {
-          Product.add(this.product);
-        }
+        // this.addProduct = function() {
+        //   Product.add(this.product);
+        // }
 
         // Edit
-        this.editProduct = function(editedProduct) {
-          Product.edit(editedProduct);
-        }
+        // this.editProduct = function(editedProduct) {
+        //   Product.edit(editedProduct);
+        // }
 
         // Delete
-        this.deleteProduct = function() {
-          Product.delete({productId: $routeParams.productId});
+        self.deleteProduct = function(productId) {
+          Product.delete({productId: productId}); // TODO: add callback function
         }
+
+        self.deleteProducts = function() {
+          for(i = 0; i < self.selected.length; i++)
+            self.deleteProduct(selected[i].id);
+            // TODO: make something like
+            // bool = true;
+            // for(...) bool *= self.deleteProductCallbackResult;
+            // mdToast(bool);
+        }
+
+
+        this.limitOptions = [5, 10, 15];
 
       }
     ]

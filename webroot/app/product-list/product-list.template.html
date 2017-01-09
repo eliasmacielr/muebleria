@@ -1,28 +1,44 @@
+<md-toolbar class="md-table-toolbar md-default">
+  <div class="md-toolbar-tools">
+    <span>Listado de productos</span>
+  </div>
+</md-toolbar>
+
 <md-card>
-  <md-toolbar class="md-table-toolbar md-default">
+  <md-toolbar class="md-table-toolbar md-default" layout="row">
     <div class="md-toolbar-tools">
-      <span>Productos</span>
+      <h2><span>Productos</span></h2>
+      <span flex></span>
+      <!-- icons -->
+      <md-button class="md-icon-button" aria-label="Crear">
+        <md-icon md-svg-icon="../img/icons/ic_add_black_36px.svg"></md-icon>
+      </md-button>
     </div>
   </md-toolbar>
 
   <md-table-container>
-    <table md-table md-progress="promise">
+    <table md-table md-row-select="true" multiple="true" ng-model="$ctrl.selected" md-progress="promise">
       <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getProducts">
         <tr md-row>
-          <th md-column><span>Nombre</span></th>
-          <th md-column><span>Precio</span></th>
-          <th md-column><span>Stock</span></th>
+          <th md-column md-order-by="name"><span>Nombre</span></th>
+          <th md-column md-numeric md-order-by="price"><span>Precio</span></th>
+          <th md-column md-numeric md-order-by="stock"><span>Stock</span></th>
+          <th md-column md-numeric md-order-by="discount"><span>Descuento</span></th>
         </tr>
       </thead>
       <tbody md-body>
-        <tr md-row ng-repeat="product in $ctrl.products.products">
+        <tr md-row md-select="product"
+        ng-repeat="product in $ctrl.products.products
+          | orderBy: $ctrl.query.order
+          | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit">
           <td md-cell>{{product.name}}</td>
           <td md-cell>{{product.price}}</td>
           <td md-cell>{{product.stock}}</td>
+          <td md-cell>{{product.discount}}</td>
         </tr>
       </tbody>
     </table>
   </md-table-container>
 
-<!-- <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination> -->
+  <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.products.length}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
 </md-card>
