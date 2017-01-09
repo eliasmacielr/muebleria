@@ -1,0 +1,28 @@
+<md-card>
+  <md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+      <span>Productos</span>
+    </div>
+  </md-toolbar>
+
+  <md-table-container>
+    <table md-table md-progress="promise">
+      <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getProducts">
+        <tr md-row>
+          <th md-column><span>Nombre</span></th>
+          <th md-column><span>Precio</span></th>
+          <th md-column><span>Stock</span></th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row ng-repeat="product in $ctrl.products.products">
+          <td md-cell>{{product.name}}</td>
+          <td md-cell>{{product.price}}</td>
+          <td md-cell>{{product.stock}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+
+<!-- <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination> -->
+</md-card>

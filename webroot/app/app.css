@@ -1,0 +1,5 @@
+/* app css stylesheet */
+
+md-checkbox.md-checked .md-icon {
+  background-color: #2F4F4F; /* DarkSlateGrey */
+}
