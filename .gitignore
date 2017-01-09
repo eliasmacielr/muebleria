@@ -37,3 +37,6 @@
 
 # project-documents
 /project-documents/*.bak
+
+# dolphin file
+.directory
