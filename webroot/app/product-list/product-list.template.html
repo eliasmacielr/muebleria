@@ -10,14 +10,20 @@
       <h2><span>Productos</span></h2>
       <span flex></span>
       <!-- icons -->
-      <md-button class="md-icon-button" aria-label="Buscar" ng-show="$ctrl.selected === []">
+      <!-- Eliminar -->
+      <md-button class="md-icon-button" aria-label="Eliminar" ng-show="$ctrl.selected.length != 0">
+        <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
+      </md-button>
+      <!-- Buscar -->
+      <md-button class="md-icon-button" aria-label="Buscar" ng-show="$ctrl.selected.length == 0" ng-click="$ctrl.showSearch = !$ctrl.showSearch">
         <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
       </md-button>
-      <md-button class="md-icon-button" aria-label="Crear" ng-show="$ctrl.selected === []">
+      <form class"ng-pristine ng-valid flex" ng-show="$ctrl.showSearch && $ctrl.selected.length == 0">
+        <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false">
+      </form>
+      <!-- Crear -->
+      <md-button class="md-icon-button" aria-label="Crear" ng-show="$ctrl.selected.length == 0">
         <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
-      </md-button>
-      <md-button class="md-icon-button" aria-label="Eliminar" ng-show="$ctrl.selected !== []">
-        <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
       </md-button>
     </div>
   </md-toolbar>
@@ -33,10 +39,11 @@
         </tr>
       </thead>
       <tbody md-body>
-        <tr md-row md-select="product"
+        <tr md-row md-select="product" md-select-id="id" md-auto-select="true"
         ng-repeat="product in $ctrl.products.products
           | orderBy: $ctrl.query.order
           | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit">
+          <!-- add button to view details of the product -->
           <td md-cell>{{product.name}}</td>
           <td md-cell>{{product.price}}</td>
           <td md-cell>{{product.stock}}</td>

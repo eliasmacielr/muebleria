@@ -56,9 +56,11 @@ angular.
             // mdToast(bool);
         }
 
-        self.selectProduct = function(product) {
-          self.selected.push(product);
-        }
+        self.search = {
+            str: ''
+        };
+
+        self.showSearch = false;
 
         this.limitOptions = [5, 10, 15];
 
