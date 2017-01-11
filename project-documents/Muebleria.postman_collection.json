@@ -224,6 +224,268 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "List Specifications",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Index"
+					},
+					"response": []
+				},
+				{
+					"name": "View Specification",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "One specification of product"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Specification",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"especificación 1\",\n\t\"value\": \"1m x 0.5m\",\n\t\"product_id\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Specification",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"especificación editada\",\n\t\"value\": \"Especificación\",\n\t\"product_id\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Specification",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"description": "",
+			"item": [
+				{
+					"name": "View",
+					"request": {
+						"url": "localhost/muebleria/api/setting",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"url": "localhost/muebleria/api/setting",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"site_name\": \"Muebleria S. A.\",\n\t\"site_cellphone\": \"0987654321\",\n\t\"site_phone\": \"021678234\",\n\t\"site_email\": \"asdf@asdf.com\",\n\t\"social_facebook\": \"www.facebook.com\",\n\t\"social_twitter\": \"www.twitter.com\",\n\t\"social_instagram\": \"www.instagram.com\",\n\t\"site_active\": true\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"description": "",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"url": "localhost/muebleria/api/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Index"
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"url": "localhost/muebleria/api/users/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"url": "localhost/muebleria/api/users/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Homero\",\n\t\"last_name\": \"Simpson\",\n\t\"username\": \"hsimpson\",\n\t\"role\": \"super-admin\",\n\t\"password\": \"12345\",\n\t\"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"url": "localhost/muebleria/api/users/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Homero\",\n\t\"last_name\": \"Simpson\",\n\t\"username\": \"hsimpson\",\n\t\"role\": \"super-admin\",\n\t\"password\": \"12345\",\n\t\"active\": true\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"url": "localhost/muebleria/api/users/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		}
