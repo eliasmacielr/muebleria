@@ -1,15 +1,15 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use PDOException;
 use App\Controller\AppController;
 
 /**
- * Categories Controller
+ * Products Controller
  *
- * @property \App\Model\Table\CategoriesTable $Categories
+ * @property \App\Model\Table\ProductsTable $Products
  */
-class CategoriesController extends AppController
+class ProductsController extends AppController
 {
 
     /**
@@ -19,11 +19,11 @@ class CategoriesController extends AppController
      */
     public function index()
     {
-        $categories = $this->paginate($this->Categories);
+        $products = $this->paginate($this->Products);
         $status = true;
 
-        $this->set(compact(['categories', 'status']));
-        $this->set('_serialize', ['categories', 'status']);
+        $this->set(compact(['products', 'status']));
+        $this->set('_serialize', ['products', 'status']);
     }
 
     /**
@@ -35,10 +35,10 @@ class CategoriesController extends AppController
      */
     public function view($id = null)
     {
-        $category = $this->Categories->get($id);
+        $product = $this->Products->get($id);
         $status = true;
-        $this->set(compact(['category', 'status']));
-        $this->set('_serialize', ['category', 'status']);
+        $this->set(compact(['product', 'status']));
+        $this->set('_serialize', ['product', 'status']);
     }
 
     /**
@@ -49,18 +49,18 @@ class CategoriesController extends AppController
     public function add()
     {
         $this->request->allowMethod(['post']);
-        $category = $this->Categories->patchEntity($this->Categories->newEntity(), $this->request->data);
-        if ($this->Categories->save($category)) {
+        $product = $this->Products->patchEntity($this->Products->newEntity(), $this->request->data);
+        if ($this->Products->save($product)) {
             $message = 'Se ha guardado el registro';
             $status = true;
         } else {
             $message = 'No se ha guardado el registro';
             $status = false;
-            $errors = $this->ErrorAdapter->reduce($category->errors());
+            $errors = $this->ErrorAdapter->reduce($product->errors());
         }
 
-        $this->set(compact(['category', 'status', 'message', 'errors']));
-        $this->set('_serialize', ['category', 'status', 'message', 'errors']);
+        $this->set(compact(['product', 'status', 'message', 'errors']));
+        $this->set('_serialize', ['product', 'status', 'message', 'errors']);
     }
 
     /**
@@ -73,17 +73,17 @@ class CategoriesController extends AppController
     public function edit($id = null)
     {
         $this->request->allowMethod(['put']);
-        $category = $this->Categories->patchEntity($this->Categories->get($id), $this->request->data);
-        if ($this->Categories->save($category)) {
+        $product = $this->Products->patchEntity($this->Products->get($id), $this->request->data);
+        if ($this->Products->save($product)) {
             $message = 'Se ha editado el registro';
             $status = true;
         } else {
             $message = 'No se ha editado el registro';
             $status = false;
-            $errors = $this->ErrorAdapter->reduce($category->errors());
+            $errors = $this->ErrorAdapter->reduce($product->errors());
         }
-        $this->set(compact(['category', 'status', 'message', 'errors']));
-        $this->set('_serialize', ['category', 'status', 'message', 'errors']);
+        $this->set(compact(['product', 'status', 'message', 'errors']));
+        $this->set('_serialize', ['product', 'status', 'message', 'errors']);
     }
 
     /**
@@ -96,9 +96,9 @@ class CategoriesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $category = $this->Categories->get($id);
+        $product = $this->Products->get($id);
         try {
-            if ($this->Categories->delete($category)) {
+            if ($this->Products->delete($product)) {
                 $message = 'Se ha eliminado el registro';
                 $status = true;
             } else {
@@ -109,7 +109,7 @@ class CategoriesController extends AppController
             $message = 'No se ha eliminado el registro, existen otros registros que dependen de él';
             $status = false;
         }
-        $this->set(compact(['category', 'status', 'message']));
-        $this->set('_serialize', ['category', 'status', 'message']);
+        $this->set(compact(['product', 'status', 'message']));
+        $this->set('_serialize', ['product', 'status', 'message']);
     }
 }
