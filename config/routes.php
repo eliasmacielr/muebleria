@@ -57,25 +57,28 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     // $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    $routes->scope('/api', function (RouteBuilder $routes) {
+    $routes->prefix('api', function (RouteBuilder $routes) {
         $routes->resources('Categories');
         $routes->resources('Products', function (RouteBuilder $routes) {
             $routes->scope('/images', ['controller' => 'ProductImages'], function (RouteBuilder $routes) {
-                $routes->connect('/', ['action' => 'index', '_method' => ['GET']]);
-                $routes->connect('/', ['action' => 'view', '_method' => ['GET']]);
-                $routes->connect('/', ['action' => 'add', '_method' => ['POST']]);
-                $routes->connect('/:id', ['action' => 'edit', '_method' => ['PUT'], 'pass' => ['id']]);
-                $routes->connect('/:id', ['action' => 'delete', '_method' => ['DELETE'], 'pass' => ['id']]);
+                $routes->connect('/', ['action' => 'index', '_method' => ['GET']], ['pass' => ['product_id']]);
+                $routes->connect('/:id', ['action' => 'view', '_method' => ['GET']], ['pass' => ['product_id', 'id']]);
+                $routes->connect('/', ['action' => 'add', '_method' => ['POST']], ['pass' => ['product_id']]);
+                $routes->connect('/:id', ['action' => 'edit', '_method' => ['PUT']], ['pass' => ['product_id', 'id']]);
+                $routes->connect('/:id', ['action' => 'delete', '_method' => ['DELETE']], ['pass' => ['product_id', 'id']]);
             });
             $routes->scope('/specifications', ['controller' => 'ProductSpecifications'], function (RouteBuilder $routes) {
-                $routes->connect('/', ['action' => 'index', '_method' => ['GET']]);
-                $routes->connect('/', ['action' => 'view', '_method' => ['GET']]);
-                $routes->connect('/', ['action' => 'add', '_method' => ['POST']]);
-                $routes->connect('/:id', ['action' => 'edit', '_method' => ['PUT'], 'pass' => ['id']]);
-                $routes->connect('/:id', ['action' => 'delete', '_method' => ['DELETE'], 'pass' => ['id']]);
+                $routes->connect('/', ['action' => 'index', '_method' => ['GET']], ['pass' => ['product_id']]);
+                $routes->connect('/:id', ['action' => 'view', '_method' => ['GET']], ['pass' => ['product_id', 'id']]);
+                $routes->connect('/', ['action' => 'add', '_method' => ['POST']], ['pass' => ['product_id']]);
+                $routes->connect('/:id', ['action' => 'edit', '_method' => ['PUT']], ['pass' => ['product_id', 'id']]);
+                $routes->connect('/:id', ['action' => 'delete', '_method' => ['DELETE']], ['pass' => ['product_id', 'id']]);
             });
         });
-        $routes->resources('Settings');
+        $routes->scope('/setting', ['controller' => 'Settings'], function (RouteBuilder $routes) {
+            $routes->connect('/', ['action' => 'view', '_method' => 'GET']);
+            $routes->connect('/', ['action' => 'edit', '_method' => 'PUT']);
+        });
         $routes->resources('Users');
     });
 
