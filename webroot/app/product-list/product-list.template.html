@@ -5,29 +5,38 @@
 </md-toolbar>
 
 <md-card>
-  <md-toolbar class="md-table-toolbar md-default" layout="row">
+  <!-- Show this toolbar when no items are selected -->
+  <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length == 0">
     <div class="md-toolbar-tools">
       <h2><span>Productos</span></h2>
       <span flex></span>
-      <!-- icons -->
-      <!-- Eliminar -->
-      <md-button class="md-icon-button" aria-label="Eliminar" ng-show="$ctrl.selected.length != 0">
-        <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
-      </md-button>
-      <!-- Buscar -->
-      <md-button class="md-icon-button" aria-label="Buscar" ng-show="$ctrl.selected.length == 0" ng-click="$ctrl.showSearch = !$ctrl.showSearch">
+      <!-- Search -->
+      <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch">
         <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
       </md-button>
-      <form class"ng-pristine ng-valid flex" ng-show="$ctrl.showSearch && $ctrl.selected.length == 0">
-        <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false">
+      <form class"ng-pristine ng-valid flex">
+        <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
       </form>
-      <!-- Crear -->
-      <md-button class="md-icon-button" aria-label="Crear" ng-show="$ctrl.selected.length == 0">
+      <!-- Add -->
+      <md-button class="md-icon-button" aria-label="Crear">
         <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
       </md-button>
     </div>
   </md-toolbar>
 
+  <!-- Show this toolbar when one or more items are selected -->
+  <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length != 0">
+    <div class="md-toolbar-tools">
+      <h2><span>Productos</span></h2>
+      <span flex></span>
+      <!-- Delete -->
+      <md-button class="md-icon-button" aria-label="Eliminar">
+        <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <!-- The actual table -->
   <md-table-container>
     <table md-table md-row-select="true" multiple="true" ng-model="$ctrl.selected" md-progress="promise">
       <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getProducts">
@@ -53,5 +62,6 @@
     </table>
   </md-table-container>
 
+  <!-- Footer for the table with pagination options  -->
   <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.pagination.count}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
 </md-card>
