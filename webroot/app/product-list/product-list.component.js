@@ -17,12 +17,13 @@ angular.
           page: 1
         };
 
-        self.selected = []; // list of selected customers in the table
+        self.selected = []; // list of selected products in the table
 
         self.products = Product.list();
 
         // List
         self.getProducts = function() {
+          self.selected = [];
           this.products = Product.list();
         }
 
@@ -55,6 +56,9 @@ angular.
             // mdToast(bool);
         }
 
+        self.selectProduct = function(product) {
+          self.selected.push(product);
+        }
 
         this.limitOptions = [5, 10, 15];
 

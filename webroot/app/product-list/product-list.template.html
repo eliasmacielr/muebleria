@@ -10,8 +10,14 @@
       <h2><span>Productos</span></h2>
       <span flex></span>
       <!-- icons -->
-      <md-button class="md-icon-button" aria-label="Crear">
-        <md-icon md-svg-icon="img/icons/ic_add_black_36px.svg"></md-icon>
+      <md-button class="md-icon-button" aria-label="Buscar" ng-show="$ctrl.selected === []">
+        <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Crear" ng-show="$ctrl.selected === []">
+        <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Eliminar" ng-show="$ctrl.selected !== []">
+        <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
       </md-button>
     </div>
   </md-toolbar>
@@ -23,7 +29,7 @@
           <th md-column md-order-by="name"><span>Nombre</span></th>
           <th md-column md-numeric md-order-by="price"><span>Precio</span></th>
           <th md-column md-numeric md-order-by="stock"><span>Stock</span></th>
-          <th md-column md-numeric md-order-by="discount"><span>Descuento</span></th>
+          <th md-column md-numeric md-order-by="discount"><span>Descuento (%)</span></th>
         </tr>
       </thead>
       <tbody md-body>
@@ -40,5 +46,5 @@
     </table>
   </md-table-container>
 
-  <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.products.length}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
+  <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.pagination.count}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
 </md-card>
