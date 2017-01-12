@@ -1,0 +1,64 @@
+<md-dialog aria-label="Nuevo producto">
+  <!-- name -->
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Nuevo producto</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content" layout="column">
+        <md-input-container>
+          <label>Nombre</label>
+          <input ng-model="product.name" required>
+        </md-input-container>
+        <div class="input-row layout-row">
+          <!-- price -->
+          <md-input-container class="md-block">
+            <label>Precio</label>
+            <input ng-model="product.price" type="number" required>
+          </md-input-container>
+          <!-- stock -->
+          <md-input-container class="md-block">
+            <label>Stock</label>
+            <input ng-model="product.stock" type="number" required>
+          </md-input-container>
+        </div>
+        <!-- in_offert -->
+        <md-checkbox ng-model="product.in_offert" aria-label="En oferta">
+          En oferta
+        </md-checkbox>
+        <!-- discount -->
+        <md-input-container>
+          <label>Descuento (%)</label>
+          <input ng-model="product.discount" type="number" ng-disabled="!product.in_offert" ng-required="product.in_offert">
+        </md-input-container>
+        <!-- category -->
+        <md-input-container>
+          <label>Categoria</label>
+          <md-select ng-model="product.category_id">
+            <md-option ng-repeat="category in categories.categories" ng-value="category.id">
+              {{category.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-content layout="row" layout-align="end center">
+          <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-click="saveProduct()">Confirmar</md-button>
+        </md-content>
+      </div>
+    </md-dialog-content>
+  <form>
+</md-dialog>
+
+<!--
+name
+price
+stock
+main_image
+in_offert
+discount
+category
+ -->

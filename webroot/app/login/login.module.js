@@ -1,4 +1,4 @@
 'use strict';
 
-// Define the `customerList` module
+// Define the `login` module
 angular.module('login', []);

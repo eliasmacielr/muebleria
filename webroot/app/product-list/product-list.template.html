@@ -1,6 +1,6 @@
-<md-toolbar class="md-table-toolbar md-default">
+<md-toolbar class="md-table-toolbar">
   <div class="md-toolbar-tools">
-    <span>Listado de productos</span>
+    <h2>Listado de productos</h2>
   </div>
 </md-toolbar>
 
@@ -18,7 +18,7 @@
         <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
       </form>
       <!-- Add -->
-      <md-button class="md-icon-button" aria-label="Crear">
+      <md-button class="md-icon-button" aria-label="Crear" ng-click="saveProductDialog($event)">
         <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
       </md-button>
     </div>

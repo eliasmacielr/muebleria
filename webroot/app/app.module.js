@@ -8,5 +8,6 @@ angular.module('myApp', [
   'core',
   'customerList',
   'productList',
+  //'productSave',
   'login'
 ]);

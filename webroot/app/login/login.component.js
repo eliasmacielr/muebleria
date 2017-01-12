@@ -1,6 +1,6 @@
 'use strict';
 
-// Register `customerList` component, along with its associated controller and template
+// Register `login` component, along with its associated controller and template
 angular.
   module('login').
   component('login', {
