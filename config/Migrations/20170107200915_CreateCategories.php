@@ -18,6 +18,11 @@ class CreateCategories extends AbstractMigration
             'limit' => 50,
             'null' => false
         ]);
+        $table->addColumn('slug', 'string', [
+            'default' => null,
+            'limit' => 200,
+            'null' => false,
+        ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
             'null' => false,

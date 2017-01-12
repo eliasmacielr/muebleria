@@ -42,6 +42,11 @@ class CreateProducts extends AbstractMigration
             'limit' => 11,
             'null' => false,
         ]);
+        $table->addColumn('slug', 'string', [
+            'default' => null,
+            'limit' => 200,
+            'null' => false,
+        ]);
         $table->addColumn('category_id', 'integer', [
             'default' => null,
             'limit' => 11,
