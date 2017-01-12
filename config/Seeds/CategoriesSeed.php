@@ -1,5 +1,6 @@
 <?php
 use Migrations\AbstractSeed;
+use Muffin\Slug\Slugger\CakeSlugger;
 
 /**
  * Categories seed.
@@ -18,9 +19,11 @@ class CategoriesSeed extends AbstractSeed
      */
     public function run()
     {
+        $slugger = new CakeSlugger();
         $data = [
             [
                 'name' => 'Hogar',
+                'slug' => $slugger->slug('Hogar'),
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s'),
             ],

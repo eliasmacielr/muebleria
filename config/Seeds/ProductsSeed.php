@@ -1,5 +1,6 @@
 <?php
 use Migrations\AbstractSeed;
+use Muffin\Slug\Slugger\CakeSlugger;
 
 /**
  * Products seed.
@@ -18,6 +19,7 @@ class ProductsSeed extends AbstractSeed
      */
     public function run()
     {
+        $slugger = new CakeSlugger();
         $data = [
             [
                 'name' => 'Mesa de vidrio',
@@ -26,6 +28,7 @@ class ProductsSeed extends AbstractSeed
                 'in_offert' => true,
                 'discount' => 20,
                 'category_id' => 1,
+                'slug' => $slugger->slug('Mesa de vidrio'),
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s'),
             ],
