@@ -2,6 +2,7 @@
 namespace App\Controller\Api;
 
 use PDOException;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Controller\AppController;
 
 /**
@@ -29,13 +30,13 @@ class CategoriesController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Category id.
+     * @param string|null $id_slug Category id or slug.
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id_slug = null)
     {
-        $category = $this->Categories->get($id);
+        $category = $this->Categories->findByIdOrSlug($id_slug, $id_slug)->firstOrFail();
         $status = true;
         $this->set(compact(['category', 'status']));
         $this->set('_serialize', ['category', 'status']);
@@ -66,14 +67,15 @@ class CategoriesController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id Category id.
+     * @param string|null $id Category id or slug.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($id_slug = null)
     {
         $this->request->allowMethod(['put']);
-        $category = $this->Categories->patchEntity($this->Categories->get($id), $this->request->data);
+        $category = $this->Categories->findByIdOrSlug($id_slug, $id_slug)->firstOrFail();
+        $category = $this->Categories->patchEntity($category, $this->request->data);
         if ($this->Categories->save($category)) {
             $message = 'Se ha editado el registro';
             $status = true;
@@ -89,14 +91,14 @@ class CategoriesController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Category id.
+     * @param string|null $id Category id or slug.
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id_slug = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $category = $this->Categories->get($id);
+        $category = $this->Categories->findByIdOrSlug($id_slug, $id_slug)->firstOrFail();
         try {
             if ($this->Categories->delete($category)) {
                 $message = 'Se ha eliminado el registro';
