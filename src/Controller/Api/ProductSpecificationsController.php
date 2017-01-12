@@ -69,7 +69,7 @@ class ProductSpecificationsController extends AppController
      * Edit method
      *
      * @param string|null $product_id Product id.
-     * @param string|null $id Category id.
+     * @param string|null $id Specification id.
      * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
@@ -93,7 +93,7 @@ class ProductSpecificationsController extends AppController
      * Delete method
      *
      * @param string|null $product_id Product id.
-     * @param string|null $id Category id.
+     * @param string|null $id Specification id.
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
