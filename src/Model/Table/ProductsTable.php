@@ -41,7 +41,10 @@ class ProductsTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
-
+        $this->addBehavior('Muffin/Slug.Slug', [
+            'displayField' => 'name',
+            'onUpdate' => true,
+        ]);
         $this->belongsTo('Categories', [
             'foreignKey' => 'category_id',
             'joinType' => 'INNER'

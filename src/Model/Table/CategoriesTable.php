@@ -39,6 +39,10 @@ class CategoriesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Muffin/Slug.Slug', [
+            'displayField' => 'name',
+            'onUpdate' => true,
+        ]);
 
         $this->hasMany('Products', [
             'foreignKey' => 'category_id'
