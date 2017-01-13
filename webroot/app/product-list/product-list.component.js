@@ -42,8 +42,8 @@ angular.
             controller: ProductSaveController,
             templateUrl: 'app/product-save/product-save.template.html',
             parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true
+            targetEvent: ev //,
+            // clickOutsideToClose: true
           })
           .then(function(answer) {
             // $scope.status = 'You said the information was "' + answer + '".';

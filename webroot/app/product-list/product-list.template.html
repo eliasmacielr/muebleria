@@ -45,18 +45,27 @@
           <th md-column md-numeric md-order-by="price"><span>Precio</span></th>
           <th md-column md-numeric md-order-by="stock"><span>Stock</span></th>
           <th md-column md-numeric md-order-by="discount"><span>Descuento (%)</span></th>
+          <th md-column>Acciones</th>
         </tr>
       </thead>
       <tbody md-body>
-        <tr md-row md-select="product" md-select-id="id" md-auto-select="true"
+        <tr md-row md-select="product" md-select-id="id"
         ng-repeat="product in $ctrl.products.products
           | orderBy: $ctrl.query.order
-          | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit">
+          | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit"> <!-- md-auto-select="true" -->
           <!-- add button to view details of the product -->
           <td md-cell>{{product.name}}</td>
           <td md-cell>{{product.price}}</td>
           <td md-cell>{{product.stock}}</td>
           <td md-cell>{{product.discount}}</td>
+          <td md-cell>
+            <md-button class="md-icon-button" aria-label="Ver" ng-click="">
+              <md-icon md-svg-icon="img/icons/ic_details_black_24px.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Ver" ng-click="">
+              <md-icon md-svg-icon="img/icons/ic_mode_edit_black_24px.svg"></md-icon>
+            </md-button>
+          </td>
         </tr>
       </tbody>
     </table>
