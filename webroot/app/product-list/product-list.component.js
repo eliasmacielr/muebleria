@@ -42,8 +42,7 @@ angular.
             // clickOutsideToClose: true
           })
           .then(function(answer) {
-            // $scope.status = 'You said the information was "' + answer + '".';
-            //self.messageToast(answer);
+            self.messageToast(answer);
           }, function() {
             // $scope.status = 'You cancelled the dialog.';
           });
@@ -92,19 +91,24 @@ angular.
           $scope.categories = Category.list();
 
           $scope.product = {
-            /* name
-               price
-               stock
-               main_image */
+            /* name,
+               price,
+               stock,
+               main_image, */
                in_offert: false,
                discount: 0
             /* category_id */
           };
 
           $scope.saveProduct = function() {
-            Product.add($scope.product);
-            $scope.answer(''/*response.message*/);
-            // if status is true then push new object in self.products
+            Product.add($scope.product,
+              function (response) {
+                $scope.answer(response.message);
+                // if (response.status) {
+                //   self.products.push($scope.product);
+                // }
+              }
+            );
           };
 
           $scope.hide = function() {
@@ -139,8 +143,6 @@ angular.
 
         // show toast
         self.messageToast = function(message) {
-          // var pinTo = '';
-
           $mdToast.show(
             $mdToast.simple()
               .position('bottom left')
