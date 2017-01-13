@@ -65,17 +65,37 @@ angular.
         };
 
         // Delete
+        $scope.deleteProductDialog = function(ev) {
+          var confirm = $mdDialog.confirm()
+            .title('Eliminar productos')
+            .textContent('Está seguro de borrar ' + self.selected.length + ' registro(s)?')
+            .ariaLabel('Eliminar productos')
+            .targetEvent(ev)
+            .ok('Aceptar')
+            .cancel('Cancelar');
+
+          $mdDialog.show(confirm).then(function() {
+            self.deleteProducts();
+          }, function() {
+            self.messageToast('No se borraron registros');
+          });
+        };
+
         self.deleteProduct = function(productId) {
           Product.delete({productId: productId}); // TODO: add callback function
         };
 
         self.deleteProducts = function() {
-          for(i = 0; i < self.selected.length; i++)
-            self.deleteProduct(selected[i].id);
+          for(var i = 0; i < self.selected.length; i++) {
+            self.deleteProduct(self.selected[i].id);
+            var index = self.products.products.indexOf(self.selected[i]);
+            self.products.products.splice(index, 1); // delete one element
             // TODO: make something like
             // bool = true;
             // for(...) bool *= self.deleteProductCallbackResult;
-            // mdToast(bool);
+          }
+          self.products.pagination.count -= self.selected.length;
+          // mdToast(bool);
         };
 
         self.search = {
@@ -104,9 +124,10 @@ angular.
             Product.add($scope.product,
               function (response) {
                 $scope.answer(response.message);
-                // if (response.status) {
-                //   self.products.push($scope.product);
-                // }
+                if (response.status) {
+                  self.products.products.push($scope.product);
+                  self.products.pagination.count += 1;
+                }
               }
             );
           };
