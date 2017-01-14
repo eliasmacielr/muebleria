@@ -87,12 +87,9 @@ class ProductsTable extends Table
             ->notEmpty('stock');
 
         $validator
-            ->allowEmpty('main_image');
-
-        $validator
-            ->boolean('in_offert')
-            ->requirePresence('in_offert', 'create')
-            ->notEmpty('in_offert');
+            ->boolean('in_offer')
+            ->requirePresence('in_offer', 'create')
+            ->notEmpty('in_offer');
 
         $validator
             ->integer('discount')
