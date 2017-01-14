@@ -98,8 +98,8 @@ angular.
             self.products.products.splice(index, 1); // delete one element
           }
 
-          self.selected = [];
           self.products.pagination.count -= self.selected.length;
+          self.selected = [];
 
           if (allDeleted) {
             self.messageToast('Se han borrado los registros');
