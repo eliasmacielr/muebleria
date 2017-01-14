@@ -43,11 +43,11 @@
   <script src="webroot/app/core/category/category.module.js"></script>
   <script src="webroot/app/core/category/category.service.js"></script>
 
-  <script src="webroot/app/core/customer/customer.module.js"></script>
-  <script src="webroot/app/core/customer/customer.service.js"></script>
-
   <script src="webroot/app/core/product/product.module.js"></script>
   <script src="webroot/app/core/product/product.service.js"></script>
+
+  <script src="webroot/app/core/user/user.module.js"></script>
+  <script src="webroot/app/core/user/user.service.js"></script>
 
   <script src="webroot/app/login/login.module.js"></script>
   <script src="webroot/app/login/login.component.js"></script>
@@ -55,9 +55,6 @@
   <!-- Components for tables -->
   <!-- <script src="webroot/app/category-list/category-list.module.js"></script>
   <script src="webroot/app/category-list/category-list.component.js"></script> -->
-
-  <script src="webroot/app/customer-list/customer-list.module.js"></script>
-  <script src="webroot/app/customer-list/customer-list.component.js"></script>
 
   <script src="webroot/app/product-list/product-list.module.js"></script>
   <script src="webroot/app/product-list/product-list.component.js"></script>

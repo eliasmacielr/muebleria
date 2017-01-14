@@ -11,9 +11,6 @@ angular.
         when('/login', {
           template: '<login></login>'
         }).
-        when('/clientes', {
-          template: '<customer-list></customer-list>'
-        }).
         when('/productos', {
           template: '<product-list></product-list>'
         }).
