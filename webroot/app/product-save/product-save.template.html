@@ -33,7 +33,7 @@
         <!-- discount -->
         <md-input-container>
           <label>Descuento (%)</label>
-          <input ng-model="product.discount" type="number" ng-disabled="!product.in_offer" ng-required="product.in_offer">
+          <input ng-model="product.discount" type="number" ng-disabled="!product.in_offer" ng-required="product.in_offer" min="1" max="100">
         </md-input-container>
         <!-- category -->
         <md-input-container>
@@ -53,13 +53,3 @@
     </md-dialog-content>
   <form>
 </md-dialog>
-
-<!--
-name
-price
-stock
-main_image
-in_offer
-discount
-category
- -->
