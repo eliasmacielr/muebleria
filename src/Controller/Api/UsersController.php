@@ -44,7 +44,7 @@ class UsersController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Network\Response|void
      */
     public function add()
     {
@@ -67,7 +67,7 @@ class UsersController extends AppController
      * Edit method
      *
      * @param string|null $id User id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Network\Response|void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
@@ -90,7 +90,7 @@ class UsersController extends AppController
      * Delete method
      *
      * @param string|null $id User id.
-     * @return \Cake\Network\Response|null Redirects to index.
+     * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)

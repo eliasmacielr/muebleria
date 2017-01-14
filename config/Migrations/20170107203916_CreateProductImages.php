@@ -18,6 +18,15 @@ class CreateProductImages extends AbstractMigration
             'limit' => 200,
             'null' => false,
         ]);
+        $table->addColumn('file_dir', 'string', [
+            'default' => null,
+            'limit' => 200,
+            'null' => false,
+        ]);
+        $table->addColumn('main', 'boolean', [
+            'default' => null,
+            'null' => false,
+        ]);
         $table->addColumn('product_id', 'integer', [
             'default' => null,
             'limit' => 11,

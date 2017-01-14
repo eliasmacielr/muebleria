@@ -19,7 +19,7 @@ class ProductSpecificationsController extends AppController
      */
     public function index($product_id = null)
     {
-        $query = $this->ProductSpecifications->find()->where([$this->ProductSpecifications->aliasField('product_id') => $product_id]);
+        $query = $this->ProductSpecifications->find()->where(['product_id' => $product_id]);
         $productSpecifications = $this->paginate($this->ProductSpecifications);
         $status = true;
 
@@ -31,12 +31,13 @@ class ProductSpecificationsController extends AppController
      * View method
      *
      * @param string|null $product_id Product id.
+     * @param string|null $id Specification id.
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($product_id = null)
+    public function view($product_id = null, $id = null)
     {
-        $productSpecification = $this->ProductSpecifications->get($product_id);
+        $productSpecification = $this->ProductSpecifications->get($id);
         $status = true;
         $this->set(compact(['productSpecification', 'status']));
         $this->set('_serialize', ['productSpecification', 'status']);
@@ -70,7 +71,7 @@ class ProductSpecificationsController extends AppController
      *
      * @param string|null $product_id Product id.
      * @param string|null $id Specification id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Network\Response|void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($product_id = null, $id = null)
@@ -94,7 +95,7 @@ class ProductSpecificationsController extends AppController
      *
      * @param string|null $product_id Product id.
      * @param string|null $id Specification id.
-     * @return \Cake\Network\Response|null Redirects to index.
+     * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($product_id = null, $id = null)

@@ -11,8 +11,9 @@ use Cake\ORM\Entity;
  * @property float $price
  * @property int $stock
  * @property string $main_image
- * @property bool $in_offert
+ * @property bool $in_offer
  * @property int $discount
+ * @property string $slug
  * @property int $category_id
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified

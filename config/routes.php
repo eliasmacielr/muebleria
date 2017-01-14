@@ -64,7 +64,15 @@ Router::scope('/', function (RouteBuilder $routes) {
             $routes->connect('/:slug', ['action' => 'edit', '_method' => 'PUT'], ['pass' => ['slug']]);
             $routes->connect('/:slug', ['action' => 'delete', '_method' => 'DELETE'], ['pass' => ['slug']]);
         });
-        $routes->resources('Products', function (RouteBuilder $routes) {
+        $routes->resources('Products', [
+            'map' => [
+                'delete-all' => [
+                    'action' => 'deleteAll',
+                    'method' => 'DELETE'
+                ]
+            ]
+        ],
+        function (RouteBuilder $routes) {
             $routes->scope('/images', ['controller' => 'ProductImages'], function (RouteBuilder $routes) {
                 $routes->connect('/', ['action' => 'index', '_method' => ['GET']], ['pass' => ['product_id']]);
                 $routes->connect('/:id', ['action' => 'view', '_method' => ['GET']], ['pass' => ['product_id', 'id']]);

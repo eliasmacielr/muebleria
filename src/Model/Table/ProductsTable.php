@@ -50,7 +50,9 @@ class ProductsTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->hasMany('ProductImages', [
-            'foreignKey' => 'product_id'
+            'foreignKey' => 'product_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('ProductSpecifications', [
             'foreignKey' => 'product_id'

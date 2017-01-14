@@ -11,7 +11,8 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
         "bcrowe/cakephp-api-pagination": "^1.1",
-        "muffin/slug": "^1.1"
+        "muffin/slug": "^1.1",
+        "davidyell/proffer": "^0.7"
     },
     "require-dev": {
         "psy/psysh": "@stable",

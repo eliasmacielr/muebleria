@@ -222,5 +222,6 @@ if (Configure::read('debug')) {
 }
 
 Plugin::load('BryanCrowe/ApiPagination');
+Plugin::load('Proffer');
 
 Plugin::load('Muffin/Slug');

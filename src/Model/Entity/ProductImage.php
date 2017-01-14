@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $file_name
+ * @property string $file_dir
  * @property int $product_id
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified

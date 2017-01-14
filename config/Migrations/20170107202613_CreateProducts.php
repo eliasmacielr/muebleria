@@ -29,11 +29,7 @@ class CreateProducts extends AbstractMigration
             'limit' => 11,
             'null' => false,
         ]);
-        $table->addColumn('main_image', 'string', [
-            'limit' => 200,
-            'null' => true,
-        ]);
-        $table->addColumn('in_offert', 'boolean', [
+        $table->addColumn('in_offer', 'boolean', [
             'default' => null,
             'null' => false,
         ]);

@@ -39,6 +39,12 @@ class ProductImagesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Proffer.Proffer', [
+            'file_name' => [
+                'root' => WWW_ROOT . 'resources',
+                'dir' => 'file_dir'
+            ]
+        ]);
 
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',

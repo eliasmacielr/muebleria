@@ -64,7 +64,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Jardín\"\n}"
+							"raw": "{\n  \"name\": \"Jardín\"\n}"
 						},
 						"description": ""
 					},
@@ -99,6 +99,93 @@
 					"name": "Delete",
 					"request": {
 						"url": "localhost/muebleria/api/categories/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"description": "",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/images",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Index"
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/images/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/images",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file_name",
+									"type": "file",
+									"enabled": true,
+									"src": "50bf7d54ee54f9416fc5e65c00c2efd9.png"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/images/1",
 						"method": "DELETE",
 						"header": [
 							{
@@ -174,7 +261,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Mesa cuadrada\",\n    \"price\": 500000,\n    \"stock\": 10,\n    \"main_image\": null,\n    \"in_offert\": true,\n    \"discount\": 20,\n    \"category_id\": 1\n}"
+							"raw": "{\n\t\"name\": \"Mesa cuadrada\",\n\t\"price\": 500000,\n\t\"stock\": 10,\n\t\"in_offer\": true,\n\t\"discount\": 20,\n\t\"category_id\": 1\n}"
 						},
 						"description": ""
 					},
@@ -199,7 +286,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Mesa cuadrada\",\n    \"price\": 500000,\n    \"stock\": 10,\n    \"main_image\": null,\n    \"in_offert\": true,\n    \"discount\": 20,\n    \"category_id\": 1\n}"
+							"raw": "{\n\t\"name\": \"Mesa cuadrada\",\n\t\"price\": 500000,\n\t\"stock\": 10,\n\t\"in_offer\": true,\n\t\"discount\": 20,\n\t\"category_id\": 1\n}"
 						},
 						"description": ""
 					},
@@ -226,104 +313,25 @@
 					"response": []
 				},
 				{
-					"name": "List Specifications",
+					"name": "Delete All",
 					"request": {
-						"url": "localhost/muebleria/api/products/1/specifications",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {},
-						"description": "Index"
-					},
-					"response": []
-				},
-				{
-					"name": "View Specification",
-					"request": {
-						"url": "localhost/muebleria/api/products/1/specifications/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {},
-						"description": "One specification of product"
-					},
-					"response": []
-				},
-				{
-					"name": "Add Specification",
-					"request": {
-						"url": "localhost/muebleria/api/products/1/specifications",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"especificación 1\",\n\t\"value\": \"1m x 0.5m\",\n\t\"product_id\": 1\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Edit Specification",
-					"request": {
-						"url": "localhost/muebleria/api/products/1/specifications/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"especificación editada\",\n\t\"value\": \"Especificación\",\n\t\"product_id\": 1\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Specification",
-					"request": {
-						"url": "localhost/muebleria/api/products/1/specifications/1",
+						"url": "localhost/muebleria/api/products/delete-all",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Accept",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"ids\": [1, 2]\n}"
 						},
 						"description": ""
 					},
@@ -371,7 +379,117 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"site_name\": \"Muebleria S. A.\",\n\t\"site_cellphone\": \"0987654321\",\n\t\"site_phone\": \"021678234\",\n\t\"site_email\": \"asdf@asdf.com\",\n\t\"social_facebook\": \"www.facebook.com\",\n\t\"social_twitter\": \"www.twitter.com\",\n\t\"social_instagram\": \"www.instagram.com\",\n\t\"site_active\": true\n  }"
+							"raw": "{\n  \"site_name\": \"Muebleria S. A.\",\n  \"site_cellphone\": \"0987654321\",\n  \"site_phone\": \"021678234\",\n  \"site_email\": \"asdf@asdf.com\",\n  \"social_facebook\": \"www.facebook.com\",\n  \"social_twitter\": \"www.twitter.com\",\n  \"social_instagram\": \"www.instagram.com\",\n  \"site_active\": true\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Specifications",
+			"description": "",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Index"
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "One specification of product"
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"especificación 1\",\n  \"value\": \"1m x 0.5m\",\n  \"product_id\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"especificación editada\",\n  \"value\": \"Especificación\",\n  \"product_id\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/specifications/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
 						},
 						"description": ""
 					},
@@ -436,7 +554,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Homero\",\n\t\"last_name\": \"Simpson\",\n\t\"username\": \"hsimpson\",\n\t\"role\": \"super-admin\",\n\t\"password\": \"12345\",\n\t\"active\": true\n}"
+							"raw": "{\n  \"name\": \"Homero\",\n  \"last_name\": \"Simpson\",\n  \"username\": \"hsimpson\",\n  \"role\": \"super-admin\",\n  \"password\": \"12345\",\n  \"active\": true\n}"
 						},
 						"description": ""
 					},
@@ -461,7 +579,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Homero\",\n\t\"last_name\": \"Simpson\",\n\t\"username\": \"hsimpson\",\n\t\"role\": \"super-admin\",\n\t\"password\": \"12345\",\n\t\"active\": true\n}"
+							"raw": "{\n  \"name\": \"Homero\",\n  \"last_name\": \"Simpson\",\n  \"username\": \"hsimpson\",\n  \"role\": \"super-admin\",\n  \"password\": \"12345\",\n  \"active\": true\n}"
 						},
 						"description": ""
 					},

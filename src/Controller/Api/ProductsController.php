@@ -3,6 +3,7 @@ namespace App\Controller\Api;
 
 use PDOException;
 use App\Controller\AppController;
+use Cake\ORM\Query;
 
 /**
  * Products Controller
@@ -19,6 +20,13 @@ class ProductsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => [
+                'ProductImages' => function (Query $query) {
+                    return $query->where(['ProductImages.main' => true]);
+                },
+            ]
+        ];
         $products = $this->paginate($this->Products);
         $status = true;
 
@@ -44,7 +52,7 @@ class ProductsController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Network\Response|void
      */
     public function add()
     {
@@ -67,7 +75,7 @@ class ProductsController extends AppController
      * Edit method
      *
      * @param string|null $id_slug Product id or slug.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Network\Response|void
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id_slug = null)
@@ -91,7 +99,7 @@ class ProductsController extends AppController
      * Delete method
      *
      * @param string|null $id_slug Product id or slug.
-     * @return \Cake\Network\Response|null Redirects to index.
+     * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id_slug = null)
@@ -112,5 +120,26 @@ class ProductsController extends AppController
         }
         $this->set(compact(['product', 'status', 'message']));
         $this->set('_serialize', ['product', 'status', 'message']);
+    }
+    /**
+     * Delete all method
+     *
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function deleteAll() {
+        $products = $this->Products->find()->where(['id IN' => $this->request->data['ids']]);
+        try {
+            foreach ($products as $product) {
+                $this->Products->delete($product);
+            }
+            $status = true;
+            $message = 'Se han eliminado los registros';
+        } catch (PDOException $e) {
+            $status = false;
+            $message = 'No se han eliminado los registros';
+        }
+
+        $this->set(compact(['products', 'status', 'message']));
+        $this->set('_serialize', ['products', 'status', 'message']);
     }
 }
