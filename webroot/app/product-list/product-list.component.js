@@ -49,7 +49,8 @@ angular.
         };
 
         // Edit
-        $scope.editProductDialog = function(ev) {
+        $scope.editProductDialog = function(ev, product) {
+          self.product = product;
           $mdDialog.show({
             controller: ProductEditController,
             templateUrl: 'app/product-edit/product-edit.template.html',
@@ -59,8 +60,10 @@ angular.
           })
           .then(function(answer) { // hide
             // $scope.status = 'You said the information was "' + answer + '".';
+            self.messageToast(answer);
           }, function() {          // cancel
             // $scope.status = 'You cancelled the dialog.';
+            self.messageToast('No se ha editado el registro');
           });
         };
 
@@ -98,8 +101,8 @@ angular.
             self.products.products.splice(index, 1); // delete one element
           }
 
-          self.products.pagination.count -= self.selected.length;
-          self.selected = [];
+          self.products.pagination.count -= self.selected.length; // update count
+          self.selected = []; // empty self.selected array
 
           if (allDeleted) {
             self.messageToast('Se han borrado los registros');
@@ -121,8 +124,7 @@ angular.
           $scope.product = {
             /* name,
                price,
-               stock,
-               main_image, */
+               stock, */
                in_offer: false,
                discount: 0
             /* category_id */
@@ -154,19 +156,35 @@ angular.
         }
 
         function ProductEditController($scope, $mdDialog, Product, Category) {
+          $scope.toEdit = Product.view({productId: self.product.id});
           $scope.categories = Category.list();
 
-          $scope.product;
+          var index = self.products.products.indexOf(self.product);
+
+          $scope.editProduct = function() {
+            Product.edit(
+              {productId: $scope.toEdit.product.id},
+              $scope.toEdit.product,
+              function (response) {
+                if (response.status) {
+                  self.products.products[index] = response.product; // replace edited element
+                }
+                $scope.answer(response.message);
+              }
+            );
+            self.product = undefined;
+          };
+
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
 
           $scope.cancel = function() {
             $mdDialog.cancel();
           };
 
-          $scope.editProduct = function() {
-            Product.edit(
-              {productId: $scope.product.id},
-              $scope.product
-            );
+          $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
           };
         }
 
