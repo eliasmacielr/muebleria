@@ -86,16 +86,24 @@ angular.
         };
 
         self.deleteProducts = function() {
+          var allDeleted = true;
           for(var i = 0; i < self.selected.length; i++) {
-            self.deleteProduct(self.selected[i].id);
+            self.deleteProduct(
+              self.selected[i].id,
+              function(response) {
+                allDeleted *= response.status;
+              }
+            );
             var index = self.products.products.indexOf(self.selected[i]);
             self.products.products.splice(index, 1); // delete one element
-            // TODO: make something like
-            // bool = true;
-            // for(...) bool *= self.deleteProductCallbackResult;
           }
+
+          self.selected = [];
           self.products.pagination.count -= self.selected.length;
-          // mdToast(bool);
+
+          if (allDeleted) {
+            self.messageToast('Se han borrado los registros');
+          }
         };
 
         self.search = {
@@ -115,7 +123,7 @@ angular.
                price,
                stock,
                main_image, */
-               in_offert: false,
+               in_offer: false,
                discount: 0
             /* category_id */
           };
@@ -123,11 +131,11 @@ angular.
           $scope.saveProduct = function() {
             Product.add($scope.product,
               function (response) {
-                $scope.answer(response.message);
                 if (response.status) {
-                  self.products.products.push($scope.product);
+                  self.products.products.push(response.product);
                   self.products.pagination.count += 1;
                 }
+                $scope.answer(response.message);
               }
             );
           };
