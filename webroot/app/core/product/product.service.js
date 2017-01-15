@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource('http://localhost/muebleria/api/products/:productId/',
+      return $resource(location.origin + '/muebleria/api/products/:productId/',
         {'productId': '@id'},
         {
           list: {
