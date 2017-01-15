@@ -7,6 +7,9 @@ angular.
     function config($locationProvider, $routeProvider) {
       $locationProvider.hashPrefix('!');
 
+      if (!location.origin)
+        location.origin = location.protocol + '//' + location.host;
+
       $routeProvider.
         when('/login', {
           template: '<login></login>'
