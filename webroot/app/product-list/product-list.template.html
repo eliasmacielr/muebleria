@@ -59,7 +59,7 @@
           <td md-cell>{{product.stock}}</td>
           <td md-cell>{{product.discount}}</td>
           <td md-cell>
-            <md-button class="md-icon-button" aria-label="Ver" ng-click="">
+            <md-button class="md-icon-button" aria-label="Ver" ng-click="viewProduct(product)">
               <md-icon md-svg-icon="img/icons/ic_details_black_24px.svg"></md-icon>
             </md-button>
             <md-button class="md-icon-button" aria-label="Editar" ng-click="editProductDialog($event, product)">
@@ -73,4 +73,41 @@
 
   <!-- Footer for the table with pagination options  -->
   <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.pagination.count}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
+
+  <md-sidenav class="md-sidenav-right details" md-component-id="right">
+    <md-toolbar class="md-theme-light">
+      <h1 class="md-toolbar-tools">Detalles del producto</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+      <div>
+        <form>
+          <md-input-container>
+            <label>Nombre</label>
+            <input ng-model="$ctrl.product.name" disabled>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Precio</label>
+            <input ng-model="$ctrl.product.price" disabled>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Stock</label>
+            <input ng-model="$ctrl.product.stock" disabled>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>En oferta</label>
+            <input value="{{$ctrl.product.in_offer ? 'Si' : 'No'}}" disabled>
+          </md-input-container>
+          <md-input-container ng-show="{{$ctrl.product.in_offer}}">
+            <label>Descuento (%)</label>
+            <input ng-model="$ctrl.product.discount">
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Categoría</label>
+            <input ng-model="$ctrl.product.category_id" disabled>
+          </md-input-container>
+        </form>
+      </div>
+    </md-content>
+  </md-sidenav>
+
 </md-card>

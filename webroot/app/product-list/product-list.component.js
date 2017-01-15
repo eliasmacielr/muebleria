@@ -6,20 +6,20 @@ angular.
   module('productList').
   component('productList', {
     templateUrl: 'app/product-list/product-list.template.html',
-    controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdToast', 'Product', 'Category',
-      function ProductListController($routeParams, $location, $scope, $mdDialog, $mdToast, Product, Category) {
+    controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category',
+      function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category) {
 
         var self = this;
+
+        self.products = Product.list();
+
+        self.selected = []; // list of selected products in the table
 
         self.query = {
           order: 'name',
           limit: 10,
           page: 1
         };
-
-        self.selected = []; // list of selected products in the table
-
-        self.products = Product.list();
 
         // List
         self.getProducts = function() {
@@ -32,6 +32,11 @@ angular.
         //   this.product = Product.view({productId: $routeParams.productId});
         // }
 
+        $scope.viewProduct = function(product) {
+          self.product = product;
+          $mdSidenav('right').toggle();
+        }
+
         // Add
         $scope.saveProductDialog = function(ev) {
           $mdDialog.show({
@@ -41,10 +46,9 @@ angular.
             targetEvent: ev //,
             // clickOutsideToClose: true
           })
-          .then(function(answer) {
+          .then(function(answer) { // hide
             self.messageToast(answer);
-          }, function() {
-            // $scope.status = 'You cancelled the dialog.';
+          }, function() { // cancel
           });
         };
 
@@ -55,14 +59,11 @@ angular.
             controller: ProductEditController,
             templateUrl: 'app/product-edit/product-edit.template.html',
             parent: angular.element(document.body),
-            targetEvent: ev //,
-            // clickOutsideToClose: true
+            targetEvent: ev
           })
           .then(function(answer) { // hide
-            // $scope.status = 'You said the information was "' + answer + '".';
             self.messageToast(answer);
           }, function() {          // cancel
-            // $scope.status = 'You cancelled the dialog.';
             self.messageToast('No se ha editado el registro');
           });
         };
@@ -85,7 +86,7 @@ angular.
         };
 
         self.deleteProduct = function(productId) {
-          Product.delete({productId: productId}); // TODO: add callback function
+          Product.delete({productId: productId});
         };
 
         self.deleteProducts = function() {

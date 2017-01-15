@@ -13,3 +13,12 @@ md-checkbox.md-checked .md-icon {
   background-color: white; /* #2F4F4F; DarkSlateGrey */
   border-color: #808080;
 }
+
+/* css details class (wider) for details display */
+md-sidenav.details,
+md-sidenav.md-locked-open.details,
+md-sidenav.md-closed.md-locked-open-add-active.details{
+    min-width: 250px !important;
+    width: 100vw !important;
+    max-width: 450px !important;
+}
