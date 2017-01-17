@@ -199,6 +199,10 @@ angular.
           );
         };
 
+        $scope.showSidenav = function() {
+          $mdSidenav('left').toggle();
+        }
+
       }
     ]
   });
