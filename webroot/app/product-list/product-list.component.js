@@ -28,10 +28,6 @@ angular.
         };
 
         // View
-        // this.viewProduct = function() {
-        //   this.product = Product.view({productId: $routeParams.productId});
-        // }
-
         $scope.viewProduct = function(product) {
           self.product = product;
           $mdSidenav('right').toggle();
@@ -199,7 +195,7 @@ angular.
           );
         };
 
-        $scope.showSidenav = function() {
+        $scope.showLeftSidenav = function() {
           $mdSidenav('left').toggle();
         }
 
