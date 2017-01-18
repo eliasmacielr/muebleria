@@ -183,6 +183,23 @@
 					"response": []
 				},
 				{
+					"name": "Mark as Main",
+					"request": {
+						"url": "localhost/muebleria/api/products/1/images/mark-main/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "Delete",
 					"request": {
 						"url": "localhost/muebleria/api/products/1/images/1",
