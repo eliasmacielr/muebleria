@@ -66,6 +66,31 @@ class ProductImagesController extends AppController
     }
 
     /**
+     * Edit method
+     *
+     * @param string|null $id Product id.
+     * @param string|null $id Image id.
+     * @return \Cake\Network\Response|void
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($product_id = null, $id = null)
+    {
+        $this->request->allowMethod(['put']);
+        $productImage = $this->ProductImages->get($id);
+        $productImage->set('main', true);
+        if ($this->ProductImages->save($productImage)) {
+            $message = 'Se ha editado el registro';
+            $status = true;
+        } else {
+            $message = 'No se ha editado el registro';
+            $status = false;
+            $errors = $this->ErrorAdapter->reduce($productImage->errors());
+        }
+        $this->set(compact(['productImage', 'status', 'message', 'errors']));
+        $this->set('_serialize', ['productImage', 'status', 'message', 'errors']);
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $product_id Product id.
