@@ -77,7 +77,7 @@ Router::scope('/', function (RouteBuilder $routes) {
                 $routes->connect('/', ['action' => 'index', '_method' => ['GET']], ['pass' => ['product_id']]);
                 $routes->connect('/:id', ['action' => 'view', '_method' => ['GET']], ['pass' => ['product_id', 'id']]);
                 $routes->connect('/', ['action' => 'add', '_method' => ['POST']], ['pass' => ['product_id']]);
-                $routes->connect('/:id', ['action' => 'edit', '_method' => ['PUT']], ['pass' => ['product_id', 'id']]);
+                $routes->connect('/mark_main/:id', ['action' => 'edit', '_method' => ['PUT']], ['pass' => ['product_id', 'id']]);
                 $routes->connect('/:id', ['action' => 'delete', '_method' => ['DELETE']], ['pass' => ['product_id', 'id']]);
             });
             $routes->scope('/specifications', ['controller' => 'ProductSpecifications'], function (RouteBuilder $routes) {
