@@ -31,4 +31,11 @@ class ProductImage extends Entity
         '*' => true,
         'id' => false
     ];
+
+    protected $_virtual = ['file_path'];
+
+    public function _getFilePath()
+    {
+        return 'resources/productimages/file_name/' . $this->_properties['file_dir'] . '/' . $this->_properties['file_name'];
+    }
 }

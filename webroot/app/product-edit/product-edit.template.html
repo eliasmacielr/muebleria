@@ -56,7 +56,7 @@
         </form>
 
         <div ng-repeat="image in productImages">
-          <img style="height: 100px;width: 100px;" ng-src="resources/productimages/file_name/{{image.file_dir}}/{{image.file_name}}" alt="">
+          <img style="height: 100px;width: 100px;" ng-src="{{image.file_path}}" alt="">
         </div>
 
         <md-content layout="row" layout-align="end center">
