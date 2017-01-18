@@ -64,7 +64,7 @@
 </head>
 <body>
 
-  <div ng-view></div>
+  <div ng-view layout-fill></div>
 
 </body>
 </html>
