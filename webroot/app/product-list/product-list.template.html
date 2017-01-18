@@ -12,7 +12,7 @@
     </md-toolbar>
 
     <md-content layout-padding>
-      <md-button>Boton</md-button>
+
     </md-content>
 
   </md-sidenav>
@@ -134,6 +134,9 @@
                   <label>Categoría</label>
                   <input ng-model="$ctrl.product.category_id" disabled>
                 </md-input-container>
+                <md-content layout="row" layout-align="end center">
+                  <md-button class="md-raised md-primary" ng-click="toggleRight()">Cerrar</md-button>
+                </md-content>
               </form>
             </div>
           </md-content>
