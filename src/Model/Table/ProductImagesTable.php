@@ -1,6 +1,9 @@
 <?php
 namespace App\Model\Table;
 
+use ArrayObject;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\Event;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -83,5 +86,17 @@ class ProductImagesTable extends Table
         $rules->add($rules->existsIn(['product_id'], 'Products'));
 
         return $rules;
+    }
+
+    /**
+     * Call before save a entity
+     * @param  Event           $event
+     * @param  EntityInterface $entity
+     * @param  ArrayObject     $options
+     */
+    public function beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)
+    {
+        $this->query()->update($this->table())->set(['main' => false])->where(['product_id' => $entity->product_id])->execute()->closeCursor();
+        return true;
     }
 }
