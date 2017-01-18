@@ -43,6 +43,9 @@
   <script src="webroot/app/core/category/category.module.js"></script>
   <script src="webroot/app/core/category/category.service.js"></script>
 
+  <script src="webroot/app/core/image/image.module.js"></script>
+  <script src="webroot/app/core/image/image.service.js"></script>
+
   <script src="webroot/app/core/product/product.module.js"></script>
   <script src="webroot/app/core/product/product.service.js"></script>
 
