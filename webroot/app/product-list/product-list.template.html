@@ -31,118 +31,125 @@
       </div>
     </md-toolbar>
 
-    <md-content layout-padding layout="row">
+    <md-content layout="row" flex>
 
-      <md-card layout-fill>
-        <!-- Show this toolbar when no items are selected -->
-        <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length == 0">
-          <div class="md-toolbar-tools">
-            <h2><span>Productos</span></h2>
-            <span flex></span>
-            <!-- Search -->
-            <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch">
-              <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
-            </md-button>
-            <form class"ng-pristine ng-valid flex">
-              <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
-            </form>
-            <!-- Add -->
-            <md-button class="md-icon-button" aria-label="Crear" ng-click="saveProductDialog($event)">
-              <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
-            </md-button>
-          </div>
-        </md-toolbar>
+      <div layout="column" flex>
 
-        <!-- Show this toolbar when one or more items are selected -->
-        <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length != 0">
-          <div class="md-toolbar-tools">
-            <h2><span>Productos</span></h2>
-            <span flex></span>
-            <!-- Delete -->
-            <md-button class="md-icon-button" aria-label="Eliminar" ng-click="deleteProductDialog($event)">
-              <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
-            </md-button>
-          </div>
-        </md-toolbar>
+        <md-card>
 
-        <!-- The actual table -->
-        <md-table-container>
-          <table md-table md-row-select="true" multiple="true" ng-model="$ctrl.selected" md-progress="promise">
-            <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getProducts">
-              <tr md-row>
-                <th md-column md-order-by="name"><span>Nombre</span></th>
-                <th md-column md-numeric md-order-by="price"><span>Precio</span></th>
-                <th md-column md-numeric md-order-by="stock"><span>Stock</span></th>
-                <th md-column md-numeric md-order-by="discount"><span>Descuento (%)</span></th>
-                <th md-column>Acciones</th>
-              </tr>
-            </thead>
-            <tbody md-body>
-              <tr md-row md-select="product" md-select-id="id"
-              ng-repeat="product in $ctrl.products.products
-                | orderBy: $ctrl.query.order
-                | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit"> <!-- md-auto-select="true" -->
-                <!-- add button to view details of the product -->
-                <td md-cell>{{product.name}}</td>
-                <td md-cell>{{product.price}}</td>
-                <td md-cell>{{product.stock}}</td>
-                <td md-cell>{{product.discount}}</td>
-                <td md-cell>
-                  <md-button class="md-icon-button" aria-label="Ver" ng-click="viewProduct(product)">
-                    <md-icon md-svg-icon="img/icons/ic_details_black_24px.svg"></md-icon>
-                  </md-button>
-                  <md-button class="md-icon-button" aria-label="Editar" ng-click="editProductDialog($event, product)">
-                    <md-icon md-svg-icon="img/icons/ic_mode_edit_black_24px.svg"></md-icon>
-                  </md-button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </md-table-container>
-
-        <!-- Footer for the table with pagination options  -->
-        <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.pagination.count}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
-
-        <md-sidenav class="md-sidenav-right details" md-component-id="right">
-          <md-toolbar class="md-theme-light">
-            <h1 class="md-toolbar-tools">Detalles del producto</h1>
-          </md-toolbar>
-          <md-content layout-padding>
-            <div>
-              <form>
-                <md-input-container>
-                  <label>Nombre</label>
-                  <input ng-model="$ctrl.product.name" disabled>
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Precio</label>
-                  <input ng-model="$ctrl.product.price" disabled>
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Stock</label>
-                  <input ng-model="$ctrl.product.stock" disabled>
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>En oferta</label>
-                  <input value="{{$ctrl.product.in_offer ? 'Si' : 'No'}}" disabled>
-                </md-input-container>
-                <md-input-container ng-show="{{$ctrl.product.in_offer}}">
-                  <label>Descuento (%)</label>
-                  <input ng-model="$ctrl.product.discount">
-                </md-input-container>
-                <md-input-container class="md-block">
-                  <label>Categoría</label>
-                  <input ng-model="$ctrl.product.category_id" disabled>
-                </md-input-container>
-                <md-content layout="row" layout-align="end center">
-                  <md-button class="md-raised md-primary" ng-click="toggleRight()">Cerrar</md-button>
-                </md-content>
+          <!-- Show this toolbar when no items are selected -->
+          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length == 0">
+            <div class="md-toolbar-tools">
+              <h2><span>Productos</span></h2>
+              <span flex></span>
+              <!-- Search -->
+              <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch">
+                <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
+              </md-button>
+              <form class"ng-pristine ng-valid flex">
+                <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
               </form>
+              <!-- Add -->
+              <md-button class="md-icon-button" aria-label="Crear" ng-click="saveProductDialog($event)">
+                <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
+              </md-button>
             </div>
-          </md-content>
-        </md-sidenav>
+          </md-toolbar>
 
-      </md-card>
+          <!-- Show this toolbar when one or more items are selected -->
+          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length != 0">
+            <div class="md-toolbar-tools">
+              <h2><span>Productos</span></h2>
+              <span flex></span>
+              <!-- Delete -->
+              <md-button class="md-icon-button" aria-label="Eliminar" ng-click="deleteProductDialog($event)">
+                <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
+              </md-button>
+            </div>
+          </md-toolbar>
+
+          <!-- The actual table -->
+          <md-table-container>
+            <table md-table md-row-select="true" multiple="true" ng-model="$ctrl.selected" md-progress="promise">
+              <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getProducts">
+                <tr md-row>
+                  <th md-column md-order-by="name"><span>Nombre</span></th>
+                  <th md-column md-numeric md-order-by="price"><span>Precio</span></th>
+                  <th md-column md-numeric md-order-by="stock"><span>Stock</span></th>
+                  <th md-column md-numeric md-order-by="discount"><span>Descuento (%)</span></th>
+                  <th md-column>Acciones</th>
+                </tr>
+              </thead>
+              <tbody md-body>
+                <tr md-row md-select="product" md-select-id="id"
+                ng-repeat="product in $ctrl.products.products
+                  | orderBy: $ctrl.query.order
+                  | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit"> <!-- md-auto-select="true" -->
+                  <!-- add button to view details of the product -->
+                  <td md-cell>{{product.name}}</td>
+                  <td md-cell>{{product.price}}</td>
+                  <td md-cell>{{product.stock}}</td>
+                  <td md-cell>{{product.discount}}</td>
+                  <td md-cell>
+                    <md-button class="md-icon-button" aria-label="Ver" ng-click="viewProduct(product)">
+                      <md-icon md-svg-icon="img/icons/ic_details_black_24px.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Editar" ng-click="editProductDialog($event, product)">
+                      <md-icon md-svg-icon="img/icons/ic_mode_edit_black_24px.svg"></md-icon>
+                    </md-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </md-table-container>
+
+          <!-- Footer for the table with pagination options  -->
+          <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.pagination.count}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
+
+        </md-card>
+
+        <span flex></span>
+
+      </div>
+
+      <md-sidenav class="md-sidenav-right details" md-component-id="right">
+        <md-toolbar class="md-theme-light">
+          <h1 class="md-toolbar-tools">Detalles del producto</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+          <div>
+            <form>
+              <md-input-container>
+                <label>Nombre</label>
+                <input ng-model="$ctrl.product.name" disabled>
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Precio</label>
+                <input ng-model="$ctrl.product.price" disabled>
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Stock</label>
+                <input ng-model="$ctrl.product.stock" disabled>
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>En oferta</label>
+                <input value="{{$ctrl.product.in_offer ? 'Si' : 'No'}}" disabled>
+              </md-input-container>
+              <md-input-container ng-show="{{$ctrl.product.in_offer}}">
+                <label>Descuento (%)</label>
+                <input ng-model="$ctrl.product.discount">
+              </md-input-container>
+              <md-input-container class="md-block">
+                <label>Categoría</label>
+                <input ng-model="$ctrl.product.category_id" disabled>
+              </md-input-container>
+              <md-content layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ng-click="toggleRight()">Cerrar</md-button>
+              </md-content>
+            </form>
+          </div>
+        </md-content>
+      </md-sidenav>
 
       <!-- <span flex></span> -->
     </md-content>
