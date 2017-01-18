@@ -6,8 +6,8 @@ angular.
   module('productList').
   component('productList', {
     templateUrl: 'app/product-list/product-list.template.html',
-    controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category',
-      function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category) {
+    controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
+      function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
 
         var self = this;
 
@@ -177,6 +177,11 @@ angular.
                 $scope.answer(response.message);
               }
             );
+
+            var fd = new FormData();
+            fd.append('file_name', document.forms[2]["file_name"].value);
+            Image.add({productId: self.products.products[index].id}, fd);
+
             self.product = undefined;
           };
 
