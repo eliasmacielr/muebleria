@@ -164,6 +164,8 @@ angular.
           $scope.toEdit = Product.view({productId: self.product.id});
           $scope.categories = Category.list();
 
+          $scope.productImages = [];
+
           var index = self.products.products.indexOf(self.product);
 
           $scope.editProduct = function() {
@@ -179,8 +181,9 @@ angular.
             );
 
             var fd = new FormData();
-            fd.append('file_name', document.forms[2]["file_name"].value);
-            Image.add({productId: self.products.products[index].id}, fd);
+            // console.log(document.forms);
+            // fd.append('file_name', document.forms[2]["file_name"].value);
+            // Image.add({productId: self.products.products[index].id}, fd);
 
             self.product = undefined;
           };
@@ -188,6 +191,18 @@ angular.
           $scope.hide = function() {
             $mdDialog.hide();
           };
+
+          $scope.addImage = function () {
+            var image = document.getElementById('file-upload');
+            var fd = new FormData();
+            fd.append('file_name', image.files[0], image.files[0].name)
+
+            Image.add({productId: self.products.products[index].id}, fd).$promise.then(function (result) {
+              image.value = "";
+              $scope.productImages.push(result.productImage);
+              console.log(result);
+            });
+          }
 
           $scope.cancel = function() {
             $mdDialog.cancel();

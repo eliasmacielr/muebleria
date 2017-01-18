@@ -50,9 +50,14 @@
         <form name="myForm">
           <!-- <label>Imagen</label> -->
           <!-- <md-input-container> -->
-            <input type="file" name="file_name" aria-label="Imagen">
+            <input id="file-upload" type="file" name="file_name" aria-label="Imagen">
+            <md-button class="md-raised md-primary" ng-click="addImage()">Agregar Imagen</md-button>
           <!-- </md-input-container> -->
         </form>
+
+        <div ng-repeat="image in productImages">
+          <img style="height: 100px;width: 100px;" ng-src="resources/productimages/file_name/{{image.file_dir}}/{{image.file_name}}" alt="">
+        </div>
 
         <md-content layout="row" layout-align="end center">
           <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
