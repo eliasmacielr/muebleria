@@ -96,7 +96,7 @@ class ProductImagesTable extends Table
      */
     public function beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)
     {
-        $this->query()->update($this->table())->set(['main' => false])->where(['product_id' => $entity->product_id])->execute()->closeCursor();
+        $this->query()->update($this->table())->set(['main' => false])->where(['product_id' => $entity->product_id, 'main' => true])->execute()->closeCursor();
         return true;
     }
 }
