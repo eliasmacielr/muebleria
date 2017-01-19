@@ -1,4 +1,4 @@
 'use strict';
 
-// Define the `core.category` module
+// Define the `core.image` module
 angular.module('core.image', ['ngResource']);

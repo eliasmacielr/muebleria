@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/products/:productId/',
+      return $resource(location.origin + '/muebleria/api/products/:productId',
         {'productId': '@id'},
         {
           list: {
@@ -40,6 +40,10 @@ angular.
             headers: this.headers
           },
           delete: {
+            method: 'DELETE',
+            headers: this.headers
+          },
+          delete_all: {
             method: 'DELETE',
             headers: this.headers
           }

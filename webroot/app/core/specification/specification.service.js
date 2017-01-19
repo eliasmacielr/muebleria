@@ -1,8 +1,8 @@
 'use strict';
 
 angular.
-  module('core.category').
-  factory('Category', ['$resource',
+  module('core.specification').
+  factory('Specification', ['$resource',
     function($resource) {
 
       this.headers = {
@@ -19,8 +19,8 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/categories/:categoryId',
-        {'categoryId': '@id'},
+      return $resource(location.origin + '/muebleria/api/products/:productId/specifications/:id',
+        {'productId': '@product_id'},
         {
           list: {
             method: 'GET',

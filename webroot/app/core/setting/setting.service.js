@@ -1,8 +1,8 @@
 'use strict';
 
 angular.
-  module('core.category').
-  factory('Category', ['$resource',
+  module('core.setting').
+  factory('Setting', ['$resource',
     function($resource) {
 
       this.headers = {
@@ -19,30 +19,17 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/categories/:categoryId',
-        {'categoryId': '@id'},
+      return $resource(location.origin + '/muebleria/api/setting',
+        {},
         {
-          list: {
-            method: 'GET',
-            headers: this.headers,
-            isArray: false // returns object containing an array
-          },
           view: {
             method: 'GET',
-            headers: this.headers
-          },
-          add: {
-            method: 'POST',
             headers: this.headers
           },
           edit: {
             method: 'PUT',
             headers: this.headers
           },
-          delete: {
-            method: 'DELETE',
-            headers: this.headers
-          }
         }
       );
 
