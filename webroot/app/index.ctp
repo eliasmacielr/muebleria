@@ -49,18 +49,28 @@
   <script src="webroot/app/core/product/product.module.js"></script>
   <script src="webroot/app/core/product/product.service.js"></script>
 
+  <script src="webroot/app/core/setting/setting.module.js"></script>
+  <script src="webroot/app/core/setting/setting.service.js"></script>
+
+  <script src="webroot/app/core/specification/specification.module.js"></script>
+  <script src="webroot/app/core/specification/specification.service.js"></script>
+
   <script src="webroot/app/core/user/user.module.js"></script>
   <script src="webroot/app/core/user/user.service.js"></script>
 
+  <!-- Login -->
   <script src="webroot/app/login/login.module.js"></script>
   <script src="webroot/app/login/login.component.js"></script>
 
-  <!-- Components for tables -->
+  <!-- Components for views -->
   <!-- <script src="webroot/app/category-list/category-list.module.js"></script>
   <script src="webroot/app/category-list/category-list.component.js"></script> -->
 
   <script src="webroot/app/product-list/product-list.module.js"></script>
   <script src="webroot/app/product-list/product-list.component.js"></script>
+
+  <script src="webroot/app/product-edit/product-edit.module.js"></script>
+  <script src="webroot/app/product-edit/product-edit.component.js"></script>
 
   <!-- Style customizations -->
   <link rel="stylesheet" href="webroot/app/app.css">
