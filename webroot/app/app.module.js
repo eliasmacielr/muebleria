@@ -7,5 +7,6 @@ angular.module('myApp', [
   'md.data.table',
   'core',
   'productList',
+  'productEdit',
   'login'
 ]);

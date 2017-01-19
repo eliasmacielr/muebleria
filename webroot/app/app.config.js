@@ -17,6 +17,9 @@ angular.
         when('/productos', {
           template: '<product-list></product-list>'
         }).
+        when('/productos/editar/:productId', {
+          template: '<product-edit></product-edit>'
+        }).
         otherwise('/login');
     }
   ]);
