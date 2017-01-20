@@ -21,6 +21,14 @@ angular.
           page: 1
         };
 
+        self.search = {
+            str: ''
+        };
+
+        self.showSearch = false;
+
+        this.limitOptions = [5, 10, 15];
+
         // List
         self.getProducts = function() {
           self.selected = [];
@@ -47,8 +55,7 @@ angular.
             controller: ProductSaveController,
             templateUrl: 'app/product-save/product-save.template.html',
             parent: angular.element(document.body),
-            targetEvent: ev //,
-            // clickOutsideToClose: true
+            targetEvent: ev
           })
           .then(function(answer) { // hide
             self.messageToast(answer);
@@ -57,19 +64,8 @@ angular.
         };
 
         // Edit
-        $scope.editProductDialog = function(ev, product) {
-          self.product = product;
-          $mdDialog.show({
-            controller: ProductEditController,
-            templateUrl: 'app/product-edit/product-edit.template.html',
-            parent: angular.element(document.body),
-            targetEvent: ev
-          })
-          .then(function(answer) { // hide
-            self.messageToast(answer);
-          }, function() {          // cancel
-            self.messageToast('No se ha editado el registro');
-          });
+        self.editProduct = function(productId) {
+          $location.path('/productos/editar/' + productId);
         };
 
         // Delete
@@ -114,19 +110,11 @@ angular.
           }
         };
 
-        self.search = {
-            str: ''
-        };
-
-        self.showSearch = false;
-
-        this.limitOptions = [5, 10, 15];
-
         // Controllers
         function ProductSaveController($scope, $mdDialog, Product, Category) {
           $scope.categories = Category.list();
 
-          $scope.product = {
+          $scope.product = { // initalize attributes
             /* name,
                price,
                stock, */
@@ -158,62 +146,9 @@ angular.
           $scope.answer = function(answer) {
             $mdDialog.hide(answer);
           };
-        }
+        };
 
-        function ProductEditController($scope, $mdDialog, Product, Category) {
-          $scope.toEdit = Product.view({productId: self.product.id});
-          $scope.categories = Category.list();
-
-          $scope.productImages = [];
-
-          var index = self.products.products.indexOf(self.product);
-
-          $scope.editProduct = function() {
-            Product.edit(
-              {productId: $scope.toEdit.product.id},
-              $scope.toEdit.product,
-              function (response) {
-                if (response.status) {
-                  self.products.products[index] = response.product; // replace edited element
-                }
-                $scope.answer(response.message);
-              }
-            );
-
-            var fd = new FormData();
-            // console.log(document.forms);
-            // fd.append('file_name', document.forms[2]["file_name"].value);
-            // Image.add({productId: self.products.products[index].id}, fd);
-
-            self.product = undefined;
-          };
-
-          $scope.hide = function() {
-            $mdDialog.hide();
-          };
-
-          $scope.addImage = function () {
-            var image = document.getElementById('file-upload');
-            var fd = new FormData();
-            fd.append('file_name', image.files[0], image.files[0].name)
-
-            Image.add({productId: self.products.products[index].id}, fd).$promise.then(function (result) {
-              image.value = "";
-              $scope.productImages.push(result.productImage);
-              console.log(result);
-            });
-          }
-
-          $scope.cancel = function() {
-            $mdDialog.cancel();
-          };
-
-          $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-          };
-        }
-
-        // show toast
+        // Show toast
         self.messageToast = function(message) {
           $mdToast.show(
             $mdToast.simple()
@@ -223,9 +158,10 @@ angular.
           );
         };
 
+        // Navigation sidenav
         $scope.showLeftSidenav = function() {
           $mdSidenav('left').toggle();
-        }
+        };
 
       }
     ]
