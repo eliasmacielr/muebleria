@@ -1,0 +1,24 @@
+<md-dialog aria-label="Editar categoría">
+
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar categoría</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content" layout="column">
+        <md-input-container>
+          <label>Nombre</label>
+          <input ng-model="toEdit.category.name" required>
+        </md-input-container>
+
+        <div class="layout-row" layout-align="end center">
+          <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-click="editCategory()">Confirmar</md-button>
+        </div>
+      </div>
+    </md-dialog-content>
+  <form>
+</md-dialog>
