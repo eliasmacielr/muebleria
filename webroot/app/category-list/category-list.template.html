@@ -50,7 +50,7 @@
                 <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
               </form>
               <!-- Add -->
-              <md-button class="md-icon-button" aria-label="Crear" ng-click="saveCategoryDialog($event)">
+              <md-button class="md-icon-button" aria-label="Crear" ng-click="categoryAddDialog($event)">
                 <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
               </md-button>
             </div>
@@ -62,7 +62,7 @@
               <h2><span>Productos</span></h2>
               <span flex></span>
               <!-- Delete -->
-              <md-button class="md-icon-button" aria-label="Eliminar" ng-click="deleteCategoryDialog($event)">
+              <md-button class="md-icon-button" aria-label="Eliminar" ng-click="categoryDeleteDialog($event)">
                 <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
               </md-button>
             </div>
@@ -85,7 +85,7 @@
                   <!-- add button to view details of the product -->
                   <td md-cell>{{category.name}}</td>
                   <td md-cell>
-                    <md-button class="md-icon-button" aria-label="Editar" ng-click="$ctrl.editCategory(category.id)">
+                    <md-button class="md-icon-button" aria-label="Editar" ng-click="categoryEditDialog($event, category)">
                       <md-icon md-svg-icon="img/icons/ic_mode_edit_black_24px.svg"></md-icon>
                     </md-button>
                   </td>
