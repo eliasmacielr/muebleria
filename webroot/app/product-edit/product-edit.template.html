@@ -1,69 +1,121 @@
-<md-dialog aria-label="Editar producto">
-  <!-- name -->
-  <form ng-cloak>
-    <md-toolbar>
+<div layout="row" layout-fill> <!-- ng-cloak -->
+
+  <!-- Sidenav -->
+  <md-sidenav
+      class="md-sidenav-left"
+      md-component-id="left"
+      md-is-locked-open="$mdMedia('gt-md')"
+      md-whiteframe="4">
+
+    <md-toolbar class="md-theme-light">
+      <h1 class="md-toolbar-tools">Navegación</h1>
+    </md-toolbar>
+
+    <md-content layout-padding>
+
+    </md-content>
+
+  </md-sidenav>
+
+  <!-- Section -->
+  <section layout="column" layout-fill>
+
+    <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>Modificar datos del producto</h2>
+        <md-button class="md-icon-button" aria-label="Menu" ng-click="$ctrl.showLeftSidenav()" hide-gt-md>
+          <md-icon md-svg-icon="img/icons/ic_menu_white_24px.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>Editar datos del producto</span>
+        </h2>
       </div>
     </md-toolbar>
 
-    <md-dialog-content>
-      <div class="md-dialog-content" layout="column">
-        <md-input-container>
-          <label>Nombre</label>
-          <input ng-model="toEdit.product.name" required>
-        </md-input-container>
-        <div class="input-row layout-row">
-          <!-- price -->
-          <md-input-container class="md-block">
-            <label>Precio</label>
-            <input ng-model="toEdit.product.price" type="number" required>
-          </md-input-container>
-          <!-- stock -->
-          <md-input-container class="md-block">
-            <label>Stock</label>
-            <input ng-model="toEdit.product.stock" type="number" required>
-          </md-input-container>
-        </div>
-        <!-- in_offer -->
-        <md-checkbox ng-model="toEdit.product.in_offer" aria-label="En oferta">
-          En oferta
-        </md-checkbox>
-        <!-- discount -->
-        <md-input-container>
-          <label>Descuento (%)</label>
-          <input ng-model="toEdit.product.discount" type="number" ng-disabled="!toEdit.product.in_offer" ng-required="toEdit.product.in_offer"
-            min="0" max="100">
-        </md-input-container>
-        <!-- category -->
-        <md-input-container>
-          <label>Categoria</label>
-          <md-select ng-model="toEdit.product.category_id">
-            <md-option ng-repeat="category in categories.categories" ng-value="category.id">
-              {{category.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
+    <md-content layout="row" flex>
 
-        <br>
+      <div layout="column" flex>
 
-        <form name="myForm">
-          <!-- <label>Imagen</label> -->
-          <!-- <md-input-container> -->
-            <input id="file-upload" type="file" name="file_name" aria-label="Imagen">
-            <md-button class="md-raised md-primary" ng-click="addImage()">Agregar Imagen</md-button>
-          <!-- </md-input-container> -->
-        </form>
+        <md-card>
 
-        <div ng-repeat="image in productImages">
-          <img style="height: 100px;width: 100px;" ng-src="{{image.file_path}}" alt="">
-        </div>
+          <md-card-actions layout="column">
 
-        <md-content layout="row" layout-align="end center">
-          <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
-          <md-button class="md-raised md-primary" ng-click="editProduct()">Confirmar</md-button>
-        </md-content>
+            <md-input-container>
+              <label>Nombre</label>
+              <input ng-model="$ctrl.product.product.name" required>
+            </md-input-container>
+            <div class="input-row layout-row">
+              <!-- price -->
+              <md-input-container class="md-block">
+                <label>Precio</label>
+                <input ng-model="$ctrl.product.product.price" type="number" required>
+              </md-input-container>
+              <!-- stock -->
+              <md-input-container class="md-block">
+                <label>Stock</label>
+                <input ng-model="$ctrl.product.product.stock" type="number" required>
+              </md-input-container>
+            </div>
+            <!-- in_offer -->
+            <md-checkbox ng-model="$ctrl.product.product.in_offer" aria-label="En oferta">
+              En oferta
+            </md-checkbox>
+            <!-- discount -->
+            <md-input-container>
+              <label>Descuento (%)</label>
+              <input ng-model="$ctrl.product.product.discount" type="number"
+                ng-disabled="!$ctrl.product.product.in_offer" ng-required="$ctrl.product.product.in_offer" min="0" max="100">
+            </md-input-container>
+            <!-- category -->
+            <md-input-container>
+              <label>Categoria</label>
+              <md-select ng-model="$ctrl.product.product.category_id" required>
+                <md-option ng-repeat="category in $ctrl.categories.categories" ng-value="category.id">
+                  {{category.name}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+            <h3>Imagenes</h3>
+            <div class="">
+              <img ng-src="{{productImage.file_path}}" alt="imagen-producto"
+              ng-repeat="productImage in $ctrl.imagesUrls.productImages"
+              style="height:128px;" />
+            </div>
+
+            <br>
+
+            <form name="myForm">
+              <input id="file-upload" type="file" name="file_name" aria-label="Imagen">
+              <md-button class="md-raised md-primary" ng-click="addImage()">Agregar Imagen</md-button>
+            </form>
+
+            <div ng-repeat="image in productImages">
+              <img style="height: 100px;width: 100px;" ng-src="{{image.file_path}}" alt="">
+            </div>
+
+            <h3>Especificaciones</h3>
+            <div class="">
+              <p ng-repeat="productSpecification in $ctrl.specifications.productSpecifications">
+                {{productSpecification.name}}: {{productSpecification.value}}
+                <br>
+              </p>
+            </div>
+
+            <md-content layout="row" layout-align="end center">
+              <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
+              <md-button class="md-raised md-primary" ng-click="">Confirmar</md-button>
+            </md-content>
+
+          </md-card-actions>
+
+        </md-card>
+
+        <!-- <span flex></span> -->
+
       </div>
-    </md-dialog-content>
-  <form>
-</md-dialog>
+
+    </md-content>
+
+  </section>
+
+</div>
