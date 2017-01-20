@@ -11,6 +11,9 @@ angular.
         location.origin = location.protocol + '//' + location.host;
 
       $routeProvider.
+        when('/categorias', {
+          template: '<category-list></category-list>'
+        }).
         when('/login', {
           template: '<login></login>'
         }).
