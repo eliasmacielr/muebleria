@@ -6,6 +6,7 @@ angular.module('myApp', [
   'ngMaterial',
   'md.data.table',
   'core',
+  'categoryList',
   'productList',
   'productEdit',
   'login'
