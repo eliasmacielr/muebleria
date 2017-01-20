@@ -31,9 +31,9 @@
       </div>
     </md-toolbar>
 
-    <md-content layout="row" flex>
+    <md-content layout="column" flex>
 
-      <div layout="column" flex>
+      <!-- <div layout="column" flex> -->
 
         <md-card>
 
@@ -75,14 +75,18 @@
               </md-select>
             </md-input-container>
 
+          </md-card-actions>
+
+        </md-card>
+
+        <md-card>
+          <md-card-actions>
             <h3>Imagenes</h3>
             <div class="">
               <img ng-src="{{productImage.file_path}}" alt="imagen-producto"
               ng-repeat="productImage in $ctrl.imagesUrls.productImages"
-              style="height:128px;" />
+              style="height:120px;" />
             </div>
-
-            <br>
 
             <form name="myForm">
               <input id="file-upload" type="file" name="file_name" aria-label="Imagen">
@@ -90,9 +94,13 @@
             </form>
 
             <div ng-repeat="image in productImages">
-              <img style="height: 100px;width: 100px;" ng-src="{{image.file_path}}" alt="">
+              <img style="height: 100px;width: 100px;" ng-src="{{image.file_path}}" alt="imagen-producto">
             </div>
+          </md-card-actions>
+        </md-card>
 
+        <md-card>
+          <md-card-actions>
             <h3>Especificaciones</h3>
             <div class="">
               <p ng-repeat="productSpecification in $ctrl.specifications.productSpecifications">
@@ -100,19 +108,15 @@
                 <br>
               </p>
             </div>
-
-            <md-content layout="row" layout-align="end center">
-              <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
-              <md-button class="md-raised md-primary" ng-click="">Confirmar</md-button>
-            </md-content>
-
           </md-card-actions>
-
         </md-card>
 
-        <!-- <span flex></span> -->
+        <md-content layout="row" layout-align="end center">
+          <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-click="">Confirmar</md-button>
+        </md-content>
 
-      </div>
+      <!-- </div> -->
 
     </md-content>
 
