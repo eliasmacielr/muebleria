@@ -63,8 +63,8 @@
   <script src="webroot/app/login/login.component.js"></script>
 
   <!-- Components for views -->
-  <!-- <script src="webroot/app/category-list/category-list.module.js"></script>
-  <script src="webroot/app/category-list/category-list.component.js"></script> -->
+  <script src="webroot/app/category-list/category-list.module.js"></script>
+  <script src="webroot/app/category-list/category-list.component.js"></script>
 
   <script src="webroot/app/product-list/product-list.module.js"></script>
   <script src="webroot/app/product-list/product-list.component.js"></script>
