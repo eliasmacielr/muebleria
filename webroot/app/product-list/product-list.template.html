@@ -18,7 +18,7 @@
   </md-sidenav>
 
   <!-- Section -->
-  <section layout="column" layout-fill> <!--layout-fill flex -->
+  <section layout="column" layout-fill>
 
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
@@ -94,7 +94,7 @@
                     <md-button class="md-icon-button" aria-label="Ver" ng-click="viewProduct(product)">
                       <md-icon md-svg-icon="img/icons/ic_details_black_24px.svg"></md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="Editar" ng-click="editProductDialog($event, product)">
+                    <md-button class="md-icon-button" aria-label="Editar" ng-click="$ctrl.editProduct(product.id)">
                       <md-icon md-svg-icon="img/icons/ic_mode_edit_black_24px.svg"></md-icon>
                     </md-button>
                   </td>
@@ -151,7 +151,6 @@
         </md-content>
       </md-sidenav>
 
-      <!-- <span flex></span> -->
     </md-content>
 
   </section>
