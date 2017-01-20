@@ -1,4 +1,4 @@
 'use strict';
 
-// Define the `productSave` module
-angular.module('productSave', ['core.product', 'core.category']);
+// Define the `productEdit` module
+angular.module('productEdit', ['core.product', 'core.category', 'core.image', 'core.specification']);
