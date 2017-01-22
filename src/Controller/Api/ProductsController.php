@@ -25,6 +25,9 @@ class ProductsController extends AppController
                 'ProductImages' => function (Query $query) {
                     return $query->where(['ProductImages.main' => true]);
                 },
+            ],
+            'finder' => [
+                'search' => $this->Products->filterParams($this->request->query),
             ]
         ];
         $products = $this->paginate($this->Products);

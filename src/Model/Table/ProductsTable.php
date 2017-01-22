@@ -1,10 +1,13 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Database\Expression\QueryExpression;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Search\Manager;
+use Search\Model\Filter\Callback;
 
 /**
  * Products Model
@@ -45,6 +48,8 @@ class ProductsTable extends Table
             'displayField' => 'name',
             'onUpdate' => true,
         ]);
+        $this->addBehavior('Search.Search');
+
         $this->belongsTo('Categories', [
             'foreignKey' => 'category_id',
             'joinType' => 'INNER'
@@ -116,5 +121,44 @@ class ProductsTable extends Table
         $rules->add($rules->existsIn(['category_id'], 'Categories'));
 
         return $rules;
+    }
+
+    /**
+     * Search Manager configuration
+     * @return \Search\Manager
+     */
+    public function searchConfiguration()
+    {
+        $search = new Manager($this);
+        $search->like('name', [
+            'before' => true,
+            'after' => true,
+            'filterEmpty' => true,
+        ]);
+        $search->compare('lte', [
+            'field' => 'price',
+            'operator' => '<=',
+            'filterEmpty' => true,
+        ]);
+        $search->compare('gte', [
+            'field' => 'price',
+            'operator' => '>=',
+            'filterEmpty' => true,
+        ]);
+        $search->callback('btw', [
+            'callback' => function (Query $query, array $args, Callback $filter) {
+                $prices = $args['btw'];
+                sort($prices, SORT_NUMERIC);
+                $query->where(function (QueryExpression $expression, Query $query) use ($prices) {
+                    return $expression->between('price', $prices[0], $prices[1]);
+                });
+            },
+            'filterEmpty' => true,
+        ]);
+        $search->value('category_id', [
+            'multiValue' => true,
+            'filterEmpty' => true,
+        ]);
+        return $search;
     }
 }
