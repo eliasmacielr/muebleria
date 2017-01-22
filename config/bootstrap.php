@@ -225,3 +225,5 @@ Plugin::load('BryanCrowe/ApiPagination');
 Plugin::load('Proffer');
 
 Plugin::load('Muffin/Slug');
+
+Plugin::load('Search');
