@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Search\Manager;
 
 /**
  * Categories Model
@@ -20,6 +21,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Category findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Search\Model\Behavior\SearchBehavior
  */
 class CategoriesTable extends Table
 {
@@ -43,6 +45,7 @@ class CategoriesTable extends Table
             'displayField' => 'name',
             'onUpdate' => true,
         ]);
+        $this->addBehavior('Search.Search');
 
         $this->hasMany('Products', [
             'foreignKey' => 'category_id'
@@ -81,5 +84,20 @@ class CategoriesTable extends Table
         $rules->add($rules->isUnique(['name']));
 
         return $rules;
+    }
+
+    /**
+     * Search Manager configuration
+     * @return \Search\Manager
+     */
+    public function searchConfiguration()
+    {
+        $search = new Manager($this);
+        $search->like('name', [
+            'before' => true,
+            'after' => true,
+            'filterEmpty' => true,
+        ]);
+        return $search;
     }
 }

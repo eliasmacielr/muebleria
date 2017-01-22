@@ -20,7 +20,22 @@ class CategoriesController extends AppController
      */
     public function index()
     {
-        $categories = $this->paginate($this->Categories);
+        $this->paginate = [
+            'limit' => $this->request->query('limit') ?: 10,
+            'sort' => $this->request->query('sort') ?: 'name',
+            'direction' => $this->request->query('direction') ?: 'asc',
+            'finder' => [
+                'search' => $this->Categories->filterParams($this->request->query),
+            ]
+        ];
+
+        $paged = $this->request->query('paged') !== null ? $this->request->query('paged') : true;
+        if ($paged) {
+            $categories = $this->paginate($this->Categories);
+        } else {
+            $categories = $this->Categories->find()->orderAsc('name');
+        }
+
         $status = true;
 
         $this->set(compact(['categories', 'status']));
