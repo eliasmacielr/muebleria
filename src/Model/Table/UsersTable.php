@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Search\Manager;
 
 /**
  * Users Model
@@ -37,6 +38,7 @@ class UsersTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Search.Search');
     }
 
     /**
@@ -87,5 +89,33 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['username']));
 
         return $rules;
+    }
+
+    /**
+     * Search Manager configuration
+     * @return \Search\Manager
+     */
+    public function searchConfiguration()
+    {
+        $search = new Manager($this);
+        $search->like('name', [
+            'before' => true,
+            'after' => true,
+            'filterEmpty' => true,
+        ]);
+        $search->like('last_name', [
+            'before' => true,
+            'after' => true,
+            'filterEmpty' => true,
+        ]);
+        $search->like('username', [
+            'before' => true,
+            'after' => true,
+            'filterEmpty' => true,
+        ]);
+        $search->value('role', [
+            'filterEmpty' => true,
+        ]);
+        return $search;
     }
 }

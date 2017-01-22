@@ -19,6 +19,15 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'limit' => $this->request->query('limit') ?: 10,
+            'sort' => $this->request->query('sort') ?: 'name',
+            'direction' => $this->request->query('direction') ?: 'asc',
+            'finder' => [
+                'search' => $this->Users->filterParams($this->request->query),
+            ]
+        ];
+
         $users = $this->paginate($this->Users);
         $status = true;
 
