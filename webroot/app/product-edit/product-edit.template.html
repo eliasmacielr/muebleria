@@ -1,4 +1,4 @@
-<div layout="row" layout-fill> <!-- ng-cloak -->
+<div layout="row" layout-fill ng-cloak>
 
   <!-- Sidenav -->
   <md-sidenav
@@ -31,93 +31,86 @@
       </div>
     </md-toolbar>
 
-    <md-content layout="column" flex>
+    <md-content layout="column" layout-padding flex>
+      <form name="productEditForm">
+        <md-input-container>
+          <label>Nombre</label>
+          <input ng-model="$ctrl.product.product.name" required>
+        </md-input-container>
+        <!-- price -->
+        <md-input-container class="md-block">
+          <label>Precio</label>
+          <input ng-model="$ctrl.product.product.price" type="number" required>
+        </md-input-container>
+        <!-- stock -->
+        <md-input-container class="md-block">
+          <label>Stock</label>
+          <input ng-model="$ctrl.product.product.stock" type="number" required>
+        </md-input-container>
+        <!-- in_offer -->
+        <md-checkbox ng-model="$ctrl.product.product.in_offer" aria-label="En oferta">
+          En oferta
+        </md-checkbox>
+        <!-- discount -->
+        <md-input-container>
+          <label>Descuento (%)</label>
+          <input ng-model="$ctrl.product.product.discount" type="number"
+            ng-disabled="!$ctrl.product.product.in_offer" ng-required="$ctrl.product.product.in_offer" min="0" max="100">
+        </md-input-container>
+        <!-- category -->
+        <md-input-container>
+          <label>Categoria</label>
+          <md-select ng-model="$ctrl.product.product.category_id" required>
+            <md-option ng-repeat="category in $ctrl.categories.categories" ng-value="category.id">
+              {{category.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
 
-      <!-- <div layout="column" flex> -->
-
-        <md-card>
-
-          <md-card-actions layout="column">
-
-            <md-input-container>
-              <label>Nombre</label>
-              <input ng-model="$ctrl.product.product.name" required>
-            </md-input-container>
-            <div class="input-row layout-row">
-              <!-- price -->
-              <md-input-container class="md-block">
-                <label>Precio</label>
-                <input ng-model="$ctrl.product.product.price" type="number" required>
-              </md-input-container>
-              <!-- stock -->
-              <md-input-container class="md-block">
-                <label>Stock</label>
-                <input ng-model="$ctrl.product.product.stock" type="number" required>
-              </md-input-container>
+        <h3>Imagenes</h3>
+        <!-- <div class="">
+          <img ng-src="{{productImage.file_path}}" alt="imagen-producto"
+          ng-repeat="productImage in $ctrl.imagesUrls.productImages"
+          style="height:120px;" />
+        </div> -->
+        <div layout="row">
+          <md-radio-group ng-model="$ctrl.mainImageUrl" layout="row">
+            <div ng-repeat="productImage in $ctrl.imagesUrls.productImages" layout="row">
+              <md-radio-button  ng-value="productImage.id"
+                  aria-label="productImage.file_name">
+              <img ng-src="{{productImage.file_path}}" alt="imagen-producto" style="height:120px;" />
+              </md-radio-button>
+              <md-button class="md-icon-button" aria-label="Eliminar imagen">
+                <md-icon md-svg-icon="img/icons/ic_clear_black_24px.svg"></md-icon>
+              </md-button>
             </div>
-            <!-- in_offer -->
-            <md-checkbox ng-model="$ctrl.product.product.in_offer" aria-label="En oferta">
-              En oferta
-            </md-checkbox>
-            <!-- discount -->
-            <md-input-container>
-              <label>Descuento (%)</label>
-              <input ng-model="$ctrl.product.product.discount" type="number"
-                ng-disabled="!$ctrl.product.product.in_offer" ng-required="$ctrl.product.product.in_offer" min="0" max="100">
-            </md-input-container>
-            <!-- category -->
-            <md-input-container>
-              <label>Categoria</label>
-              <md-select ng-model="$ctrl.product.product.category_id" required>
-                <md-option ng-repeat="category in $ctrl.categories.categories" ng-value="category.id">
-                  {{category.name}}
-                </md-option>
-              </md-select>
-            </md-input-container>
+          </md-radio-group>
+        </div>
 
-          </md-card-actions>
+        <br>
 
-        </md-card>
+        <form name="myForm">
+          <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="">
+          <md-button class="md-raised md-primary" ng-click="addImage()">Agregar Imagen</md-button>
+        </form>
 
-        <md-card>
-          <md-card-actions>
-            <h3>Imagenes</h3>
-            <div class="">
-              <img ng-src="{{productImage.file_path}}" alt="imagen-producto"
-              ng-repeat="productImage in $ctrl.imagesUrls.productImages"
-              style="height:120px;" />
-            </div>
+        <div ng-repeat="image in productImages" layout="row">
+          <img style="height: 100px;" ng-src="{{image.file_path}}" alt="imagen-producto">
+        </div>
 
-            <form name="myForm">
-              <input id="file-upload" type="file" name="file_name" aria-label="Imagen">
-              <md-button class="md-raised md-primary" ng-click="addImage()">Agregar Imagen</md-button>
-            </form>
+        <h3>Especificaciones</h3>
+        <div class="">
+          <p ng-repeat="productSpecification in $ctrl.specifications.productSpecifications">
+            {{productSpecification.name}}: {{productSpecification.value}}
+            <br>
+          </p>
+        </div>
 
-            <div ng-repeat="image in productImages">
-              <img style="height: 100px;width: 100px;" ng-src="{{image.file_path}}" alt="imagen-producto">
-            </div>
-          </md-card-actions>
-        </md-card>
-
-        <md-card>
-          <md-card-actions>
-            <h3>Especificaciones</h3>
-            <div class="">
-              <p ng-repeat="productSpecification in $ctrl.specifications.productSpecifications">
-                {{productSpecification.name}}: {{productSpecification.value}}
-                <br>
-              </p>
-            </div>
-          </md-card-actions>
-        </md-card>
-
-        <md-content layout="row" layout-align="end center">
+        <div layout="row" layout-align="end center">
           <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
           <md-button class="md-raised md-primary" ng-click="">Confirmar</md-button>
-        </md-content>
-
-      <!-- </div> -->
-
+        </div>
+      </form>
     </md-content>
 
   </section>

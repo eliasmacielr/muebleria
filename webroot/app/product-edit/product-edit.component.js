@@ -34,6 +34,8 @@ angular.
           // Specification.edit();
         };
 
+        self.mainImageUrl = "";
+
         $scope.addImage = function () {
           var image = document.getElementById('file-upload');
           var fd = new FormData();
