@@ -23,6 +23,7 @@ class ProductsSeed extends AbstractSeed
         $data = [
             [
                 'name' => 'Mesa de vidrio',
+                'description' => 'Breve reseña',
                 'price' => 500000,
                 'stock' => 10,
                 'in_offer' => true,
@@ -34,6 +35,7 @@ class ProductsSeed extends AbstractSeed
             ],
             [
                 'name' => 'Sillas',
+                'description' => 'Breve reseña',
                 'price' => 500000,
                 'stock' => 10,
                 'in_offer' => true,
