@@ -76,11 +76,11 @@
         <div layout="row">
           <md-radio-group ng-model="$ctrl.mainImageUrl" layout="row">
             <div ng-repeat="productImage in $ctrl.imagesUrls.productImages" layout="row">
-              <md-radio-button  ng-value="productImage.id"
+              <md-radio-button ng-value="productImage.id"
                   aria-label="productImage.file_name">
               <img ng-src="{{productImage.file_path}}" alt="imagen-producto" style="height:120px;" />
               </md-radio-button>
-              <md-button class="md-icon-button" aria-label="Eliminar imagen">
+              <md-button class="md-icon-button" aria-label="Eliminar imagen" ng-click="deleteImage(productImage)">
                 <md-icon md-svg-icon="img/icons/ic_clear_black_24px.svg"></md-icon>
               </md-button>
             </div>
@@ -90,13 +90,13 @@
         <br>
 
         <form name="myForm">
-          <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="">
-          <md-button class="md-raised md-primary" ng-click="addImage()">Agregar Imagen</md-button>
+          <input id="file-upload" type="file" name="file_name" aria-label="Imagen"  ng-disabled="$ctrl.imagesUrls.productImages.length >= 5">
+          <md-button class="md-raised md-primary" ng-click="addImage()" ng-disabled="$ctrl.imagesUrls.productImages.length >= 5">Agregar Imagen</md-button>
         </form>
 
-        <div ng-repeat="image in productImages" layout="row">
+        <!-- <div ng-repeat="image in productImages" layout="row">
           <img style="height: 100px;" ng-src="{{image.file_path}}" alt="imagen-producto">
-        </div>
+        </div> -->
 
         <h3>Especificaciones</h3>
         <div class="">
@@ -108,7 +108,7 @@
 
         <div layout="row" layout-align="end center">
           <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
-          <md-button class="md-raised md-primary" ng-click="">Confirmar</md-button>
+          <md-button class="md-raised md-primary" ng-click="$ctrl.editProduct()">Confirmar</md-button>
         </div>
       </form>
     </md-content>

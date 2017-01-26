@@ -29,12 +29,11 @@ angular.
               success *= response.status;
             }
           );
-          // Image.add(); // TODO: see how to upload the images
           // for each specification
           // Specification.edit();
         };
 
-        self.mainImageUrl = "";
+        self.mainImageUrl = {};
 
         $scope.addImage = function () {
           var image = document.getElementById('file-upload');
@@ -43,9 +42,28 @@ angular.
 
           Image.add({productId: self.productId}, fd).$promise.then(function (result) {
             image.value = "";
-            $scope.productImages.push(result.productImage);
+            //$scope.productImages.push(result.productImage);
+            self.imagesUrls.productImages.push(result.productImage);
+            if (self.imagesUrls.productImages.lenght == 1) {
+              // mark the first one
+              self.mainImageUrl = self.imagesUrls.productImages[0];
+            }
             console.log(result);
           });
+        };
+
+        $scope.deleteImage = function (prodImg) {
+          Image.delete({productId: prodImg.product_id, image: prodImg.id},
+            function(response) {
+              console.log(response);
+            }
+          );
+          var index = self.imagesUrls.productImages.indexOf(prodImg);
+          self.imagesUrls.productImages.splice(index, 1); // delete one element
+          // if there's only one left, mark that image
+          if (self.imagesUrls.productImages.length == 1) {
+            self.mainImageUrl = self.imagesUrls.productImages[index];
+          }
         };
 
         $scope.cancel = function() {
