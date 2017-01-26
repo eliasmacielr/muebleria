@@ -278,7 +278,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Mesa cuadrada\",\n\t\"price\": 500000,\n\t\"stock\": 10,\n\t\"in_offer\": true,\n\t\"discount\": 20,\n\t\"category_id\": 1\n}"
+							"raw": "{\n  \"name\": \"Mesa cuadrada\",\n  \"description\": \"Breve descripción\",\n  \"price\": 500000,\n  \"stock\": 10,\n  \"in_offer\": true,\n  \"discount\": 20,\n  \"category_id\": 1\n}"
 						},
 						"description": ""
 					},
@@ -303,7 +303,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Mesa cuadrada\",\n\t\"price\": 500000,\n\t\"stock\": 10,\n\t\"in_offer\": true,\n\t\"discount\": 20,\n\t\"category_id\": 1\n}"
+							"raw": "{\n  \"name\": \"Mesa cuadrada\",\n  \"description\": \"Breve descripción\",\n  \"price\": 500000,\n  \"stock\": 10,\n  \"in_offer\": true,\n  \"discount\": 20,\n  \"category_id\": 1\n}"
 						},
 						"description": ""
 					},
@@ -348,7 +348,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ids\": [1, 2]\n}"
+							"raw": "{\n  \"ids\": [1, 2]\n}"
 						},
 						"description": ""
 					},
