@@ -82,6 +82,10 @@ class ProductsTable extends Table
             ->add('name', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'Ya existe otro producto con ese nombre']);
 
         $validator
+            ->requirePresence('description', 'create')
+            ->notEmpty('description');
+
+        $validator
             ->decimal('price')
             ->requirePresence('price', 'create')
             ->notEmpty('price');

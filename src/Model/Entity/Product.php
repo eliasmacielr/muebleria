@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
+ * @property string $description
  * @property float $price
  * @property int $stock
  * @property string $main_image
