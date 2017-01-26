@@ -33,8 +33,6 @@ angular.
           // Specification.edit();
         };
 
-        self.mainImageUrl = {};
-
         $scope.addImage = function () {
           var image = document.getElementById('file-upload');
           var fd = new FormData();
@@ -44,16 +42,14 @@ angular.
             image.value = "";
             //$scope.productImages.push(result.productImage);
             self.imagesUrls.productImages.push(result.productImage);
-            if (self.imagesUrls.productImages.lenght == 1) {
-              // mark the first one
-              self.mainImageUrl = self.imagesUrls.productImages[0];
+            if (self.imagesUrls.productImages.length == 1) { // mark the first one
+              self.mainImageId = self.imagesUrls.productImages[0].id;
             }
-            console.log(result);
           });
         };
 
         $scope.deleteImage = function (prodImg) {
-          Image.delete({productId: prodImg.product_id, image: prodImg.id},
+          Image.delete({productId: prodImg.product_id, imageId: prodImg.id},
             function(response) {
               console.log(response);
             }
@@ -61,8 +57,8 @@ angular.
           var index = self.imagesUrls.productImages.indexOf(prodImg);
           self.imagesUrls.productImages.splice(index, 1); // delete one element
           // if there's only one left, mark that image
-          if (self.imagesUrls.productImages.length == 1) {
-            self.mainImageUrl = self.imagesUrls.productImages[index];
+          if (self.imagesUrls.productImages.length == 1) { // mark the first one
+            self.mainImageId = self.imagesUrls.productImages[0].id;
           }
         };
 
