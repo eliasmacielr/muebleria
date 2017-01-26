@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/products/:productId/images/:image',
+      return $resource(location.origin + '/muebleria/api/products/:productId/images/:imageId',
         {},
         {
           list: {
