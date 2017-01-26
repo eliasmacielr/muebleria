@@ -119,7 +119,7 @@ PUT | / | Edit | {"setting": {}, "status": boolean, "message": string, "errors":
 ## Products
 
   - name: Result in search LIKE: `WHERE name LIKE %$name%`
-  - lte: Compare less than or equal to price field: `WHERE $gte <= price`
+  - lte: Compare less than or equal to price field: `WHERE $lte <= price`
   - gte: Compare greater than or equal to price: `WHERE $gte >= price`
   - btw: Compare price between values, usage btw[]=value0&btw[]=value1`: `WHERE price BETWEEN $btw[0] and $btw[1]`
   - category_id: `WHERE $category_id = category_id`
