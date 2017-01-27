@@ -64,7 +64,12 @@ class UsersTable extends Table
         $validator
             ->requirePresence('username', 'create')
             ->notEmpty('username')
-            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'Nombre de usuario no disponible']);
+            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'Nombre de usuario no disponible'])
+            ->add('username', 'custom', [
+                'rule' => [$this, 'checkUsername'],
+                'message' => 'Nombre de usuario es incorrecto',
+                'provider' => 'table',
+            ]);
 
         $validator
             ->requirePresence('password', 'create')
@@ -117,5 +122,17 @@ class UsersTable extends Table
             'filterEmpty' => true,
         ]);
         return $search;
+    }
+
+    /**
+     * Check if the username is in the form of username[0975]
+     *
+     * @param  string $username
+     * @param  array  $context
+     * @return bool
+     */
+    public function checkUsername($username, array $context)
+    {
+        return (boolean) preg_match("/^[a-z][a-z0-9]+$/", $username);
     }
 }
