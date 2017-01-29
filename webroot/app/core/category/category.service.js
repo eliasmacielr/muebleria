@@ -2,8 +2,8 @@
 
 angular.
   module('core.category').
-  factory('Category', ['$resource',
-    function($resource) {
+  factory('Category', ['$resource', 'HostLocation',
+    function($resource, HostLocation) {
 
       this.headers = {
         'Content-Type' : 'application/json',
@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/categories/:categoryId',
+      return $resource(HostLocation.origin + '/api/categories/:categoryId',
         {'categoryId': '@id'},
         {
           list: {

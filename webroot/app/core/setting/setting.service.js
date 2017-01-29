@@ -2,8 +2,8 @@
 
 angular.
   module('core.setting').
-  factory('Setting', ['$resource',
-    function($resource) {
+  factory('Setting', ['$resource', 'HostLocation',
+    function($resource, HostLocation) {
 
       this.headers = {
         'Content-Type' : 'application/json',
@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/setting',
+      return $resource(HostLocation.origin + '/api/setting',
         {},
         {
           view: {
