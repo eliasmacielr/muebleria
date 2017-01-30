@@ -35,7 +35,8 @@
 
   <!-- App modules -->
   <script src="app/app.module.js"></script>
-  <script src="app/app.config.js"></script>
+  <script src="app/app-route.config.js"></script>
+  <script src="app/app-theme.config.js"></script>
 
   <!-- Core module -->
   <script src="app/core/core.module.js"></script>
