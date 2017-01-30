@@ -35,6 +35,10 @@ angular.
             method: 'POST',
             headers: this.headers
           },
+          markAsMain: {
+            method: 'PUT',
+            headers: this.headers
+          },
           delete: {
             method: 'DELETE',
             headers: this.headers
