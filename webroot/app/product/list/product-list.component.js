@@ -5,7 +5,7 @@
 angular.
   module('productList').
   component('productList', {
-    templateUrl: 'app/product-list/product-list.template.html',
+    templateUrl: 'app/product/list/product-list.template.html',
     controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
       function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
 
@@ -53,7 +53,7 @@ angular.
         $scope.saveProductDialog = function(ev) {
           $mdDialog.show({
             controller: ProductSaveController,
-            templateUrl: 'app/product-save/product-save.template.html',
+            templateUrl: 'app/product/save/product-save.template.html',
             parent: angular.element(document.body),
             targetEvent: ev
           })

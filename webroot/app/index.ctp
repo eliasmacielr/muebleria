@@ -67,14 +67,15 @@
   <script src="app/login/login.component.js"></script>
 
   <!-- Components for views -->
-  <script src="app/category-list/category-list.module.js"></script>
-  <script src="app/category-list/category-list.component.js"></script>
+  <!-- Category -->
+  <script src="app/category/list/category-list.module.js"></script>
+  <script src="app/category/list/category-list.component.js"></script>
 
-  <script src="app/product-list/product-list.module.js"></script>
-  <script src="app/product-list/product-list.component.js"></script>
-
-  <script src="app/product-edit/product-edit.module.js"></script>
-  <script src="app/product-edit/product-edit.component.js"></script>
+  <!-- Product -->
+  <script src="app/product/list/product-list.module.js"></script>
+  <script src="app/product/list/product-list.component.js"></script>
+  <script src="app/product/edit/product-edit.module.js"></script>
+  <script src="app/product/edit/product-edit.component.js"></script>
 
   <!-- Style customizations -->
   <link rel="stylesheet" href="app/app.css">

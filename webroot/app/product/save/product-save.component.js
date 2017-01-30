@@ -5,7 +5,7 @@
 angular.
   module('productSave').
   component('productSave', {
-    templateUrl: 'app/product-save/product-save.template.html',
+    templateUrl: 'app/product/save/product-save.template.html',
     controller: ['$mdDialog', 'Product', 'Category',
       function ProductSaveController($mdDialog, Product, Category) {
 

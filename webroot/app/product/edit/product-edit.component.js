@@ -5,7 +5,7 @@
 angular.
   module('productEdit').
   component('productEdit', {
-    templateUrl: 'app/product-edit/product-edit.template.html',
+    templateUrl: 'app/product/edit/product-edit.template.html',
     controller: ['$routeParams', '$location', '$scope', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image', 'Specification',
       function ProductEditController($routeParams, $location, $scope, $mdSidenav, $mdToast, Product, Category, Image, Specification) {
 
