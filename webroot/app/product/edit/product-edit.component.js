@@ -15,22 +15,17 @@ angular.
 
         self.product = Product.view({productId: self.productId});
         self.categories = Category.list();
-        self.imagesUrls = Image.view({productId: self.productId});
-        self.specifications = Specification.view({productId: self.productId});
-
-        self.editProduct = function () {
-          var success = true;
-          Product.edit(
-            {productId: self.productId},
-            self.product,
-            function(response) {
-              success *= response.status;
+        Image.view({productId: self.productId}).$promise.then(
+          function (response) {
+            self.imagesUrls = response;
+            for (var i = 0; i < response.productImages.length; i++) {
+              if (response.productImages[i].main) {
+                self.mainImageId = response.productImages[i].id;
+              }
             }
-          );
-
-          // for each specification
-          // Specification.edit();
-        };
+          }
+        );
+        self.specifications = Specification.view({productId: self.productId});
 
         self.addImage = function () {
           var image = document.getElementById('file-upload');
@@ -58,6 +53,27 @@ angular.
               }
             }
           );
+        };
+
+        self.editProduct = function () {
+          var success = true;
+          Product.edit(
+            {productId: self.productId},
+            self.product,
+            function(response) {
+              success *= response.status;
+            }
+          );
+
+          Image.markAsMain(
+            {productId: self.productId, imageId: self.mainImageId},
+            function (response) {
+              success *= response.status;
+            }
+          );
+
+          // for each specification
+          // Specification.edit();
         };
 
         self.messageToast = function (message) {
