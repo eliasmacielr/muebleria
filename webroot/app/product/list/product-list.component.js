@@ -72,7 +72,7 @@ angular.
         $scope.deleteProductDialog = function (ev) {
           var confirm = $mdDialog.confirm()
             .title('Eliminar productos')
-            .textContent('Está seguro de borrar ' + self.selected.length + ' registro(s)?')
+            .textContent('Está seguro de borrar ' + $scope.selected.length + ' registro(s)?')
             .ariaLabel('Eliminar productos')
             .targetEvent(ev)
             .ok('Aceptar')
