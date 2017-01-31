@@ -9,34 +9,34 @@ angular.
     controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
       function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
 
-        var self = this;
+        $scope.selected = []; // list of selected products in the table
 
-        self.products = Product.list();
-
-        self.selected = []; // list of selected products in the table
-
-        self.query = {
+        $scope.query = {
           order: 'name',
-          limit: 10,
+          limit: 5,
           page: 1
         };
 
-        self.search = {
-            str: ''
+        $scope.limitOptions = [5, 10, 15];
+
+        // List
+        $scope.products = Product.list($scope.query, success).$promise;
+
+        function success(products) {
+          $scope.products = products;
+        }
+
+        $scope.getProducts = function () {
+          $scope.promise = Product.list($scope.query, success).promise;
         };
+
+        /* -------------------- */
+        var self = this;
 
         self.showSearch = false;
 
-        this.limitOptions = [5, 10, 15];
-
-        // List
-        self.getProducts = function() {
-          self.selected = [];
-          this.products = Product.list();
-        };
-
         // View
-        $scope.viewProduct = function(product) {
+        self.viewProduct = function (product) {
           self.product = product;
           $mdSidenav('right').toggle();
         }
@@ -44,32 +44,32 @@ angular.
         $scope.toggleRight = buildToggler('right');
 
         function buildToggler(componentId) {
-          return function() {
+          return function () {
             $mdSidenav(componentId).toggle();
           }
         };
 
         // Add
-        $scope.saveProductDialog = function(ev) {
+        $scope.saveProductDialog = function (ev) {
           $mdDialog.show({
             controller: ProductSaveController,
             templateUrl: 'app/product/save/product-save.template.html',
             parent: angular.element(document.body),
             targetEvent: ev
           })
-          .then(function(answer) { // hide
+          .then(function (answer) { // hide
             self.messageToast(answer);
-          }, function() { // cancel
+          }, function () { // cancel
           });
         };
 
         // Edit
-        self.editProduct = function(productId) {
+        self.editProduct = function (productId) {
           $location.path('/productos/editar/' + productId);
         };
 
         // Delete
-        $scope.deleteProductDialog = function(ev) {
+        $scope.deleteProductDialog = function (ev) {
           var confirm = $mdDialog.confirm()
             .title('Eliminar productos')
             .textContent('Está seguro de borrar ' + self.selected.length + ' registro(s)?')
@@ -78,32 +78,32 @@ angular.
             .ok('Aceptar')
             .cancel('Cancelar');
 
-          $mdDialog.show(confirm).then(function() {
+          $mdDialog.show(confirm).then(function () {
             self.deleteProducts();
-          }, function() {
+          }, function () {
             self.messageToast('No se borraron registros');
           });
         };
 
-        self.deleteProduct = function(productId) {
+        self.deleteProduct = function (productId) {
           Product.delete({productId: productId});
         };
 
         self.deleteProducts = function() {
           var allDeleted = true;
-          for(var i = 0; i < self.selected.length; i++) {
+          for(var i = 0; i < $scope.selected.length; i++) {
             self.deleteProduct(
-              self.selected[i].id,
-              function(response) {
+              $scope.selected[i].id,
+              function (response) {
                 allDeleted *= response.status;
               }
             );
-            var index = self.products.products.indexOf(self.selected[i]);
-            self.products.products.splice(index, 1); // delete one element
+            var index = $scope.products.products.indexOf($scope.selected[i]);
+            $scope.products.products.splice(index, 1); // delete one element
           }
 
-          self.products.pagination.count -= self.selected.length; // update count
-          self.selected = []; // empty self.selected array
+          $scope.products.pagination.count -= $scope.selected.length; // update count
+          $scope.selected = []; // empty self.selected array
 
           if (allDeleted) {
             self.messageToast('Se han borrado los registros');
@@ -123,33 +123,33 @@ angular.
             /* category_id */
           };
 
-          $scope.saveProduct = function() {
+          $scope.saveProduct = function () {
             Product.add($scope.product,
               function (response) {
                 if (response.status) {
-                  self.products.products.push(response.product);
-                  self.products.pagination.count += 1;
+                  $scope.products.products.push(response.product);
+                  $scope.products.pagination.count += 1;
                 }
                 $scope.answer(response.message);
               }
             );
           };
 
-          $scope.hide = function() {
+          $scope.hide = function () {
             $mdDialog.hide();
           };
 
-          $scope.cancel = function() {
+          $scope.cancel = function () {
             $mdDialog.cancel();
           };
 
-          $scope.answer = function(answer) {
+          $scope.answer = function (answer) {
             $mdDialog.hide(answer);
           };
         };
 
         // Show toast
-        self.messageToast = function(message) {
+        self.messageToast = function (message) {
           $mdToast.show(
             $mdToast.simple()
               .position('bottom left')
@@ -159,7 +159,7 @@ angular.
         };
 
         // Navigation sidenav
-        $scope.showLeftSidenav = function() {
+        $scope.showLeftSidenav = function () {
           $mdSidenav('left').toggle();
         };
 

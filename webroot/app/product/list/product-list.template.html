@@ -38,7 +38,7 @@
         <md-card>
 
           <!-- Show this toolbar when no items are selected -->
-          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length == 0">
+          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="selected.length == 0">
             <div class="md-toolbar-tools">
               <h2><span>Productos</span></h2>
               <span flex></span>
@@ -57,7 +57,7 @@
           </md-toolbar>
 
           <!-- Show this toolbar when one or more items are selected -->
-          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length != 0">
+          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="selected.length != 0">
             <div class="md-toolbar-tools">
               <h2><span>Productos</span></h2>
               <span flex></span>
@@ -70,8 +70,8 @@
 
           <!-- The actual table -->
           <md-table-container>
-            <table md-table md-row-select="true" multiple="true" ng-model="$ctrl.selected" md-progress="promise">
-              <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getProducts">
+            <table md-table md-row-select="true" multiple="true" ng-model="selected" md-progress="promise">
+              <thead md-head md-order="query.order" md-on-reorder="getProducts">
                 <tr md-row>
                   <th md-column md-order-by="name"><span>Nombre</span></th>
                   <th md-column md-numeric md-order-by="price"><span>Precio</span></th>
@@ -82,16 +82,14 @@
               </thead>
               <tbody md-body>
                 <tr md-row md-select="product" md-select-id="id"
-                ng-repeat="product in $ctrl.products.products
-                  | orderBy: $ctrl.query.order
-                  | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit"> <!-- md-auto-select="true" -->
-                  <!-- add button to view details of the product -->
+                ng-repeat="product in products.products
+                  | orderBy: $ctrl.query.order"> <!-- | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit -->
                   <td md-cell>{{product.name}}</td>
                   <td md-cell>{{product.price}}</td>
                   <td md-cell>{{product.stock}}</td>
                   <td md-cell>{{product.discount}}</td>
                   <td md-cell>
-                    <md-button class="md-icon-button" aria-label="Ver" ng-click="viewProduct(product)">
+                    <md-button class="md-icon-button" aria-label="Ver" ng-click="$ctrl.viewProduct(product)">
                       <md-icon md-svg-icon="img/icons/ic_details_black_24px.svg"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="Editar" ng-click="$ctrl.editProduct(product.id)">
@@ -104,7 +102,10 @@
           </md-table-container>
 
           <!-- Footer for the table with pagination options  -->
-          <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.products.pagination.count}}" md-on-paginate="$ctrl.getProducts" md-page-select></md-table-pagination>
+          <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions"
+            md-page="query.page" md-total="{{products.pagination.count}}"
+            md-on-paginate="getProducts" md-page-select="true">
+          </md-table-pagination>
 
         </md-card>
 
