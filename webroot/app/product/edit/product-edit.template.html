@@ -83,11 +83,9 @@
             </div>
           </md-radio-group>
         </div>
-
         <br>
-
         <form name="myForm">
-          <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="$ctrl.imagesUrls.productImages.length >= 5">
+          <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="$ctrl.imagesUrls.productImages.length >= 5"><br>
           <md-button class="md-raised md-primary" ng-click="$ctrl.addImage()" ng-disabled="$ctrl.imagesUrls.productImages.length >= 5">Agregar Imagen</md-button>
         </form>
 
