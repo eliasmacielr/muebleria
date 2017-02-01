@@ -33,9 +33,16 @@
 
     <md-content layout="column" layout-padding flex>
       <form name="productEditForm">
+        <!-- name -->
         <md-input-container class="md-block">
           <label>Nombre</label>
           <input ng-model="$ctrl.product.product.name" required>
+        </md-input-container>
+        <!-- description -->
+        <md-input-container class="md-block">
+          <label>Descripción</label>
+          <textarea ng-model="$ctrl.product.product.description" md-max-length="150" rows="3" required>
+          </textarea>
         </md-input-container>
         <!-- price -->
         <md-input-container class="md-block">
@@ -75,7 +82,7 @@
             <div ng-repeat="productImage in $ctrl.imagesUrls.productImages" layout="row">
               <md-radio-button ng-value="productImage.id"
                   aria-label="productImage.file_name">
-              <img ng-src="{{productImage.file_path}}" alt="imagen-producto" style="height:120px;" />
+                <img ng-src="{{productImage.file_path}}" alt="imagen-producto" style="height:120px;" />
               </md-radio-button>
               <md-button class="md-icon-button" aria-label="Eliminar imagen" ng-click="$ctrl.deleteImage(productImage)">
                 <md-icon md-svg-icon="img/icons/ic_clear_black_24px.svg"></md-icon>
@@ -90,11 +97,15 @@
         </form>
 
         <h3>Especificaciones</h3>
-        <div>
-          <p ng-repeat="productSpecification in $ctrl.specifications.productSpecifications">
-            {{productSpecification.name}}: {{productSpecification.value}}
-            <br>
-          </p>
+        <div ng-repeat="productSpecification in $ctrl.specifications.productSpecifications">
+          <md-input-container class="nomargin">
+            <label>Clave</label>
+            <input ng-model="productSpecification.name">
+          </md-input-container>
+          <md-input-container class="nomargin">
+            <label>Valor</label>
+            <input ng-model="productSpecification.value">
+          </md-input-container>
         </div>
 
         <div layout="row" layout-align="end center">
