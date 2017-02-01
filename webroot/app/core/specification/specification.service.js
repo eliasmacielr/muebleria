@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(HostLocation.origin + '/api/products/:productId/specifications/:id',
+      return $resource(HostLocation.origin + '/api/products/:productId/specifications/:specificationId',
         {'productId': '@product_id'},
         {
           list: {
