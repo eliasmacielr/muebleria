@@ -66,14 +66,28 @@ angular.
           );
 
           Image.markAsMain(
-            {productId: self.productId, imageId: self.mainImageId},
+            {productId: self.productId, action: 'mark-main', imageId: self.mainImageId},
+            self.product,
             function (response) {
               success *= response.status;
             }
           );
 
           // for each specification
-          // Specification.edit();
+          for(var i = 0; i < self.specifications.productSpecifications.length; i++) {
+            Specification.edit(
+              {productId: self.productId,
+              specificationId: self.specifications.productSpecifications[i].id},
+              self.specifications.productSpecifications[i],
+              function (response) {
+                success *= response.status;
+              }
+            );
+          }
+
+          self.messageToast(
+            (success ? 'El producto se editó con éxito' : 'Ocurrió un error')
+          );
         };
 
         self.messageToast = function (message) {
