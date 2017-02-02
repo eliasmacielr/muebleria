@@ -2,8 +2,8 @@
 
 angular.
   module('core.user').
-  factory('User', ['$resource',
-    function($resource) {
+  factory('User', ['$resource', 'HostLocation',
+    function($resource, HostLocation) {
 
       this.headers = {
         'Content-Type' : 'application/json',
@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/users/:userId',
+      return $resource(HostLocation.origin + '/api/users/:userId',
         {'userId': '@id'},
         {
           list: {

@@ -2,8 +2,8 @@
 
 angular.
   module('core.image').
-  factory('Image', ['$resource',
-    function($resource) {
+  factory('Image', ['$resource', 'HostLocation',
+    function($resource, HostLocation) {
 
       this.headers = {
         'Accept' : 'application/json',
@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/products/:productId/images/:imageId',
+      return $resource(HostLocation.origin + '/api/products/:productId/images/:action/:imageId',
         {},
         {
           list: {
@@ -33,6 +33,10 @@ angular.
           },
           add: {
             method: 'POST',
+            headers: this.headers
+          },
+          markAsMain: {
+            method: 'PUT',
             headers: this.headers
           },
           delete: {

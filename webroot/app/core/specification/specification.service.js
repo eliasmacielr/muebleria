@@ -2,8 +2,8 @@
 
 angular.
   module('core.specification').
-  factory('Specification', ['$resource',
-    function($resource) {
+  factory('Specification', ['$resource', 'HostLocation',
+    function($resource, HostLocation) {
 
       this.headers = {
         'Content-Type' : 'application/json',
@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(location.origin + '/muebleria/api/products/:productId/specifications/:id',
+      return $resource(HostLocation.origin + '/api/products/:productId/specifications/:specificationId',
         {'productId': '@product_id'},
         {
           list: {

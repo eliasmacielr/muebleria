@@ -4,7 +4,7 @@
 angular.
   module('categoryList').
   component('categoryList', {
-    templateUrl: 'app/category-list/category-list.template.html',
+    templateUrl: 'app/category/list/category-list.template.html',
     controller: ['$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Category',
       function CategoryListController($scope, $mdDialog, $mdSidenav, $mdToast, Category) {
 
@@ -34,7 +34,7 @@ angular.
         $scope.categoryAddDialog = function(ev) {
           $mdDialog.show({
             controller: CategoryAddController,
-            templateUrl: 'app/category-add/category-add.template.html',
+            templateUrl: 'app/category/add/category-add.template.html',
             parent: angular.element(document.body),
             targetEvent: ev
           })
@@ -49,7 +49,7 @@ angular.
           self.category = category;
           $mdDialog.show({
             controller: CategoryEditController,
-            templateUrl: 'app/category-edit/category-edit.template.html',
+            templateUrl: 'app/category/edit/category-edit.template.html',
             parent: angular.element(document.body),
             targetEvent: ev
           })

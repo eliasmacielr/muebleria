@@ -17,14 +17,14 @@ DELETE     | /resources/123/ | Delete
 
 All access point are prefixed with **"api"**.
 
-Not all response with HTTP code 200 are OK, always Check response status field (true/false).
+Not all responses with HTTP code 200 are OK, always Check response status field (true/false).
 
 [For pagination information](https://github.com/bcrowe/cakephp-api-pagination)
 
 ## HTTP requests Headers
-All request
+For all requests
   - Accept: application/json
-  - Content-Type: application/json (*With some exception*)
+  - Content-Type: application/json (*With some exceptions*)
 
 ## Products
 
