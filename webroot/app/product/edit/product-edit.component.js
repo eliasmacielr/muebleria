@@ -13,11 +13,23 @@ angular.
 
         self.productId = $routeParams.productId;
 
-        self.product = Product.view({productId: self.productId});
-        self.categories = Category.list();
+        Product.view({productId: self.productId}).$promise.then(
+          function (response) {
+            if (response.status) {
+              self.product = response.product;
+            }
+          }
+        );
+        Category.list().$promise.then(
+          function (response) {
+            if (response.status) {
+              self.categories = response.categories;
+            }
+          }
+        );
         Image.view({productId: self.productId}).$promise.then(
           function (response) {
-            self.imagesUrls = response;
+            self.productImages = response.productImages;
             for (var i = 0; i < response.productImages.length; i++) {
               if (response.productImages[i].main) {
                 self.mainImageId = response.productImages[i].id;
@@ -25,7 +37,15 @@ angular.
             }
           }
         );
-        self.specifications = Specification.view({productId: self.productId});
+        self.productSpecifications = [];
+        Specification.view({productId: self.productId}).$promise.then(
+          function (response) {
+            if (response.status) {
+              self.productSpecifications = response.productSpecifications;
+            }
+          }
+        );
+
 
         self.addImage = function () {
           var image = document.getElementById('file-upload');
@@ -35,21 +55,22 @@ angular.
           Image.add({productId: self.productId}, fd).$promise.then(
             function (response) {
               image.value = "";
-              self.imagesUrls.productImages.push(response.productImage);
-              if (self.imagesUrls.productImages.length == 1) { // mark the first one
-                self.mainImageId = self.imagesUrls.productImages[0].id;
+              self.productImages.push(response.productImage);
+              if (self.productImages.length == 1) { // mark the first one
+                self.mainImageId = self.productImages[0].id;
               }
             }
           );
         };
 
         self.deleteImage = function (image) {
+          if (image.id == self.mainImageId) { self.mainImageId = undefined; }
           Image.delete({productId: image.product_id, imageId: image.id}).$promise.then(
             function (response) {
-              var index = self.imagesUrls.productImages.indexOf(image);
-              self.imagesUrls.productImages.splice(index, 1); // delete the element
-              if (self.imagesUrls.productImages.length == 1) { // mark the first one
-                self.mainImageId = self.imagesUrls.productImages[0].id;
+              var index = self.productImages.indexOf(image);
+              self.productImages.splice(index, 1); // delete the element
+              if (self.productImages.length == 1) { // mark the first one
+                self.mainImageId = self.productImages[0].id;
               }
             }
           );
@@ -60,25 +81,27 @@ angular.
           Product.edit(
             {productId: self.productId},
             self.product,
-            function(response) {
-              success *= response.status;
-            }
-          );
-
-          Image.markAsMain(
-            {productId: self.productId, action: 'mark-main', imageId: self.mainImageId},
-            self.product,
             function (response) {
               success *= response.status;
             }
           );
 
+          if (self.mainImageId) {
+            Image.markAsMain(
+              {productId: self.productId, action: 'mark-main', imageId: self.mainImageId},
+              self.product,
+              function (response) {
+                success *= response.status;
+              }
+            );
+          }
+
           // for each specification
-          for(var i = 0; i < self.specifications.productSpecifications.length; i++) {
+          for(var i = 0; i < self.productSpecifications.length; i++) {
             Specification.edit(
               {productId: self.productId,
-              specificationId: self.specifications.productSpecifications[i].id},
-              self.specifications.productSpecifications[i],
+              specificationId: self.productSpecifications[i].id},
+              self.productSpecifications[i],
               function (response) {
                 success *= response.status;
               }
