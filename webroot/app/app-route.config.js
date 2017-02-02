@@ -6,9 +6,6 @@ angular.
     function config($locationProvider, $routeProvider) {
       $locationProvider.hashPrefix('!');
 
-      if (!location.origin)
-        location.origin = location.protocol + '//' + location.host;
-
       $routeProvider.
         when('/categorias', {
           template: '<category-list></category-list>'
@@ -18,6 +15,9 @@ angular.
         }).
         when('/productos', {
           template: '<product-list></product-list>'
+        }).
+        when('/productos/agregar', {
+          template: '<product-add></product-add>'
         }).
         when('/productos/editar/:productId', {
           template: '<product-edit></product-edit>'
