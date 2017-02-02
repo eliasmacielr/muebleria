@@ -9,12 +9,14 @@ angular.
     controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
       function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
 
+        /* -------------------- */
         $scope.selected = []; // list of selected products in the table
 
         $scope.query = {
           order: 'name',
           limit: 5,
-          page: 1
+          page: 1,
+          sort: 'name'
         };
 
         $scope.limitOptions = [5, 10, 15];
@@ -50,17 +52,8 @@ angular.
         };
 
         // Add
-        $scope.saveProductDialog = function (ev) {
-          $mdDialog.show({
-            controller: ProductSaveController,
-            templateUrl: 'app/product/save/product-save.template.html',
-            parent: angular.element(document.body),
-            targetEvent: ev
-          })
-          .then(function (answer) { // hide
-            self.messageToast(answer);
-          }, function () { // cancel
-          });
+        self.addProduct = function () {
+          $location.path('/productos/agregar');
         };
 
         // Edit
@@ -108,44 +101,6 @@ angular.
           if (allDeleted) {
             self.messageToast('Se han borrado los registros');
           }
-        };
-
-        // Controllers
-        function ProductSaveController($scope, $mdDialog, Product, Category) {
-          $scope.categories = Category.list();
-
-          $scope.product = { // initalize attributes
-            /* name,
-               price,
-               stock, */
-               in_offer: false,
-               discount: 0
-            /* category_id */
-          };
-
-          $scope.saveProduct = function () {
-            Product.add($scope.product,
-              function (response) {
-                if (response.status) {
-                  $scope.products.products.push(response.product);
-                  $scope.products.pagination.count += 1;
-                }
-                $scope.answer(response.message);
-              }
-            );
-          };
-
-          $scope.hide = function () {
-            $mdDialog.hide();
-          };
-
-          $scope.cancel = function () {
-            $mdDialog.cancel();
-          };
-
-          $scope.answer = function (answer) {
-            $mdDialog.hide(answer);
-          };
         };
 
         // Show toast
