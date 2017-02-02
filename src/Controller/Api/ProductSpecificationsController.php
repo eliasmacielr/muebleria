@@ -20,7 +20,7 @@ class ProductSpecificationsController extends AppController
     public function index($product_id = null)
     {
         $query = $this->ProductSpecifications->find()->where(['product_id' => $product_id]);
-        $productSpecifications = $this->paginate($this->ProductSpecifications);
+        $productSpecifications = $this->paginate($query);
         $status = true;
 
         $this->set(compact(['productSpecifications', 'status']));
