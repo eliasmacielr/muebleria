@@ -36,41 +36,41 @@
         <!-- name -->
         <md-input-container class="md-block">
           <label>Nombre</label>
-          <input ng-model="$ctrl.product.product.name" required>
+          <input ng-model="$ctrl.product.name" required>
         </md-input-container>
         <!-- description -->
         <md-input-container class="md-block">
           <label>Descripción</label>
-          <textarea ng-model="$ctrl.product.product.description" md-max-length="150" rows="3" required>
+          <textarea ng-model="$ctrl.product.description" md-max-length="150" rows="3" required>
           </textarea>
         </md-input-container>
         <!-- price -->
         <md-input-container class="md-block">
           <label>Precio</label>
-          <input ng-model="$ctrl.product.product.price" type="number" required>
+          <input ng-model="$ctrl.product.price" type="number" required>
         </md-input-container>
         <!-- stock -->
         <md-input-container class="md-block">
           <label>Stock</label>
-          <input ng-model="$ctrl.product.product.stock" type="number" required>
+          <input ng-model="$ctrl.product.stock" type="number" required>
         </md-input-container>
         <!-- in_offer -->
         <md-input-container class="md-block">
-          <md-checkbox ng-model="$ctrl.product.product.in_offer" aria-label="En oferta">
+          <md-checkbox ng-model="$ctrl.product.in_offer" aria-label="En oferta">
             En oferta
           </md-checkbox>
         </md-input-container>
         <!-- discount -->
         <md-input-container class="md-block">
           <label>Descuento (%)</label>
-          <input ng-model="$ctrl.product.product.discount" type="number"
-            ng-disabled="!$ctrl.product.product.in_offer" ng-required="$ctrl.product.product.in_offer" min="0" max="100">
+          <input ng-model="$ctrl.product.discount" type="number"
+            ng-disabled="!$ctrl.product.in_offer" ng-required="$ctrl.product.in_offer" min="0" max="100">
         </md-input-container>
         <!-- category -->
         <md-input-container class="md-block">
           <label>Categoria</label>
-          <md-select ng-model="$ctrl.product.product.category_id" required>
-            <md-option ng-repeat="category in $ctrl.categories.categories" ng-value="category.id">
+          <md-select ng-model="$ctrl.product.category_id" required>
+            <md-option ng-repeat="category in $ctrl.categories" ng-value="category.id">
               {{category.name}}
             </md-option>
           </md-select>
@@ -79,7 +79,7 @@
         <h3>Imágenes</h3>
         <div layout="row">
           <md-radio-group ng-model="$ctrl.mainImageId" layout="row">
-            <div ng-repeat="productImage in $ctrl.imagesUrls.productImages" layout="row">
+            <div ng-repeat="productImage in $ctrl.productImages" layout="row">
               <md-radio-button ng-value="productImage.id"
                   aria-label="productImage.file_name">
                 <img ng-src="{{productImage.file_path}}" alt="imagen-producto" style="height:120px;" />
@@ -92,12 +92,12 @@
         </div>
         <br>
         <form name="myForm">
-          <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="$ctrl.imagesUrls.productImages.length >= 5"><br>
-          <md-button class="md-raised md-primary" ng-click="$ctrl.addImage()" ng-disabled="$ctrl.imagesUrls.productImages.length >= 5">Agregar Imagen</md-button>
+          <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="$ctrl.productImages.length >= 5"><br>
+          <md-button class="md-raised md-primary" ng-click="$ctrl.addImage()" ng-disabled="$ctrl.productImages.length >= 5">Agregar Imagen</md-button>
         </form>
 
         <h3>Especificaciones</h3>
-        <div ng-repeat="productSpecification in $ctrl.specifications.productSpecifications">
+        <div ng-repeat="productSpecification in $ctrl.productSpecifications">
           <md-input-container class="nomargin">
             <label>Clave</label>
             <input ng-model="productSpecification.name">
