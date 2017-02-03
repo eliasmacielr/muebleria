@@ -79,6 +79,10 @@
   <script src="app/product/list/product-list.module.js"></script>
   <script src="app/product/list/product-list.component.js"></script>
 
+  <!-- Setting -->
+  <script src="app/setting/list/setting-list.module.js"></script>
+  <script src="app/setting/list/setting-list.component.js"></script>
+
   <!-- Style customizations -->
   <link rel="stylesheet" href="app/app.css">
 </head>
