@@ -1,0 +1,99 @@
+<div layout="row" ng-cloak layout-fill>
+
+  <!-- Sidenav -->
+  <md-sidenav
+      class="md-sidenav-left"
+      md-component-id="left"
+      md-is-locked-open="$mdMedia('gt-md')"
+      md-whiteframe="4">
+
+    <md-toolbar class="md-theme-light">
+      <h1 class="md-toolbar-tools">Navegación</h1>
+    </md-toolbar>
+
+    <md-content layout-padding>
+
+    </md-content>
+
+  </md-sidenav>
+
+  <!-- Section -->
+  <section layout="column" layout-fill>
+
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Menu" ng-click="showLeftSidenav()" hide-gt-md>
+          <md-icon md-svg-icon="img/icons/ic_menu_white_24px.svg"></md-icon>
+        </md-button>
+        <h2>
+          <span>Listado de categorías</span>
+        </h2>
+      </div>
+    </md-toolbar>
+
+    <md-content layout="row" flex layout-padding>
+
+      <div layout="column" flex layout-padding>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Nombre del sitio</label>
+          <md-icon md-svg-src="img/icons/ic_web_black_24px.svg"></md-icon>
+          <input ng-model="$ctrl.setting.site_name" type="text" disabled>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Teléfono celular</label>
+          <md-icon md-svg-src="img/icons/ic_smartphone_black_24px.svg"></md-icon>
+          <input ng-model="$ctrl.setting.site_cellphone" disabled>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Teléfono</label>
+          <md-icon md-svg-src="img/icons/ic_local_phone_black_24px.svg"></md-icon>
+          <input ng-model="$ctrl.setting.site_cellphone" disabled>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Email</label>
+          <md-icon md-svg-src="img/icons/ic_email_black_24px.svg"></md-icon>
+          <input ng-model="$ctrl.setting.site_email" disabled>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Facebook</label>
+          <md-icon md-svg-src="img/icons/ic_facebook.svg"></md-icon>
+          <input ng-model="$ctrl.setting.social_facebook" disabled>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Twitter</label>
+          <md-icon md-svg-src="img/icons/ic_twitter.svg"></md-icon>
+          <input ng-model="$ctrl.setting.social_twitter" disabled>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+          <label>Instagram</label>
+          <md-icon md-svg-src="img/icons/ic_instagram-darkblue.svg"></md-icon>
+          <input ng-model="$ctrl.setting.social_instagram" disabled>
+        </md-input-container>
+
+        <!--
+        {
+          "site_name": "Muebleria S. A.",
+          "site_cellphone": "0987654321",
+          "site_phone": "021678234",
+          "site_email": "asdf@asdf.com",
+          "social_facebook": "www.facebook.com",
+          "social_twitter": "www.twitter.com",
+          "social_instagram": "www.instagram.com",
+          "site_active": true
+        }
+        -->
+
+      </div>
+
+    </md-content>
+
+  </section>
+
+</div>
