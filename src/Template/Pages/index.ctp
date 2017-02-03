@@ -72,10 +72,12 @@
   <script src="app/category/list/category-list.component.js"></script>
 
   <!-- Product -->
-  <script src="app/product/list/product-list.module.js"></script>
-  <script src="app/product/list/product-list.component.js"></script>
+  <script src="app/product/add/product-add.module.js"></script>
+  <script src="app/product/add/product-add.component.js"></script>
   <script src="app/product/edit/product-edit.module.js"></script>
   <script src="app/product/edit/product-edit.component.js"></script>
+  <script src="app/product/list/product-list.module.js"></script>
+  <script src="app/product/list/product-list.component.js"></script>
 
   <!-- Style customizations -->
   <link rel="stylesheet" href="app/app.css">
