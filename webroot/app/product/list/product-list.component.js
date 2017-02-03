@@ -13,7 +13,7 @@ angular.
         $scope.selected = []; // list of selected products in the table
 
         $scope.query = {
-          order: 'name',
+          //order: 'name',
           limit: 5,
           page: 1,
           sort: 'name'
@@ -22,15 +22,41 @@ angular.
         $scope.limitOptions = [5, 10, 15];
 
         // List
-        $scope.products = Product.list($scope.query, success).$promise;
+        // $scope.products = Product.list($scope.query, success).$promise;
 
         function success(products) {
           $scope.products = products;
         }
 
         $scope.getProducts = function () {
-          $scope.promise = Product.list($scope.query, success).promise;
+          $scope.promise = Product.list($scope.query, success).$promise;
         };
+
+        /* esto agregué */
+        var bookmark;
+
+        $scope.filter = {
+          options: {
+            debounce: 500
+          }
+        };
+
+        $scope.$watch('query.name', function (newValue, oldValue) {
+          if(!oldValue) {
+            bookmark = $scope.query.page;
+          }
+
+          if(newValue !== oldValue) {
+            $scope.query.page = 1;
+          }
+
+          if(!newValue) {
+            $scope.query.page = bookmark;
+          }
+
+          $scope.getProducts();
+        });
+        /* hasta acá */
 
         /* -------------------- */
         var self = this;

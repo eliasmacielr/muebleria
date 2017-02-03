@@ -43,11 +43,11 @@
               <h2><span>Productos</span></h2>
               <span flex></span>
               <!-- Search -->
-              <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch">
+              <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch; query.name = ''"> <!-- TODO: lógica más apropiada -->
                 <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
               </md-button>
               <form class"ng-pristine ng-valid flex">
-                <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
+                <input type="text" ng-model="query.name" ng-model-options="filter.options" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
               </form>
               <!-- Add -->
               <md-button class="md-icon-button" aria-label="Crear" ng-click="$ctrl.addProduct()">
@@ -71,7 +71,7 @@
           <!-- The actual table -->
           <md-table-container>
             <table md-table md-row-select="true" multiple="true" ng-model="selected" md-progress="promise">
-              <thead md-head md-order="query.order" md-on-reorder="getProducts">
+              <thead md-head md-order="query.sort" md-on-reorder="getProducts">
                 <tr md-row>
                   <th md-column md-order-by="name"><span>Nombre</span></th>
                   <th md-column md-numeric md-order-by="price"><span>Precio</span></th>
@@ -83,7 +83,8 @@
               <tbody md-body>
                 <tr md-row md-select="product" md-select-id="id"
                 ng-repeat="product in products.products
-                  | orderBy: $ctrl.query.order"> <!-- | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit -->
+                  | orderBy: query.sort
+                  | limitTo: query.limit"> <!-- | limitTo: query.limit : (query.page -1) * query.limit -->
                   <td md-cell>{{product.name}}</td>
                   <td md-cell>{{product.price}}</td>
                   <td md-cell>{{product.stock}}</td>
