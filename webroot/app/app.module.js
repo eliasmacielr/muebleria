@@ -8,8 +8,9 @@ angular.module('myApp', [
   'hostLocation',
   'core',
   'categoryList',
+  'login',
   'productAdd',
   'productEdit',
   'productList',
-  'login'
+  'settingList'
 ]);
