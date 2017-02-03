@@ -38,31 +38,31 @@
         <md-card>
 
           <!-- Show this toolbar when no items are selected -->
-          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length == 0">
+          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="selected.length == 0">
             <div class="md-toolbar-tools">
               <h2><span>Categorías</span></h2>
               <span flex></span>
               <!-- Search -->
-              <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch">
+              <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch; query.name = ''">
                 <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
               </md-button>
               <form class"ng-pristine ng-valid flex">
-                <input type="text" ng-model="$ctrl.search.str" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
+                <input type="text" ng-model="query.name" ng-model-options="filter.options" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
               </form>
               <!-- Add -->
-              <md-button class="md-icon-button" aria-label="Crear" ng-click="categoryAddDialog($event)">
+              <md-button class="md-icon-button" aria-label="Crear" ng-click="addCategoryDialog($event)">
                 <md-icon md-svg-icon="img/icons/ic_add_black_24px.svg"></md-icon>
               </md-button>
             </div>
           </md-toolbar>
 
           <!-- Show this toolbar when one or more items are selected -->
-          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="$ctrl.selected.length != 0">
+          <md-toolbar class="md-table-toolbar md-default" layout="row" ng-show="selected.length != 0">
             <div class="md-toolbar-tools">
               <h2><span>Productos</span></h2>
               <span flex></span>
               <!-- Delete -->
-              <md-button class="md-icon-button" aria-label="Eliminar" ng-click="categoryDeleteDialog($event)">
+              <md-button class="md-icon-button" aria-label="Eliminar" ng-click="deleteCategoryDialog($event)">
                 <md-icon md-svg-icon="img/icons/ic_delete_black_24px.svg"></md-icon>
               </md-button>
             </div>
@@ -70,8 +70,8 @@
 
           <!-- The actual table -->
           <md-table-container>
-            <table md-table md-row-select="true" multiple="true" ng-model="$ctrl.selected" md-progress="promise">
-              <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getCategories">
+            <table md-table md-row-select="true" multiple="true" ng-model="selected" md-progress="promise">
+              <thead md-head md-order="query.sort" md-on-reorder="getCategories">
                 <tr md-row>
                   <th md-column md-order-by="name"><span>Nombre</span></th>
                   <th md-column>Acciones</th>
@@ -80,12 +80,11 @@
               <tbody md-body>
                 <tr md-row md-select="category" md-select-id="id"
                 ng-repeat="category in $ctrl.categories.categories
-                  | orderBy: $ctrl.query.order
-                  | limitTo: $ctrl.query.limit : ($ctrl.query.page -1) * $ctrl.query.limit">
-                  <!-- add button to view details of the product -->
+                  | orderBy: query.sort
+                  | limitTo: query.limit"> <!-- test this -->
                   <td md-cell>{{category.name}}</td>
                   <td md-cell>
-                    <md-button class="md-icon-button" aria-label="Editar" ng-click="categoryEditDialog($event, category)">
+                    <md-button class="md-icon-button" aria-label="Editar" ng-click="editCategoryDialog($event, category)">
                       <md-icon md-svg-icon="img/icons/ic_mode_edit_black_24px.svg"></md-icon>
                     </md-button>
                   </td>
@@ -95,7 +94,7 @@
           </md-table-container>
 
           <!-- Footer for the table with pagination options  -->
-          <md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page" md-total="{{$ctrl.categories.pagination.count}}" md-on-paginate="$ctrl.getCategories" md-page-select></md-table-pagination>
+          <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{$ctrl.categories.pagination.count}}" md-on-paginate="getCategories" md-page-select></md-table-pagination>
 
         </md-card>
 
