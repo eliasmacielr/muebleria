@@ -1,10 +1,15 @@
 <?php
 namespace App\Model\Table;
 
+use ArrayObject;
+use Cake\Auth\DefaultPasswordHasher;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\Event;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 use Search\Manager;
 
 /**
@@ -39,6 +44,25 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('Search.Search');
+    }
+
+    /**
+     * Create and hash api_key
+     *
+     * @param  Event           $event
+     * @param  EntityInterface $entity
+     * @param  ArrayObject     $options
+     * @return bool
+     */
+    public function beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)
+    {
+        if ($entity->isNew() || $entity->dirty('password')) {
+            $hasher = new DefaultPasswordHasher();
+            $entity->api_key = Text::uuid();
+            $entity->api_key_hash = $hasher->hash($entity->api_key);
+        }
+
+        return true;
     }
 
     /**

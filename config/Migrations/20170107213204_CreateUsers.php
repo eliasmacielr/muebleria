@@ -38,6 +38,16 @@ class CreateUsers extends AbstractMigration
             'limit' => 20,
             'null' => false,
         ]);
+        $table->addColumn('api_key', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => false,
+        ]);
+        $table->addColumn('api_key_hash', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => false,
+        ]);
         $table->addColumn('active', 'boolean', [
             'default' => null,
             'null' => false,

@@ -1,6 +1,6 @@
 <?php
 /**
- * Routes configuration
+ * Routes configuration.
  *
  * In this file, you set up routes to your controllers and their actions.
  * Routes are very important mechanism that allows you to freely connect
@@ -14,16 +14,17 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
  * @link          http://cakephp.org CakePHP(tm) Project
+ *
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
 
-/**
+/*
  * The default class to use for all routes
  *
  * The following route classes are supplied with CakePHP and are appropriate
@@ -44,7 +45,7 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
-    /**
+    /*
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
@@ -52,7 +53,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'index']);
     $routes->connect('/admin', ['controller' => 'Pages', 'action' => 'display', 'admin']);
 
-    /**
+    /*
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     // $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
@@ -68,9 +69,9 @@ Router::scope('/', function (RouteBuilder $routes) {
             'map' => [
                 'delete-all' => [
                     'action' => 'deleteAll',
-                    'method' => 'DELETE'
-                ]
-            ]
+                    'method' => 'DELETE',
+                ],
+            ],
         ],
         function (RouteBuilder $routes) {
             $routes->scope('/images', ['controller' => 'ProductImages'], function (RouteBuilder $routes) {
@@ -98,9 +99,12 @@ Router::scope('/', function (RouteBuilder $routes) {
             $routes->connect('/', ['action' => 'edit', '_method' => 'PUT']);
         });
         $routes->resources('Users');
+        $routes->scope('/auth', ['controller' => 'Auth'], function (RouteBuilder $routes) {
+            $routes->connect('/login', ['action' => 'login', '_method' => 'POST']);
+        });
     });
 
-    /**
+    /*
      * Connect catchall routes for all controllers.
      *
      * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
@@ -119,7 +123,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     // $routes->fallbacks(DashedRoute::class);
 });
 
-/**
+/*
  * Load all plugin routes.  See the Plugin documentation on
  * how to customize the loading of plugin routes.
  */
