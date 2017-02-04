@@ -12,11 +12,34 @@ angular.
 
         self.setting = {};
 
+        self.editable = false;
+
         Setting.view().$promise.then(
           function (response) {
             self.setting = response.setting;
           }
         );
+
+        self.editSetting = function () {
+          Setting.edit(self.setting).$promise.then(
+            function (response) {
+              self.messageToast(response.message);
+            }
+          )
+        };
+
+        self.messageToast = function (message) {
+          $mdToast.show(
+            $mdToast.simple()
+              .position('bottom left')
+              .textContent(message)
+              .hideDelay(3000)
+          );
+        };
+
+        self.showLeftSidenav = function () {
+          $mdSidenav('left').toggle();
+        };
 
       }
     ]
