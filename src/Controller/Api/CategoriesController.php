@@ -1,20 +1,26 @@
 <?php
+
 namespace App\Controller\Api;
 
 use PDOException;
-use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
- * Categories Controller
+ * Categories Controller.
  *
  * @property \App\Model\Table\CategoriesTable $Categories
  */
 class CategoriesController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index', 'view']);
+    }
 
     /**
-     * Index method
+     * Index method.
      *
      * @return \Cake\Network\Response|null
      */
@@ -26,7 +32,7 @@ class CategoriesController extends AppController
             'direction' => $this->request->query('direction') ?: 'asc',
             'finder' => [
                 'search' => $this->Categories->filterParams($this->request->query),
-            ]
+            ],
         ];
 
         $paged = $this->request->query('paged') !== null ? $this->request->query('paged') : true;
@@ -43,11 +49,13 @@ class CategoriesController extends AppController
     }
 
     /**
-     * View method
+     * View method.
      *
-     * @param string|null $id_slug Category id or slug.
+     * @param string|null $id_slug Category id or slug
+     *
      * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     *
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found
      */
     public function view($id_slug = null)
     {
@@ -58,9 +66,9 @@ class CategoriesController extends AppController
     }
 
     /**
-     * Add method
+     * Add method.
      *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise
      */
     public function add()
     {
@@ -80,11 +88,13 @@ class CategoriesController extends AppController
     }
 
     /**
-     * Edit method
+     * Edit method.
      *
-     * @param string|null $id Category id or slug.
+     * @param string|null $id Category id or slug
+     *
      * @return \Cake\Network\Response|void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     *
+     * @throws \Cake\Network\Exception\NotFoundException When record not found
      */
     public function edit($id_slug = null)
     {
@@ -104,11 +114,13 @@ class CategoriesController extends AppController
     }
 
     /**
-     * Delete method
+     * Delete method.
      *
-     * @param string|null $id Category id or slug.
+     * @param string|null $id Category id or slug
+     *
      * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     *
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found
      */
     public function delete($id_slug = null)
     {

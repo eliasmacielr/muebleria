@@ -12,6 +12,8 @@ use Cake\ORM\Entity;
  * @property string $last_name
  * @property string $username
  * @property string $password
+ * @property string $api_key
+ * @property string $api_key_hash
  * @property string $role
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
@@ -29,8 +31,12 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false
+        'name' => true,
+        'last_name' => true,
+        'username' => true,
+        'password' => true,
+        'role' => true,
+        'active' => true,
     ];
 
     /**
@@ -39,9 +45,16 @@ class User extends Entity
      * @var array
      */
     protected $_hidden = [
-        'password'
+        'password',
+        'api_key',
+        'api_key_hash',
     ];
 
+    /**
+     * Hash passsword with Bcrypt
+     * @param string $password
+     * @return string
+     */
     public function _setPassword($password)
     {
         $hasher = new DefaultPasswordHasher();

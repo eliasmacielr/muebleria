@@ -8,6 +8,37 @@
 	},
 	"item": [
 		{
+			"name": "Auth",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"url": "localhost/muebleria/api/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"sadmin\",\n\t\"password\": \"admin098\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Categories",
 			"description": "",
 			"item": [
@@ -596,7 +627,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Homero\",\n  \"last_name\": \"Simpson\",\n  \"username\": \"hsimpson\",\n  \"role\": \"super-admin\",\n  \"password\": \"12345\",\n  \"active\": true\n}"
+							"raw": "{\n  \"name\": \"Homero\",\n  \"last_name\": \"Simpson\",\n  \"username\": \"hsimpson\",\n  \"role\": \"super-admin\",\n  \"active\": true\n}"
 						},
 						"description": ""
 					},

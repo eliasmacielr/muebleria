@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller\Api;
 
-use PDOException;
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -11,6 +11,11 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index', 'view']);
+    }
 
     /**
      * Index method

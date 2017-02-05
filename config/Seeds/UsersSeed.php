@@ -1,6 +1,7 @@
 <?php
 use Cake\Auth\DefaultPasswordHasher;
 use Migrations\AbstractSeed;
+use Cake\Utility\Text;
 
 /**
  * Users seed.
@@ -20,12 +21,17 @@ class UsersSeed extends AbstractSeed
     public function run()
     {
         $hasher = new DefaultPasswordHasher();
+        $api_key[] = Text::uuid();
+        $api_key[] = Text::uuid();
+        $api_key[] = Text::uuid();
         $data = [
             [
                 'name' => 'Super',
                 'last_name' => 'Admin',
                 'username' => 'sadmin',
                 'password' => $hasher->hash('admin098'),
+                'api_key' => $api_key[0],
+                'api_key_hash' => $hasher->hash($api_key[0]),
                 'active' => true,
                 'role' => 'super-admin',
                 'created' => date('Y-m-d H:i:s'),
@@ -36,6 +42,8 @@ class UsersSeed extends AbstractSeed
                 'last_name' => 'Admin',
                 'username' => 'admin',
                 'password' => $hasher->hash('admin098'),
+                'api_key' => $api_key[1],
+                'api_key_hash' => $hasher->hash($api_key[1]),
                 'active' => true,
                 'role' => 'admin',
                 'created' => date('Y-m-d H:i:s'),
@@ -46,6 +54,8 @@ class UsersSeed extends AbstractSeed
                 'last_name' => 'Admin',
                 'username' => 'staff',
                 'password' => $hasher->hash('admin098'),
+                'api_key' => $api_key[2],
+                'api_key_hash' => $hasher->hash($api_key[2]),
                 'active' => true,
                 'role' => 'staff',
                 'created' => date('Y-m-d H:i:s'),

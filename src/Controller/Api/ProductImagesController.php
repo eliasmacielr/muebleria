@@ -2,6 +2,7 @@
 namespace App\Controller\Api;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * ProductImages Controller
@@ -10,6 +11,12 @@ use App\Controller\AppController;
  */
 class ProductImagesController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index', 'view']);
+    }
+
     /**
      * Index method
      *

@@ -3,6 +3,7 @@ namespace App\Controller\Api;
 
 use PDOException;
 use App\Controller\AppController;
+use Cake\Event\Event;
 use Cake\ORM\Query;
 
 /**
@@ -12,6 +13,11 @@ use Cake\ORM\Query;
  */
 class ProductsController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index', 'view']);
+    }
 
     /**
      * Index method
