@@ -1,0 +1,59 @@
+<md-dialog aria-label="Editar usuario">
+
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar usuario</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content" layout="column">
+        <md-input-container>
+          <label>Nombre</label>
+          <input ng-model="toEdit.user.name" required>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Apellido</label>
+          <input ng-model="toEdit.user.last_name" required>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Nombre de usuario (username)</label>
+          <input ng-model="toEdit.user.username" required>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Rol</label>
+          <md-select ng-model="toEdit.user.role" required>
+            <md-option ng-repeat="role in roles" ng-value="role">
+              {{role}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Contraseña</label>
+          <input ng-model="toEdit.user.password" type="password" required>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Confirmar contraseña</label>
+          <input ng-model="toEdit.user.password2" type="password" required>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <md-checkbox ng-model="toEdit.user.active" aria-label="Activo">
+            Usuario activo
+          </md-checkbox>
+        </md-input-container>
+
+        <div class="layout-row" layout-align="end center">
+          <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-click="editUser()">Confirmar</md-button>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>
