@@ -31,49 +31,73 @@
       </div>
     </md-toolbar>
 
-    <md-content layout="column" layout-padding flex>
+    <md-content layout="column" layout-padding>
       <form name="productEditForm">
         <!-- name -->
         <md-input-container class="md-block">
           <label>Nombre</label>
-          <input ng-model="$ctrl.product.name" required>
+          <input name="productName" ng-model="$ctrl.product.name" required>
+          <div ng-messages="productEditForm.productName.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
         </md-input-container>
         <!-- description -->
         <md-input-container class="md-block">
           <label>Descripción</label>
-          <textarea ng-model="$ctrl.product.description" md-max-length="150" rows="3" required>
+          <textarea name="productDescription" ng-model="$ctrl.product.description" md-maxlength="200" rows="3" required>
           </textarea>
+          <div ng-messages="productEditForm.productDescription.$error">
+            <div ng-message="required">No puede dejar el producto sin descripción.</div>
+            <div ng-message="md-maxlength">La descripción no puede superar los 200 caracteres.</div>
+          </div>
         </md-input-container>
         <!-- price -->
         <md-input-container class="md-block">
           <label>Precio</label>
-          <input ng-model="$ctrl.product.price" type="number" required>
+          <input name="productPrice" ng-model="$ctrl.product.price" type="number" min="0" required>
+          <div ng-messages="productEditForm.productPrice.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+            <div ng-message="min">El precio no puede ser negativo.</div>
+          </div>
         </md-input-container>
         <!-- stock -->
         <md-input-container class="md-block">
           <label>Stock</label>
-          <input ng-model="$ctrl.product.stock" type="number" required>
+          <input name="productStock" ng-model="$ctrl.product.stock" type="number" min="0" required>
+          <div ng-messages="productEditForm.productStock.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+            <div ng-message="min">No se puede tener una cantidad negativa en stock</div>
+          </div>
         </md-input-container>
-        <!-- in_offer -->
-        <md-input-container class="md-block">
-          <md-checkbox ng-model="$ctrl.product.in_offer" aria-label="En oferta">
-            En oferta
-          </md-checkbox>
-        </md-input-container>
-        <!-- discount -->
-        <md-input-container class="md-block">
-          <label>Descuento (%)</label>
-          <input ng-model="$ctrl.product.discount" type="number"
-            ng-disabled="!$ctrl.product.in_offer" ng-required="$ctrl.product.in_offer" min="0" max="100">
-        </md-input-container>
+        <div layout="row">
+          <!-- in_offer -->
+          <md-input-container flex="25">
+            <md-checkbox name="productInOffer" ng-model="$ctrl.product.in_offer" aria-label="En oferta">
+              En oferta
+            </md-checkbox>
+          </md-input-container>
+          <!-- discount -->
+          <md-input-container flex>
+            <label>Descuento (%)</label>
+            <input name="productDiscount" ng-model="$ctrl.product.discount" type="number"
+              ng-disabled="!$ctrl.product.in_offer" ng-required="$ctrl.product.in_offer" min="0" max="100">
+            <div ng-messages="productEditForm.productDiscount.$error">
+              <div ng-message="required">Este campo es requerido.</div>
+              <div ng-message-exp="['min','max']">El descuento debe ser un porcentaje entre 0 y 100.</div>
+            </div>
+          </md-input-container>
+        </div>
         <!-- category -->
         <md-input-container class="md-block">
           <label>Categoria</label>
-          <md-select ng-model="$ctrl.product.category_id" required>
+          <md-select name="productCategory" ng-model="$ctrl.product.category_id" required>
             <md-option ng-repeat="category in $ctrl.categories" ng-value="category.id">
               {{category.name}}
             </md-option>
           </md-select>
+          <div ng-messages="productEditForm.productCategory.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
         </md-input-container>
 
         <h3>Imágenes</h3>
@@ -110,7 +134,8 @@
 
         <div layout="row" layout-align="end center">
           <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancelar</md-button>
-          <md-button class="md-raised md-primary" ng-click="$ctrl.editProduct()">Confirmar</md-button>
+          <md-button class="md-raised md-primary" ng-click="$ctrl.editProduct()"
+            ng-disabled="productEditForm.$invalid">Confirmar</md-button>
         </div>
       </form>
     </md-content>
