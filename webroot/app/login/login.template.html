@@ -13,28 +13,30 @@
       <form action="#" name="form" role="form" class="form-signin" layout="column">
         <md-input-container class="md-block">
           <label>Email</label>
-          <input name="user" required="true" />
+          <input name="user" required="true">
           <!-- <div ng-messages="form.user.$error">
-            <div ng-message="required">Debe identificarse con su e-mail.</div>
+            <div ng-message="required">Debe identificarse con su nombre de usuario.</div>
           </div> -->
         </md-input-container>
 
         <md-input-container class="md-block">
           <label>Contraseña</label>
-          <input name="pass" type="password" required="true" />
+          <input name="pass" type="password" required="true">
           <!-- <div ng-messages="form.pass.$error">
             <div ng-message="required">La contraseña es requerida.</div>
           </div> -->
         </md-input-container>
 
-        <md-checkbox aria-label="Recuérdame" md-no-ink>
-          No cerrar la sesión
-        </md-checkbox>
+        <!-- <md-input-container> -->
+          <md-checkbox aria-label="Recuérdame" md-no-ink>
+            No cerrar la sesión
+          </md-checkbox>
+        <!-- </md-input-container> -->
 
-        <br />
+        <br>
 
         <div layout="row" layout-align="center end">
-          <md-button class="md-raised">
+          <md-button class="md-primary md-raised">
             Ingresar
           </md-button>
         </div>
