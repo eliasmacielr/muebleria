@@ -25,6 +25,9 @@ angular.
         when('/configuracion', {
           template: '<setting-list></setting-list>'
         }).
+        when('/usuarios', {
+          template: '<user-list></user-list>'
+        }).
         otherwise('/login');
     }
   ]);
