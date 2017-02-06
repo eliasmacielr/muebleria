@@ -9,36 +9,36 @@ angular.
     controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
       function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
 
-        /* -------------------- */
+        var self = this;
+
         $scope.selected = []; // list of selected products in the table
 
         $scope.query = {
-          //order: 'name',
           limit: 5,
           page: 1,
-          sort: 'name'
+          sort: 'name',
+          name: ''
         };
 
-        $scope.limitOptions = [5, 10, 15];
-
-        // List
-        // $scope.products = Product.list($scope.query, success).$promise;
-
-        function success(products) {
-          $scope.products = products;
-        }
-
-        $scope.getProducts = function () {
-          $scope.promise = Product.list($scope.query, success).$promise;
-        };
-
-        /* esto agregué */
         var bookmark;
 
         $scope.filter = {
           options: {
             debounce: 500
           }
+        };
+
+        self.showSearch = false;
+
+        $scope.limitOptions = [5, 10, 15];
+
+        // List
+        function success(products) {
+          $scope.products = products;
+        }
+
+        $scope.getProducts = function () {
+          $scope.promise = Product.list($scope.query, success).$promise;
         };
 
         $scope.$watch('query.name', function (newValue, oldValue) {
@@ -56,12 +56,6 @@ angular.
 
           $scope.getProducts();
         });
-        /* hasta acá */
-
-        /* -------------------- */
-        var self = this;
-
-        self.showSearch = false;
 
         // View
         self.viewProduct = function (product) {
@@ -121,6 +115,7 @@ angular.
             $scope.products.products.splice(index, 1); // delete one element
           }
 
+          // TODO: fix this bug, execute all this when the deletion is done
           $scope.products.pagination.count -= $scope.selected.length; // update count
           $scope.selected = []; // empty self.selected array
 
