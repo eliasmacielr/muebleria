@@ -35,64 +35,67 @@
 
       <div layout="column" flex layout-padding>
 
-        <!-- <md-input-container class="md-block"> -->
-          <md-switch class="md-primary" name="special" ng-model="$ctrl.editable">
-            Editar
-          </md-switch>
-        <!-- </md-input-container> -->
+        <form>
+          <!-- <md-input-container class="md-block"> -->
+            <md-switch class="md-primary" name="special" ng-model="$ctrl.editable">
+              Editar
+            </md-switch>
+          <!-- </md-input-container> -->
 
-        <md-input-container class="md-icon-float md-block">
-          <label>Nombre del sitio</label>
-          <md-icon md-svg-src="img/icons/ic_web_black_24px.svg"></md-icon>
-          <input ng-model="$ctrl.setting.site_name" type="text" ng-disabled="!$ctrl.editable">
-        </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Nombre del sitio</label>
+            <md-icon md-svg-src="img/icons/ic_web_black_24px.svg"></md-icon>
+            <input ng-model="$ctrl.setting.site_name" type="text" ng-disabled="!$ctrl.editable">
+          </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <label>Teléfono celular</label>
-          <md-icon md-svg-src="img/icons/ic_smartphone_black_24px.svg"></md-icon>
-          <input ng-model="$ctrl.setting.site_cellphone" ng-disabled="!$ctrl.editable">
-        </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Teléfono celular</label>
+            <md-icon md-svg-src="img/icons/ic_smartphone_black_24px.svg"></md-icon>
+            <input ng-model="$ctrl.setting.site_cellphone" ng-disabled="!$ctrl.editable">
+          </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <label>Teléfono</label>
-          <md-icon md-svg-src="img/icons/ic_local_phone_black_24px.svg"></md-icon>
-          <input ng-model="$ctrl.setting.site_phone" ng-disabled="!$ctrl.editable">
-        </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Teléfono</label>
+            <md-icon md-svg-src="img/icons/ic_local_phone_black_24px.svg"></md-icon>
+            <input ng-model="$ctrl.setting.site_phone" ng-disabled="!$ctrl.editable">
+          </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <label>Email</label>
-          <md-icon md-svg-src="img/icons/ic_email_black_24px.svg"></md-icon>
-          <input ng-model="$ctrl.setting.site_email" ng-disabled="!$ctrl.editable">
-        </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Email</label>
+            <md-icon md-svg-src="img/icons/ic_email_black_24px.svg"></md-icon>
+            <input ng-model="$ctrl.setting.site_email" ng-disabled="!$ctrl.editable">
+          </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <label>Facebook</label>
-          <md-icon md-svg-src="img/icons/ic_facebook.svg"></md-icon>
-          <input ng-model="$ctrl.setting.social_facebook" ng-disabled="!$ctrl.editable">
-        </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Facebook</label>
+            <md-icon md-svg-src="img/icons/ic_facebook.svg"></md-icon>
+            <input ng-model="$ctrl.setting.social_facebook" ng-disabled="!$ctrl.editable">
+          </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <label>Twitter</label>
-          <md-icon md-svg-src="img/icons/ic_twitter.svg"></md-icon>
-          <input ng-model="$ctrl.setting.social_twitter" ng-disabled="!$ctrl.editable">
-        </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Twitter</label>
+            <md-icon md-svg-src="img/icons/ic_twitter.svg"></md-icon>
+            <input ng-model="$ctrl.setting.social_twitter" ng-disabled="!$ctrl.editable">
+          </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-          <label>Instagram</label>
-          <md-icon md-svg-src="img/icons/ic_instagram-darkblue.svg"></md-icon>
-          <input ng-model="$ctrl.setting.social_instagram" ng-disabled="!$ctrl.editable">
-        </md-input-container>
+          <md-input-container class="md-icon-float md-block">
+            <label>Instagram</label>
+            <md-icon md-svg-src="img/icons/ic_instagram-darkblue.svg"></md-icon>
+            <input ng-model="$ctrl.setting.social_instagram" ng-disabled="!$ctrl.editable">
+          </md-input-container>
 
-        <!-- <md-input-container class="md-block"> -->
-          <md-checkbox ng-model="$ctrl.setting.site_active" aria-label="Activo" ng-disabled="!$ctrl.editable">
-            Sitio Activo
-          </md-checkbox>
-        <!-- </md-input-container> -->
+          <!-- <md-input-container class="md-block"> -->
+            <md-checkbox ng-model="$ctrl.setting.site_active" aria-label="Activo" ng-disabled="!$ctrl.editable">
+              Sitio Activo
+            </md-checkbox>
+          <!-- </md-input-container> -->
 
-        <div layout="row" layout-align="end center">
-          <!-- <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancelar</md-button> -->
-          <md-button class="md-raised md-primary" ng-click="$ctrl.editSetting()" ng-disabled="!$ctrl.editable">Guardar</md-button>
-        </div>
+          <div layout="row" layout-align="end center">
+            <!-- <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancelar</md-button> -->
+            <md-button class="md-raised md-primary" ng-click="$ctrl.editSetting()" ng-disabled="!$ctrl.editable">Guardar</md-button>
+          </div>
+
+        </form>
 
         <!--
         {
