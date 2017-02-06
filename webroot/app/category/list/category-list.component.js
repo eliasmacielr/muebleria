@@ -1,6 +1,7 @@
 'use strict';
 
-// Register `categoryList` component, along with its associated controller and template
+// Register `categoryList` component, along with its associated controller
+// and template
 angular.
   module('categoryList').
   component('categoryList', {
@@ -10,36 +11,34 @@ angular.
 
         var self = this;
 
-        /* -------------------- */
         $scope.selected = []; // list of selected categories in the table
 
         $scope.query = {
-          //order = 'name',
           limit: 5,
           page: 1,
-          sort: 'name'
+          sort: 'name',
+          name: ''
         };
 
-        $scope.limitOptions = [5, 10, 15];
-
-        // List
-        // self.categories = Category.list($scope.query, success).$promise;
-
-        function success(categories) {
-          self.categories = categories;
-        }
-
-        $scope.getCategories = function () {
-          $scope.promise = Category.list($scope.query, success).$promise;
-        };
-
-        /* esto agregué */
         var bookmark;
 
         $scope.filter = {
           options: {
             debounce: 500
           }
+        };
+
+        self.showSearch = false;
+
+        $scope.limitOptions = [5, 10, 15];
+
+        // List
+        function success(categories) {
+          self.categories = categories;
+        }
+
+        $scope.getCategories = function () {
+          $scope.promise = Category.list($scope.query, success).$promise;
         };
 
         $scope.$watch('query.name', function (newValue, oldValue) {
@@ -57,12 +56,6 @@ angular.
 
           $scope.getCategories();
         });
-        /* hasta acá */
-
-        /* -------------------- */
-        // var self = this;
-
-        self.showSearch = false;
 
         // Add
         $scope.addCategoryDialog = function (ev) {
@@ -75,6 +68,7 @@ angular.
           .then(function (answer) { // hide
             self.messageToast(answer);
           }, function () { // cancel
+            self.messageToast('No se agregaron registros nuevos');
           });
         };
 
@@ -116,7 +110,7 @@ angular.
           $scope.category = {};
 
           $scope.addCategory = function () {
-            Category.add($scope.category,
+            Category.add($scope.category).$promise.then(
               function (response) {
                 if (response.status) {
                   self.categories.categories.push(response.category);
@@ -141,14 +135,19 @@ angular.
         };
 
         function EditCategoryController($scope, $mdDialog, Category) {
-          $scope.toEdit = Category.view({categoryId: self.category.id});
+          Category.view({categoryId: self.category.id}).$promise.then(
+            function (response) {
+              $scope.toEdit = response;
+            }
+          );
 
           var index = self.categories.categories.indexOf(self.category);
 
           $scope.editCategory = function () {
             Category.edit(
               {categoryId: $scope.toEdit.category.id},
-              $scope.toEdit.category,
+              $scope.toEdit.category
+            ).$promise.then(
               function (response) {
                 if (response.status) {
                   self.categories.categories[index] = response.category; // replace edited element
@@ -188,6 +187,7 @@ angular.
             self.categories.categories.splice(index, 1); // delete one element
           }
 
+          // TODO: fix this bug, execute all this when the deletion is done
           self.categories.pagination.count -= $scope.selected.length; // update count
           $scope.selected = []; // empty $scope.selected array
 
