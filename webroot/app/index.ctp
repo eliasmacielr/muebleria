@@ -83,6 +83,10 @@
   <script src="app/setting/list/setting-list.module.js"></script>
   <script src="app/setting/list/setting-list.component.js"></script>
 
+  <!-- User -->
+  <script src="app/user/list/user-list.module.js"></script>
+  <script src="app/user/list/user-list.component.js"></script>
+
   <!-- Style customizations -->
   <link rel="stylesheet" href="app/app.css">
 </head>
