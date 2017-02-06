@@ -1,6 +1,6 @@
 <md-dialog aria-label="Editar categoría">
 
-  <form ng-cloak>
+  <form name="categoryEditForm" ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Editar categoría</h2>
@@ -9,15 +9,23 @@
 
     <md-dialog-content>
       <div class="md-dialog-content" layout="column">
-        <md-input-container>
+
+        <md-input-container class="md-block">
           <label>Nombre</label>
-          <input ng-model="toEdit.category.name" required>
+          <input name="categoryName" ng-model="toEdit.category.name" required>
+          <div ng-messages="categoryEditForm.categoryName.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
         </md-input-container>
 
         <div class="layout-row" layout-align="end center">
           <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
-          <md-button class="md-raised md-primary" ng-click="editCategory()">Confirmar</md-button>
+          <md-button class="md-raised md-primary" ng-click="editCategory()"
+            ng-disabled="categoryEditForm.$invalid">
+            Confirmar
+          </md-button>
         </div>
+
       </div>
     </md-dialog-content>
   </form>
