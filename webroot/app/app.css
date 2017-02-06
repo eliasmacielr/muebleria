@@ -25,3 +25,7 @@ md-sidenav.md-closed.md-locked-open-add-active.details {
 md-input-container.nomargin {
   margin: 0px 0;
 }
+
+form {
+  max-width: 500px;
+}
