@@ -46,7 +46,6 @@ angular.
           }
         );
 
-
         self.addImage = function () {
           var image = document.getElementById('file-upload');
           var fd = new FormData();
@@ -108,6 +107,7 @@ angular.
             );
           }
 
+          // TODO: fix this bug, execute all this when the tasks are done
           self.messageToast(
             (success ? 'El producto se editó con éxito' : 'Ocurrió un error')
           );
