@@ -12,5 +12,6 @@ angular.module('myApp', [
   'productAdd',
   'productEdit',
   'productList',
-  'settingList'
+  'settingList',
+  'userList'
 ]);
