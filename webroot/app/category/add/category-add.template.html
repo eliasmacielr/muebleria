@@ -1,6 +1,6 @@
 <md-dialog aria-label="Nueva categoría">
 
-  <form ng-cloak>
+  <form name="categoryAddForm" ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Nueva categoría</h2>
@@ -9,15 +9,23 @@
 
     <md-dialog-content>
       <div class="md-dialog-content" layout="column">
-        <md-input-container>
+
+        <md-input-container class="md-block">
           <label>Nombre</label>
-          <input ng-model="category.name" required>
+          <input name="categoryName" ng-model="category.name" required>
+          <div ng-messages="categoryAddForm.categoryName.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
         </md-input-container>
 
         <div class="layout-row" layout-align="end center">
           <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
-          <md-button class="md-raised md-primary" ng-click="addCategory()">Confirmar</md-button>
+          <md-button class="md-raised md-primary" ng-click="addCategory()"
+            ng-disabled="categoryAddForm.$invalid">
+            Confirmar
+          </md-button>
         </div>
+
       </div>
     </md-dialog-content>
   </form>
