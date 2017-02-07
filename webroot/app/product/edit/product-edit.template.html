@@ -115,10 +115,9 @@
           </md-radio-group>
         </div>
         <br>
-        <form name="myForm">
-          <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="$ctrl.productImages.length >= 5"><br>
-          <md-button class="md-raised md-primary" ng-click="$ctrl.addImage()" ng-disabled="$ctrl.productImages.length >= 5">Agregar Imagen</md-button>
-        </form>
+        <input id="file-upload" type="file" name="file_name" aria-label="Imagen" ng-disabled="$ctrl.productImages.length >= 5">
+        <br>
+        <md-button class="md-raised md-primary" ng-click="$ctrl.addImage()" ng-disabled="$ctrl.productImages.length >= 5">Agregar Imagen</md-button>
 
         <h3>Especificaciones</h3>
         <div ng-repeat="productSpecification in $ctrl.productSpecifications">
