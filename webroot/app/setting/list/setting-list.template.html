@@ -45,7 +45,7 @@
           <md-input-container class="md-icon-float md-block">
             <label>Nombre del sitio</label>
             <md-icon md-svg-src="img/icons/ic_web_black_24px.svg"></md-icon>
-            <input name="settingSiteName" ng-model="$ctrl.setting.site_name" type="text" ng-disabled="!$ctrl.editable" required>
+            <input name="settingSiteName" ng-model="$ctrl.setting.site_name" ng-disabled="!$ctrl.editable" required>
             <div ng-messages="settingListForm.settingSiteName.$error">
               <div ng-message="required">Este campo es requerido.</div>
             </div>
@@ -116,7 +116,6 @@
             <md-button class="md-raised md-primary" ng-click="$ctrl.editSetting()"
               ng-disabled="!$ctrl.editable">Guardar</md-button>
           </div>
-
         </form>
 
       </div>
