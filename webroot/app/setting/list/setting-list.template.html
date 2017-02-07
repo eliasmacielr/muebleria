@@ -35,80 +35,89 @@
 
       <div layout="column" flex layout-padding>
 
-        <form>
-          <!-- <md-input-container class="md-block"> -->
-            <md-switch class="md-primary" name="special" ng-model="$ctrl.editable">
+        <form name="settingListForm">
+          <md-input-container flex>
+            <md-switch name="editableSwitch" class="md-primary" name="special" ng-model="$ctrl.editable">
               Editar
             </md-switch>
-          <!-- </md-input-container> -->
+          </md-input-container>
 
           <md-input-container class="md-icon-float md-block">
             <label>Nombre del sitio</label>
             <md-icon md-svg-src="img/icons/ic_web_black_24px.svg"></md-icon>
-            <input ng-model="$ctrl.setting.site_name" type="text" ng-disabled="!$ctrl.editable">
+            <input name="settingSiteName" ng-model="$ctrl.setting.site_name" type="text" ng-disabled="!$ctrl.editable" required>
+            <div ng-messages="settingListForm.settingSiteName.$error">
+              <div ng-message="required">Este campo es requerido.</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-icon-float md-block">
             <label>Teléfono celular</label>
             <md-icon md-svg-src="img/icons/ic_smartphone_black_24px.svg"></md-icon>
-            <input ng-model="$ctrl.setting.site_cellphone" ng-disabled="!$ctrl.editable">
+            <input name="settingSiteCellphone" ng-model="$ctrl.setting.site_cellphone" ng-disabled="!$ctrl.editable" required>
+            <div ng-messages="settingListForm.settingSiteCellphone.$error">
+              <div ng-message="required">Este campo es requerido.</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-icon-float md-block">
             <label>Teléfono</label>
             <md-icon md-svg-src="img/icons/ic_local_phone_black_24px.svg"></md-icon>
-            <input ng-model="$ctrl.setting.site_phone" ng-disabled="!$ctrl.editable">
+            <input name="settingSitePhone" ng-model="$ctrl.setting.site_phone" ng-disabled="!$ctrl.editable" required>
+            <div ng-messages="settingListForm.settingSitePhone.$error">
+              <div ng-message="required">Este campo es requerido.</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-icon-float md-block">
             <label>Email</label>
             <md-icon md-svg-src="img/icons/ic_email_black_24px.svg"></md-icon>
-            <input ng-model="$ctrl.setting.site_email" ng-disabled="!$ctrl.editable">
+            <input name="settingSiteMail" ng-model="$ctrl.setting.site_email" ng-disabled="!$ctrl.editable" ng-pattern="/^.+@.+\..+$/" required>
+            <div ng-messages="settingListForm.settingSiteMail.$error">
+              <div ng-message="required">Este campo es requerido.</div>
+              <div ng-message="pattern">Debe ingresar una dirección de correo válida.</div>
+            </div>
           </md-input-container>
 
+          <!-- TODO: the URLs can be searched for validation purposes -->
           <md-input-container class="md-icon-float md-block">
             <label>Facebook</label>
             <md-icon md-svg-src="img/icons/ic_facebook.svg"></md-icon>
-            <input ng-model="$ctrl.setting.social_facebook" ng-disabled="!$ctrl.editable">
+            <input name="settingSocialFacebook" ng-model="$ctrl.setting.social_facebook" ng-disabled="!$ctrl.editable" ng-pattern="/^((https://)?www.)?facebook.com\/.+$/">
+            <div ng-messages="settingListForm.settingSocialFacebook.$error">
+              <div ng-message="pattern">No es una dirección de cuenta de facebook válida.</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-icon-float md-block">
             <label>Twitter</label>
             <md-icon md-svg-src="img/icons/ic_twitter.svg"></md-icon>
-            <input ng-model="$ctrl.setting.social_twitter" ng-disabled="!$ctrl.editable">
+            <input name="settingSocialTwitter" ng-model="$ctrl.setting.social_twitter" ng-disabled="!$ctrl.editable" ng-pattern="/^((https://)?www.)?twitter.com\/.+$/">
+            <div ng-messages="settingListForm.settingSocialTwitter.$error">
+              <div ng-message="pattern">No es una dirección de cuenta de twitter válida.</div>
+            </div>
           </md-input-container>
 
           <md-input-container class="md-icon-float md-block">
             <label>Instagram</label>
             <md-icon md-svg-src="img/icons/ic_instagram-darkblue.svg"></md-icon>
-            <input ng-model="$ctrl.setting.social_instagram" ng-disabled="!$ctrl.editable">
+            <input name="settingSocialInstagram" ng-model="$ctrl.setting.social_instagram" ng-disabled="!$ctrl.editable" ng-pattern="/^((https://)?www.)?instagram.com\/.+$/">
+            <div ng-messages="settingListForm.settingSocialInstagram.$error">
+              <div ng-message="pattern">No es una dirección de cuenta de instagram válida.</div>
+            </div>
           </md-input-container>
 
-          <!-- <md-input-container class="md-block"> -->
-            <md-checkbox ng-model="$ctrl.setting.site_active" aria-label="Activo" ng-disabled="!$ctrl.editable">
-              Sitio Activo
-            </md-checkbox>
-          <!-- </md-input-container> -->
+          <md-checkbox ng-model="$ctrl.setting.site_active" aria-label="Activo" ng-disabled="!$ctrl.editable">
+            Sitio Activo
+          </md-checkbox>
 
           <div layout="row" layout-align="end center">
             <!-- <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancelar</md-button> -->
-            <md-button class="md-raised md-primary" ng-click="$ctrl.editSetting()" ng-disabled="!$ctrl.editable">Guardar</md-button>
+            <md-button class="md-raised md-primary" ng-click="$ctrl.editSetting()"
+              ng-disabled="!$ctrl.editable">Guardar</md-button>
           </div>
 
         </form>
-
-        <!--
-        {
-          "site_name": "Muebleria S. A.",
-          "site_cellphone": "0987654321",
-          "site_phone": "021678234",
-          "site_email": "asdf@asdf.com",
-          "social_facebook": "www.facebook.com",
-          "social_twitter": "www.twitter.com",
-          "social_instagram": "www.instagram.com",
-          "site_active": true
-        }
-        -->
 
       </div>
 
