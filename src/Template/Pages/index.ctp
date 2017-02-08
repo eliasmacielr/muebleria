@@ -62,11 +62,15 @@
   <script src="app/core/host-location.module.js"></script>
   <script src="app/core/host-location.service.js"></script>
 
+  <!-- Components for views -->
   <!-- Login -->
   <script src="app/login/login.module.js"></script>
   <script src="app/login/login.component.js"></script>
 
-  <!-- Components for views -->
+  <!-- Navigation -->
+  <script src="app/navigation/navigation.module.js"></script>
+  <script src="app/navigation/navigation.component.js"></script>
+
   <!-- Category -->
   <script src="app/category/list/category-list.module.js"></script>
   <script src="app/category/list/category-list.component.js"></script>
