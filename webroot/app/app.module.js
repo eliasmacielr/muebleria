@@ -7,6 +7,7 @@ angular.module('myApp', [
   'md.data.table',
   'ngMessages',
   'hostLocation',
+  'navigation',
   'core',
   'categoryList',
   'login',
