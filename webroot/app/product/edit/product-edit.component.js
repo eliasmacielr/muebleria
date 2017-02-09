@@ -48,6 +48,12 @@ angular.
 
         self.addImage = function () {
           var image = document.getElementById('file-upload');
+
+          if (image.files[0] == null) {
+            self.messageToast('Por favor cargue una imagen');
+            return;
+          }
+
           var fd = new FormData();
           fd.append('file_name', image.files[0], image.files[0].name);
 
