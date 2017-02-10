@@ -6,32 +6,28 @@
   </div>
 
   <md-card layout-padding>
-    <md-card-header>
-    </md-card-header>
 
-    <md-card-actions>
-      <form action="#" name="form" role="form" class="form-signin" layout="column">
+    <md-card-actions layout-padding>
+      <form name="loginForm" role="form" class="form-signin" layout="column">
         <md-input-container class="md-block">
-          <label>Email</label>
-          <input name="user" required="true">
-          <!-- <div ng-messages="form.user.$error">
+          <label>Nombre de usuario</label>
+          <input name="username" ng-model="$ctrl.user.username" required>
+          <div ng-messages="loginForm.username.$error">
             <div ng-message="required">Debe identificarse con su nombre de usuario.</div>
-          </div> -->
+          </div>
         </md-input-container>
 
         <md-input-container class="md-block">
           <label>Contraseña</label>
-          <input name="pass" type="password" required="true">
-          <!-- <div ng-messages="form.pass.$error">
+          <input name="password" ng-model="$ctrl.user.password" type="password" required>
+          <div ng-messages="loginForm.password.$error">
             <div ng-message="required">La contraseña es requerida.</div>
-          </div> -->
+          </div>
         </md-input-container>
 
-        <!-- <md-input-container> -->
-          <md-checkbox aria-label="Recuérdame" md-no-ink>
-            No cerrar la sesión
-          </md-checkbox>
-        <!-- </md-input-container> -->
+        <md-checkbox aria-label="Recuérdame" md-no-ink>
+          No cerrar la sesión
+        </md-checkbox>
 
         <br>
 
