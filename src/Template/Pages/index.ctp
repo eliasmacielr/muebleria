@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Mueblería</title>
+  <title>Clickmuebles</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -47,6 +47,9 @@
   <script src="app/core/image/image.module.js"></script>
   <script src="app/core/image/image.service.js"></script>
 
+  <script src="app/core/login/login.module.js"></script>
+  <script src="app/core/login/login.service.js"></script>
+
   <script src="app/core/product/product.module.js"></script>
   <script src="app/core/product/product.service.js"></script>
 
@@ -61,6 +64,10 @@
 
   <script src="app/core/host-location.module.js"></script>
   <script src="app/core/host-location.service.js"></script>
+
+  <!-- Authentication -->
+  <script src="app/auth/auth.module.js"></script>
+  <script src="app/auth/auth.service.js"></script>
 
   <!-- Components for views -->
   <!-- Login -->
