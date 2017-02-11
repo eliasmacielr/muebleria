@@ -62,6 +62,7 @@
   <script src="app/core/user/user.module.js"></script>
   <script src="app/core/user/user.service.js"></script>
 
+  <!-- Host location -->
   <script src="app/core/host-location.module.js"></script>
   <script src="app/core/host-location.service.js"></script>
 
@@ -77,6 +78,10 @@
   <!-- Navigation -->
   <script src="app/navigation/navigation.module.js"></script>
   <script src="app/navigation/navigation.component.js"></script>
+
+  <!-- Dashboard -->
+  <script src="app/dashboard/dashboard.module.js"></script>
+  <script src="app/dashboard/dashboard.component.js"></script>
 
   <!-- Category -->
   <script src="app/category/list/category-list.module.js"></script>
