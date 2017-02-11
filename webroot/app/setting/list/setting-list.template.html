@@ -101,7 +101,7 @@
             </div>
           </md-input-container>
 
-          <md-checkbox ng-model="$ctrl.setting.site_active" aria-label="Activo" ng-disabled="!$ctrl.editable">
+          <md-checkbox ng-model="$ctrl.setting.site_active" aria-label="Activo" ng-disabled="!$ctrl.editable" ng-show="$ctrl.isSuperAdmin()">
             Sitio Activo
           </md-checkbox>
 

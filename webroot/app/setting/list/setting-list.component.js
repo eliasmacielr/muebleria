@@ -5,8 +5,8 @@ angular.
   module('settingList').
   component('settingList', {
     templateUrl: 'app/setting/list/setting-list.template.html',
-    controller: ['$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Setting',
-      function SettingListController($scope, $mdDialog, $mdSidenav, $mdToast, Setting) {
+    controller: ['$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Setting', 'Auth',
+      function SettingListController($scope, $mdDialog, $mdSidenav, $mdToast, Setting, Auth) {
 
         var self = this;
 
@@ -26,6 +26,10 @@ angular.
               self.messageToast(response.message);
             }
           )
+        };
+
+        self.isSuperAdmin = function () {
+          return (Auth.user.role === 'super-admin' ? true : false);
         };
 
         self.messageToast = function (message) {
