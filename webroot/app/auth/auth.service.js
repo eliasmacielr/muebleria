@@ -5,7 +5,13 @@ angular.
   factory('Auth', ['$location', 'Login',
     function ($location, Login) {
 
-      var service = {};
+      var service = {
+        user : {
+          name : '',
+          last_name : '',
+          role : ''
+        }
+      };
 
       service.login = function (username, password, callback) {
         Login.login({username: username, password: password}).$promise.then(
