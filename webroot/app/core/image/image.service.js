@@ -2,12 +2,13 @@
 
 angular.
   module('core.image').
-  factory('Image', ['$resource', 'HostLocation',
-    function($resource, HostLocation) {
+  factory('Image', ['$resource', 'HostLocation', 'Auth',
+    function($resource, HostLocation, Auth) {
 
       this.headers = {
         'Accept' : 'application/json',
-        'Content-Type': undefined
+        'Content-Type': undefined,
+        'Authorization' : Auth.basicAuthHeader
       };
 
       /*

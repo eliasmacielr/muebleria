@@ -2,12 +2,13 @@
 
 angular.
   module('core.category').
-  factory('Category', ['$resource', 'HostLocation',
-    function($resource, HostLocation) {
+  factory('Category', ['$resource', 'HostLocation', 'Auth',
+    function($resource, HostLocation, Auth) {
 
       this.headers = {
         'Content-Type' : 'application/json',
-        'Accept' : 'application/json'
+        'Accept' : 'application/json',
+        'Authorization' : Auth.basicAuthHeader
       };
 
       /*
