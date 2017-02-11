@@ -10,6 +10,9 @@ angular.
         when('/categorias', {
           template: '<category-list></category-list>'
         }).
+        when('/bandeja', {
+          template: '<dashboard></dashboard>'
+        }).
         when('/login', {
           template: '<login></login>'
         }).
