@@ -8,6 +8,7 @@ angular.module('myApp', [
   'ngMessages',
   'auth',
   'core',
+  'dashboard',
   'hostLocation',
   'navigation',
   'categoryList',
