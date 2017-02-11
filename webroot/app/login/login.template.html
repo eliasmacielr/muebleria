@@ -13,7 +13,7 @@
           <label>Nombre de usuario</label>
           <input name="username" ng-model="$ctrl.user.username" required>
           <div ng-messages="loginForm.username.$error">
-            <div ng-message="required">Debe identificarse con su nombre de usuario.</div>
+            <div ng-message="required">Debe identificarse para acceder</div>
           </div>
         </md-input-container>
 
@@ -32,7 +32,7 @@
         <br>
 
         <div layout="row" layout-align="center end">
-          <md-button class="md-primary md-raised">
+          <md-button class="md-primary md-raised" ng-click="$ctrl.login()">
             Ingresar
           </md-button>
         </div>
