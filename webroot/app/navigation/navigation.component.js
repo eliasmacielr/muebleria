@@ -11,6 +11,10 @@ angular.
 
         var self = this;
 
+        self.dashboard = function () {
+          $location.path('/bandeja');
+        };
+
         self.categories = function () {
           $location.path('/categorias');
         };
