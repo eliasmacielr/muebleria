@@ -68,6 +68,7 @@ class AppController extends Controller
                     'userModel' => 'Users',
                 ],
             ],
+            'authorize' => ['Controller'],
             'loginAction' => '',
             'storage' => 'Memory',
             'unauthorizedRedirect' => false,
