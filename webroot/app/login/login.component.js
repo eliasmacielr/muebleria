@@ -5,8 +5,8 @@ angular.
   module('login').
   component('login', {
     templateUrl: 'app/login/login.template.html',
-    controller: ['$http', '$location', 'Auth',
-      function LoginController($http, $location, Auth) {
+    controller: ['$http', '$location', '$mdToast', 'Auth',
+      function LoginController($http, $location, $mdToast, Auth) {
 
         var self = this;
 
@@ -17,20 +17,24 @@ angular.
         self.login = function () {
           Auth.login(self.user.username, self.user.password,
             function (response) {
-              if (response.status) {
+              if (response.status) { // successful login
                 $location.path('/bandeja');
+              } else {
+                self.messageToast(response.message);
               }
+            },
+            function (reason) { // error
+              self.messageToast(reason.message);
             }
           );
         };
 
-        self.logout = function () {
-          Auth.logout(
-            function (response) {
-              if (response.status) {
-                $location.path('/login');
-              }
-            }
+        self.messageToast = function (message) {
+          $mdToast.show(
+            $mdToast.simple()
+              .position('bottom left')
+              .textContent(message)
+              .hideDelay(3000)
           );
         };
 
