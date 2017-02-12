@@ -159,4 +159,21 @@ class UsersTable extends Table
     {
         return (boolean) preg_match("/^[a-z][a-z0-9]+$/", $username);
     }
+
+    /**
+     * Filter users. Hide super-admin user and current user.
+     *
+     * @param  Query  $query
+     * @param  array  $options
+     * @return \Cake\ORM\Query
+     */
+     public function findFilterRole(Query $query, array $options)
+     {
+         if ($options['user']['role'] === 'super-admin') {
+             return $query->where([$this->aliasField('username').' !=' => 'sadmin'])->where([$this->aliasField('username').' !=' => $options['user']['username']]);
+         } elseif ($options['user']['role'] === 'admin') {
+             return $query->where([$this->aliasField('role').' !=' => 'super-admin'])->where([$this->aliasField('username').' !=' => $options['user']['username']]);
+         }
+         return $query->where([$this->aliasField('role').' !=' => 'super-admin'])->where([$this->aliasField('role').' !=' => 'admin'])->where([$this->aliasField('username').' !=' => $options['user']['username']]);
+     }
 }
