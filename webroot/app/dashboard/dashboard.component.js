@@ -5,18 +5,14 @@ angular.
   module('dashboard').
   component('dashboard', {
     templateUrl: 'app/dashboard/dashboard.template.html',
-    controller: ['$scope', '$mdSidenav', 'Auth',
-      function DashboardController($scope, $mdSidenav, Auth) {
+    controller: ['$http', '$location', '$scope', '$mdSidenav',
+      function DashboardController($http, $location, $scope, $mdSidenav) {
 
         var self = this;
 
-        self.logout = function () {
-          Auth.logout();
-        };
-
         $scope.showLeftSidenav = function () {
           $mdSidenav('left').toggle();
-        }
+        };
 
       }
     ]
