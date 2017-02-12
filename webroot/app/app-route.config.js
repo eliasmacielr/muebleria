@@ -33,4 +33,20 @@ angular.
         }).
         otherwise('/login');
     }
-  ]);
+  ]).
+  run(
+    function ($rootScope, $http, $location, Auth) {
+      $rootScope.$on('$routeChangeStart',
+        function (event, next, current) {
+          if (!Auth.$storage.logged_in) {
+            if (next.template == '<login></login>') {
+            } else {
+              $location.path('/login');
+            }
+          }
+          $http.defaults.headers.common['Authorization'] = 'Basic ' +
+            window.btoa(Auth.$storage.user.username + ':' + Auth.$storage.user.api_key);
+        }
+      );
+    }
+  );
