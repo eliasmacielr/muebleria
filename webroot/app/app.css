@@ -29,3 +29,7 @@ md-input-container.nomargin {
 form {
   max-width: 500px;
 }
+
+md-icon.navigation svg {
+  fill: #757575;
+}
