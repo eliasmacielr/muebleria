@@ -29,7 +29,7 @@ angular.
         };
 
         self.isSuperAdmin = function () {
-          return (Auth.user.role === 'super-admin' ? true : false);
+          return (Auth.$storage.user.role === 'super-admin' ? true : false);
         };
 
         self.messageToast = function (message) {
