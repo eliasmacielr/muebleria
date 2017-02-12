@@ -20,6 +20,17 @@ class CategoriesController extends AppController
     }
 
     /**
+     * Access Control. All Granted
+     *
+     * @param  array   $user
+     * @return bool
+     */
+    public function isAuthorized(array $user)
+    {
+        return true;
+    }
+
+    /**
      * Index method.
      *
      * @return \Cake\Network\Response|null

@@ -20,6 +20,17 @@ class ProductsController extends AppController
     }
 
     /**
+     * Access Control. All Granted
+     *
+     * @param  array   $user
+     * @return bool
+     */
+    public function isAuthorized(array $user)
+    {
+        return true;
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
@@ -135,7 +146,8 @@ class ProductsController extends AppController
      *
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function deleteAll() {
+    public function deleteAll()
+    {
         $products = $this->Products->find()->where(['id IN' => $this->request->data['ids']]);
         try {
             foreach ($products as $product) {

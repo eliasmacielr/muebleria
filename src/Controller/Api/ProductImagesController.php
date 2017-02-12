@@ -18,6 +18,17 @@ class ProductImagesController extends AppController
     }
 
     /**
+     * Access Control. All Granted
+     *
+     * @param  array   $user
+     * @return bool
+     */
+    public function isAuthorized(array $user)
+    {
+        return true;
+    }
+
+    /**
      * Index method
      *
      * @param string|null $product_id Product id.

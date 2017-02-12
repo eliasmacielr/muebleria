@@ -2,7 +2,8 @@
 namespace App\Controller\Api;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
+use Cake\Network\Request;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Users Controller
@@ -11,10 +12,46 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
-    public function beforeFilter(Event $event)
+
+    /**
+     * Access control. Check Denied case
+     * @param  array $user
+     * @return bool
+     */
+    public function isAuthorized(array $user)
     {
-        parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'view']);
+        // It is widely used
+        $request = $this->request;
+
+        // If request index and user is a staff
+        if ($request->params['action'] === 'index' && $user['role'] === 'staff') {
+            return false;
+        }
+
+        if (isset($request->params['id'])) {
+            // Only sadmin can access
+            if ($request->params['id'] == 1 && $user['id'] != 1) {
+                return false;
+            }
+        }
+
+        // If request view and user is a staff
+        if ($request->params['action'] === 'view') {
+            // Staff users can only access their own registry
+            if ($user['role'] === 'staff' && $user['id'] != $request->params['id']) {
+                return false;
+            }
+        }
+
+        // If request add, edit and delete
+        if (in_array($request->params['action'], ['add', 'edit', 'delete'])) {
+            // Staff user access denied
+            if ($user['role'] === 'staff') {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -28,12 +65,9 @@ class UsersController extends AppController
             'limit' => $this->request->query('limit') ?: 10,
             'sort' => $this->request->query('sort') ?: 'name',
             'direction' => $this->request->query('direction') ?: 'asc',
-            'finder' => [
-                'search' => $this->Users->filterParams($this->request->query),
-            ]
         ];
-
-        $users = $this->paginate($this->Users);
+        $query = $this->Users->find('filterRole', ['user' => $this->Auth->user()])->find('search', $this->Users->filterParams($this->request->query));
+        $users = $this->paginate($query);
         $status = true;
 
         $this->set(compact(['users', 'status']));

@@ -11,10 +11,20 @@ use Cake\Event\Event;
  */
 class SettingsController extends AppController
 {
-    public function beforeFilter(Event $event)
+    /**
+     * Access Control. Staff user denied
+     *
+     * @param  array   $user
+     * @return bool
+     */
+    public function isAuthorized(array $user)
     {
-        parent::beforeFilter($event);
-        $this->Auth->allow(['view']);
+        $request = $this->request;
+        if ($user['role'] === 'staff')
+        {
+            return false;
+        }
+        return true;
     }
 
     /**
