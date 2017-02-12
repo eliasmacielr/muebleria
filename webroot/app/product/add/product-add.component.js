@@ -56,6 +56,7 @@ angular.
               if (success) {
                 self.productId = response.product.id;
                 //success *= addImages();
+                $location.path('/productos');
               }
               self.messageToast(
                 (success ? 'El producto se agregó con éxito' : 'Ocurrió un error')

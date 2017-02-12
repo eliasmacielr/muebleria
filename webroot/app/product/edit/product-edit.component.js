@@ -114,9 +114,13 @@ angular.
           }
 
           // TODO: fix this bug, execute all this when the tasks are done
-          self.messageToast(
-            (success ? 'El producto se editó con éxito' : 'Ocurrió un error')
-          );
+          if (success) {
+            $location.path('/productos');
+            self.messageToast('El producto se editó con éxito');
+          } else {
+            self.messageToast('Ocurrió un error');
+          }
+
         };
 
         self.messageToast = function (message) {
