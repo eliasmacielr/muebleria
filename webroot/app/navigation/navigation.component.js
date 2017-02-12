@@ -6,8 +6,8 @@ angular.
   module('navigation').
   component('navigation', {
     templateUrl: 'app/navigation/navigation.template.html',
-    controller: ['$location',
-      function SudeNavigationController($location) {
+    controller: ['$location', 'Auth',
+      function SudeNavigationController($location, Auth) {
 
         var self = this;
 
@@ -29,6 +29,12 @@ angular.
 
         self.setting = function () {
           $location.path('/configuracion');
+        };
+
+
+        self.logout = function () {
+          Auth.logout();
+          $location.path('/login');
         };
 
       }

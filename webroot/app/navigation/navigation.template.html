@@ -1,30 +1,42 @@
 <md-toolbar class="md-theme-light">
   <h1 class="md-toolbar-tools">Navegación</h1>
+
+  <form>
+    <md-button ng-click="$ctrl.logout()">
+      Logout
+    </md-button>
+  </form>
+
 </md-toolbar>
 
-<md-content layout-padding>
+<md-content>
   <md-menu-item>
     <md-button ng-click="$ctrl.dashboard()">
+      <md-icon md-svg-src="img/icons/ic_dashboard_black_24px.svg" class="navigation"></md-icon>
       Bandeja
     </md-button>
   </md-menu-item>
   <md-menu-item>
     <md-button ng-click="$ctrl.categories()">
+      <md-icon md-svg-src="img/icons/ic_view_stream_black_24px.svg" class="navigation"></md-icon>
       Categorías
     </md-button>
   </md-menu-item>
   <md-menu-item>
     <md-button ng-click="$ctrl.products()">
+      <md-icon md-svg-src="img/icons/ic_view_list_black_24px.svg" class="navigation"></md-icon>
       Productos
     </md-button>
   </md-menu-item>
   <md-menu-item>
     <md-button ng-click="$ctrl.users()">
+      <md-icon md-svg-src="img/icons/ic_account_box_black_24px.svg" class="navigation"></md-icon>
       Usuarios
     </md-button>
   </md-menu-item>
   <md-menu-item>
     <md-button ng-click="$ctrl.setting()">
+      <md-icon md-svg-src="img/icons/ic_settings_black_24px.svg" class="navigation"></md-icon>
       Configuración
     </md-button>
   </md-menu-item>
