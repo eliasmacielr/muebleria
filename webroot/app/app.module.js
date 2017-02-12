@@ -5,6 +5,7 @@ angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
   'md.data.table',
+  'ngStorage',
   'ngMessages',
   'auth',
   'core',
