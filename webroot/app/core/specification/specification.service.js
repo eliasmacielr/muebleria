@@ -2,13 +2,12 @@
 
 angular.
   module('core.specification').
-  factory('Specification', ['$resource', 'HostLocation', 'Auth',
-    function($resource, HostLocation, Auth) {
+  factory('Specification', ['$resource', 'HostLocation',
+    function($resource, HostLocation) {
 
       this.headers = {
         'Content-Type' : 'application/json',
-        'Accept' : 'application/json',
-        'Authorization' : Auth.basicAuthHeader
+        'Accept' : 'application/json'
       };
 
       /*

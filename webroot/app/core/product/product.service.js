@@ -2,13 +2,12 @@
 
 angular.
   module('core.product').
-  factory('Product', ['$resource', 'HostLocation', 'Auth',
-    function($resource, HostLocation, Auth) {
+  factory('Product', ['$resource', 'HostLocation',
+    function($resource, HostLocation) {
 
       this.headers = {
         'Content-Type' : 'application/json',
-        'Accept' : 'application/json',
-        'Authorization' : Auth.basicAuthHeader
+        'Accept' : 'application/json'
       };
 
       /*
