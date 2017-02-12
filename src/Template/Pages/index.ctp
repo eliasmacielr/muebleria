@@ -26,6 +26,7 @@
   <script src="app/bower_components/angular-aria/angular-aria.js"></script>
   <script src="app/bower_components/angular-messages/angular-messages.js"></script>
   <script src="app/bower_components/angular-material/angular-material.js"></script>
+  <script src="app/bower_components/ngstorage/ngStorage.js"></script>
 
   <!--md-data-table  -->
   <!-- style sheet -->
