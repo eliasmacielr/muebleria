@@ -6,8 +6,8 @@ angular.
   module('productEdit').
   component('productEdit', {
     templateUrl: 'app/product/edit/product-edit.template.html',
-    controller: ['$routeParams', '$location', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image', 'Specification',
-      function ProductEditController($routeParams, $location, $mdSidenav, $mdToast, Product, Category, Image, Specification) {
+    controller: ['$routeParams', '$scope', '$location', '$mdSidenav', '$mdDialog', '$mdToast', 'Product', 'Category', 'Image', 'Specification',
+      function ProductEditController($routeParams, $scope, $location, $mdSidenav, $mdDialog, $mdToast, Product, Category, Image, Specification) {
 
         var self = this;
 
@@ -45,6 +45,7 @@ angular.
             }
           }
         );
+        self.productNewSpecifications = []; // for new specifications
 
         self.addImage = function () {
           var image = document.getElementById('file-upload');
@@ -81,6 +82,42 @@ angular.
           );
         };
 
+        $scope.addSpecificationDialog = function (ev) {
+          $mdDialog.show({
+            controller: AddSpecificationController,
+            templateUrl: 'app/product/edit/specification-add.template.html',
+            parent: angular.element(document.body),
+            targetEvent: ev
+          })
+          .then(function (answer) { // hide
+            // self.messageToast(answer);
+          }, function () { // cancel
+            //self.messageToast('No se agregó especificación nueva');
+          });
+        };
+
+        function AddSpecificationController($scope, $mdDialog) {
+          $scope.specification = {};
+
+          $scope.addSpecification = function () {
+            $scope.specification.product_id = self.productId;
+            self.productNewSpecifications.push($scope.specification);
+            $scope.hide();
+          };
+
+          $scope.hide = function () {
+            $mdDialog.hide();
+          };
+
+          $scope.cancel = function () {
+            $mdDialog.cancel();
+          };
+
+          $scope.answer = function (answer) {
+            $mdDialog.hide(answer);
+          };
+        };
+
         self.editProduct = function () {
           var success = true;
           Product.edit(
@@ -107,6 +144,16 @@ angular.
               {productId: self.productId,
               specificationId: self.productSpecifications[i].id},
               self.productSpecifications[i],
+              function (response) {
+                success *= response.status;
+              }
+            );
+          }
+
+          for(var i = 0; i < self.productNewSpecifications.length; i++) {
+            Specification.add(
+              {productId: self.productId},
+              self.productNewSpecifications[i],
               function (response) {
                 success *= response.status;
               }

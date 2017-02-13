@@ -1,0 +1,40 @@
+<md-dialog aria-label="Nueva especificación">
+
+  <form name="specificationAddForm" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Nueva especificación</h2>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content" layout="column">
+
+        <md-input-container class="md-block">
+          <label>Especificación</label>
+          <input name="specificationName" ng-model="specification.name" required>
+          <div ng-messages="specificationAddForm.specificationName.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <label>Valor</label>
+          <input name="specificationValue" ng-model="specification.value" required>
+          <div ng-messages="specificationAddForm.specificationValue.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
+        </md-input-container>
+
+        <div class="layout-row" layout-align="end center">
+          <md-button class="md-raised" ng-click="cancel()">Cancelar</md-button>
+          <md-button class="md-raised md-primary" ng-click="addSpecification()"
+            ng-disabled="specificationAddForm.$invalid">
+            Confirmar
+          </md-button>
+        </div>
+
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

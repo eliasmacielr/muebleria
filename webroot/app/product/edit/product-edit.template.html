@@ -116,7 +116,7 @@
         <h3>Especificaciones</h3>
         <div ng-repeat="productSpecification in $ctrl.productSpecifications">
           <md-input-container class="nomargin">
-            <label>Clave</label>
+            <label>Especificación</label>
             <input ng-model="productSpecification.name">
           </md-input-container>
           <md-input-container class="nomargin">
@@ -124,6 +124,20 @@
             <input ng-model="productSpecification.value">
           </md-input-container>
         </div>
+        <div ng-repeat="productNewSpecification in $ctrl.productNewSpecifications">
+          <md-input-container class="nomargin">
+            <label>Especificación</label>
+            <input ng-model="productNewSpecification.name">
+          </md-input-container>
+          <md-input-container class="nomargin">
+            <label>Valor</label>
+            <input ng-model="productNewSpecification.value">
+          </md-input-container>
+        </div>
+        <md-button class="md-fab md-mini" aria-label="Agregar especificación" ng-click="addSpecificationDialog()"
+          style="background-color: white;">
+          <md-icon md-svg-src="img/icons/ic_add_black_24px.svg"></md-icon>
+        </md-button>
 
         <div layout="row" layout-align="end center">
           <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancelar</md-button>
