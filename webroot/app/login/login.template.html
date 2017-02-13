@@ -32,7 +32,8 @@
         <br>
 
         <div layout="row" layout-align="center end">
-          <md-button class="md-primary md-raised" ng-click="$ctrl.login()">
+          <md-button class="md-primary md-raised" ng-click="$ctrl.login()"
+            ng-disabled="loginForm.$invalid">
             Ingresar
           </md-button>
         </div>
