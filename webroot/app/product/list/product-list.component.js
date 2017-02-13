@@ -60,8 +60,13 @@ angular.
         // View
         self.viewProduct = function (product) {
           self.product = product;
+          Category.view({categoryId: product.category_id}).$promise.then(
+            function (response) {
+              self.product.category = response.category.name;
+            }
+          );
           $mdSidenav('right').toggle();
-        }
+        };
 
         $scope.toggleRight = buildToggler('right');
 
