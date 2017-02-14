@@ -2,6 +2,7 @@
 
 /vendor/*
 /config/app.php
+/config/bootstrap.default.php
 /config/Migrations/*.lock
 
 /tmp/*
