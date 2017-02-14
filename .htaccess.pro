@@ -4,11 +4,9 @@
 #    RequestHeader unset Proxy
 #</IfModule>
 
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteRule    ^$    webroot/    [L]
-    RewriteRule    (.*) webroot/$1    [L]
-</IfModule>
+RewriteEngine on
+RewriteRule    ^$    webroot/    [L]
+RewriteRule    (.*) webroot/$1    [L]
 
 # Environment
 setEnv DEBUG 0
