@@ -21,16 +21,16 @@ class ProductImagesSeed extends AbstractSeed
         $data = [
             [
                 'file_name' => 'not_found.jpg',
-                'file_name' => '/image/path',
-                'main' => true,
+                'file_dir' => '/image/path',
+                'main' => 1,
                 'product_id' => 1,
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s'),
             ],
             [
                 'file_name' => 'not_found.jpg',
-                'file_name' => '/image/path',
-                'main' => false,
+                'file_dir' => '/image/path',
+                'main' => 0,
                 'product_id' => 1,
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s'),

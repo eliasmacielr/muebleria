@@ -26,7 +26,7 @@ class SettingsSeed extends AbstractSeed
             'social_facebook' => 'www.facebook.com',
             'social_twitter' => 'www.twitter.com',
             'social_instagram' => 'www.instagram.com',
-            'site_active' => true,
+            'site_active' => 1,
             'created' => date('Y-m-d H:i:s'),
             'modified' => date('Y-m-d H:i:s'),
         ];
