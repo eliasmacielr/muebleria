@@ -14,21 +14,17 @@ class CreateCategories extends AbstractMigration
     {
         $table = $this->table('categories');
         $table->addColumn('name', 'string', [
-            'default' => null,
             'limit' => 50,
             'null' => false
         ]);
         $table->addColumn('slug', 'string', [
-            'default' => null,
             'limit' => 200,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
 

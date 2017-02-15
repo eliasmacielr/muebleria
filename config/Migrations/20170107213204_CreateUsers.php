@@ -14,50 +14,41 @@ class CreateUsers extends AbstractMigration
     {
         $table = $this->table('users');
         $table->addColumn('name', 'string', [
-            'default' => null,
             'limit' => 50,
             'null' => false,
         ]);
         $table->addColumn('last_name', 'string', [
-            'default' => null,
             'limit' => 50,
             'null' => false,
         ]);
         $table->addColumn('username', 'string', [
-            'default' => null,
             'limit' => 20,
             'null' => false,
         ]);
         $table->addColumn('password', 'string', [
-            'default' => null,
             'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('role', 'string', [
-            'default' => null,
             'limit' => 20,
             'null' => false,
         ]);
         $table->addColumn('api_key', 'string', [
-            'default' => null,
             'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('api_key_hash', 'string', [
-            'default' => null,
             'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('active', 'boolean', [
-            'default' => null,
+            'default' => false,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
 

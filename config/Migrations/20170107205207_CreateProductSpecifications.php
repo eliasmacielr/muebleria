@@ -14,26 +14,21 @@ class CreateProductSpecifications extends AbstractMigration
     {
         $table = $this->table('product_specifications');
         $table->addColumn('name', 'string', [
-            'default' => null,
             'limit' => 50,
             'null' => false,
         ]);
         $table->addColumn('value', 'string', [
-            'default' => null,
             'limit' => 200,
             'null' => false,
         ]);
         $table->addColumn('product_id', 'integer', [
-            'default' => null,
             'limit' => 11,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
 

@@ -14,30 +14,25 @@ class CreateProductImages extends AbstractMigration
     {
         $table = $this->table('product_images');
         $table->addColumn('file_name', 'string', [
-            'default' => null,
             'limit' => 200,
             'null' => false,
         ]);
         $table->addColumn('file_dir', 'string', [
-            'default' => null,
             'limit' => 200,
             'null' => false,
         ]);
         $table->addColumn('main', 'boolean', [
-            'default' => null,
+            'default' => false,
             'null' => false,
         ]);
         $table->addColumn('product_id', 'integer', [
-            'default' => null,
             'limit' => 11,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
 

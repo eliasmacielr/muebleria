@@ -14,51 +14,43 @@ class CreateProducts extends AbstractMigration
     {
         $table = $this->table('products');
         $table->addColumn('name', 'string', [
-            'default' => null,
             'limit' => 50,
             'null' => false,
         ]);
         $table->addColumn('description', 'string', [
-            'default' => null,
             'limit' => 1000,
             'null' => false,
         ]);
         $table->addColumn('price', 'decimal', [
-            'default' => null,
             'precision' => 15,
             'scale' => 2,
             'null' => false,
         ]);
         $table->addColumn('stock', 'integer', [
-            'default' => null,
             'limit' => 11,
             'null' => false,
         ]);
         $table->addColumn('in_offer', 'boolean', [
-            'default' => null,
+            'default' => false,
             'null' => false,
         ]);
         $table->addColumn('discount', 'integer', [
-            'default' => null,
+            'default' => 0,
             'limit' => 11,
             'null' => false,
         ]);
         $table->addColumn('slug', 'string', [
-            'default' => null,
             'limit' => 200,
             'null' => false,
         ]);
         $table->addColumn('category_id', 'integer', [
-            'default' => null,
             'limit' => 11,
             'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'default' => null,
             'null' => false,
         ]);
 
