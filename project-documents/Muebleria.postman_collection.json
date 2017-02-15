@@ -30,7 +30,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"sadmin\",\n\t\"password\": \"admin098\"\n}"
+							"raw": "{\n  \"username\": \"sadmin\",\n  \"password\": \"admin098\"\n}"
 						},
 						"description": ""
 					},
@@ -141,6 +141,37 @@
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"description": "",
+			"item": [
+				{
+					"name": "Send",
+					"request": {
+						"url": "localhost/muebleria/api/email/send",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Homero Simpson\",\n\t\"email\": \"amantedelacomida43@aol.com\",\n\t\"phone\": \"0987654321\",\n\t\"message\": \"Estoy interesado en la cerveza\"\n}"
 						},
 						"description": ""
 					},
