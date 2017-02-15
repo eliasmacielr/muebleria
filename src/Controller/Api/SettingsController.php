@@ -11,6 +11,13 @@ use Cake\Event\Event;
  */
 class SettingsController extends AppController
 {
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['view']);
+    }
+
     /**
      * Access Control. Staff user denied
      *
