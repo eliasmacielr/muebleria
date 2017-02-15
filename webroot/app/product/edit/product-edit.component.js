@@ -118,6 +118,22 @@ angular.
           };
         };
 
+        self.deleteSpecification = function (productSpecification) {
+          Specification.delete({productId: self.productId, specificationId: productSpecification.id}).$promise.then(
+            function (response) {
+              if (response.status) {
+                var index = self.productSpecifications.indexOf(productSpecification);
+                self.productSpecifications.splice(index, 1);
+              }
+            }
+          );
+        };
+
+        self.deleteNewSpecification = function(productNewSpecification) {
+          var index = self.productNewSpecifications.indexOf(productNewSpecification);
+          self.productNewSpecifications.splice(index, 1);
+        };
+
         self.editProduct = function () {
           var success = true;
           Product.edit(

@@ -123,6 +123,10 @@
             <label>Valor</label>
             <input ng-model="productSpecification.value">
           </md-input-container>
+          <md-button class="md-icon-button" aria-label="Eliminar especificación"
+            ng-click="$ctrl.deleteSpecification(productSpecification)">
+            <md-icon md-svg-icon="img/icons/ic_clear_black_24px.svg"></md-icon>
+          </md-button>
         </div>
         <div ng-repeat="productNewSpecification in $ctrl.productNewSpecifications">
           <md-input-container class="nomargin">
@@ -133,6 +137,10 @@
             <label>Valor</label>
             <input ng-model="productNewSpecification.value">
           </md-input-container>
+          <md-button class="md-icon-button" aria-label="Eliminar nueva especificación"
+            ng-click="$ctrl.deleteNewSpecification(productNewSpecification)">
+            <md-icon md-svg-icon="img/icons/ic_clear_black_24px.svg"></md-icon>
+          </md-button>
         </div>
         <md-button class="md-fab md-mini" aria-label="Agregar especificación" ng-click="addSpecificationDialog()"
           style="background-color: white;">
