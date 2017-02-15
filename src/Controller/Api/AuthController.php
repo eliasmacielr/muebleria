@@ -28,7 +28,6 @@ class AuthController extends AppController
 
     public function login()
     {
-        $this->request->allowMethod(['post']);
         $user = $this->Users->find()->where(['username' => $this->request->data('username')])->firstOrFail();
 
         $hasher = new DefaultPasswordHasher();

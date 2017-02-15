@@ -96,7 +96,6 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $this->request->allowMethod(['post']);
         $user = $this->Users->patchEntity($this->Users->newEntity(), $this->request->data);
         if ($this->Users->save($user)) {
             $message = 'Se ha guardado el registro';
@@ -120,7 +119,6 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $this->request->allowMethod(['put']);
         $user = $this->Users->patchEntity($this->Users->get($id), $this->request->data);
         if ($this->Users->save($user)) {
             $message = 'Se ha editado el registro';
@@ -143,7 +141,6 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
             $message = 'Se ha eliminado el registro';

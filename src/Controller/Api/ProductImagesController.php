@@ -68,7 +68,6 @@ class ProductImagesController extends AppController
      */
     public function add($product_id = null)
     {
-        $this->request->allowMethod(['post']);
         $this->request->data['product_id'] = $product_id;
         $productImage = $this->ProductImages->patchEntity($this->ProductImages->newEntity(), $this->request->data);
         if ($this->ProductImages->save($productImage)) {
@@ -93,7 +92,6 @@ class ProductImagesController extends AppController
      */
     public function edit($product_id = null, $id = null)
     {
-        $this->request->allowMethod(['put']);
         $productImage = $this->ProductImages->get($id);
         $productImage->set('main', true);
         if ($this->ProductImages->save($productImage)) {
@@ -118,7 +116,6 @@ class ProductImagesController extends AppController
      */
     public function delete($product_id = null, $id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $productImage = $this->ProductImages->get($id);
         if ($this->ProductImages->delete($productImage)) {
             $message = 'Se ha eliminado el registro';

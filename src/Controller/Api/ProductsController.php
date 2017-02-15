@@ -76,7 +76,6 @@ class ProductsController extends AppController
      */
     public function add()
     {
-        $this->request->allowMethod(['post']);
         $product = $this->Products->patchEntity($this->Products->newEntity(), $this->request->data);
         if ($this->Products->save($product)) {
             $message = 'Se ha guardado el registro';
@@ -100,7 +99,6 @@ class ProductsController extends AppController
      */
     public function edit($id_slug = null)
     {
-        $this->request->allowMethod(['put']);
         $product = $this->Products->findByIdOrSlug($id_slug, $id_slug)->firstOrFail();
         $product = $this->Products->patchEntity($product, $this->request->data);
         if ($this->Products->save($product)) {
@@ -124,7 +122,6 @@ class ProductsController extends AppController
      */
     public function delete($id_slug = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $product = $this->Products->findByIdOrSlug($id_slug, $id_slug)->firstOrFail();
         try {
             if ($this->Products->delete($product)) {

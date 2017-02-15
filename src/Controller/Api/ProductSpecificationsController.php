@@ -68,7 +68,6 @@ class ProductSpecificationsController extends AppController
      */
     public function add($product_id = null)
     {
-        $this->request->allowMethod(['post']);
         $productSpecification = $this->ProductSpecifications->patchEntity($this->ProductSpecifications->newEntity(), $this->request->data);
         if ($this->ProductSpecifications->save($productSpecification)) {
             $message = 'Se ha guardado el registro';
@@ -93,7 +92,6 @@ class ProductSpecificationsController extends AppController
      */
     public function edit($product_id = null, $id = null)
     {
-        $this->request->allowMethod(['put']);
         $productSpecification = $this->ProductSpecifications->patchEntity($this->ProductSpecifications->get($id), $this->request->data);
         if ($this->ProductSpecifications->save($productSpecification)) {
             $message = 'Se ha editado el registro';
@@ -117,7 +115,6 @@ class ProductSpecificationsController extends AppController
      */
     public function delete($product_id = null, $id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $productSpecification = $this->ProductSpecifications->get($id);
         if ($this->ProductSpecifications->delete($productSpecification)) {
             $message = 'Se ha eliminado el registro';

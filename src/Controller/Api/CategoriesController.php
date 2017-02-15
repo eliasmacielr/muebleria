@@ -83,7 +83,6 @@ class CategoriesController extends AppController
      */
     public function add()
     {
-        $this->request->allowMethod(['post']);
         $category = $this->Categories->patchEntity($this->Categories->newEntity(), $this->request->data);
         if ($this->Categories->save($category)) {
             $message = 'Se ha guardado el registro';
@@ -109,7 +108,6 @@ class CategoriesController extends AppController
      */
     public function edit($id_slug = null)
     {
-        $this->request->allowMethod(['put']);
         $category = $this->Categories->findByIdOrSlug($id_slug, $id_slug)->firstOrFail();
         $category = $this->Categories->patchEntity($category, $this->request->data);
         if ($this->Categories->save($category)) {
@@ -135,7 +133,6 @@ class CategoriesController extends AppController
      */
     public function delete($id_slug = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $category = $this->Categories->findByIdOrSlug($id_slug, $id_slug)->firstOrFail();
         try {
             if ($this->Categories->delete($category)) {
