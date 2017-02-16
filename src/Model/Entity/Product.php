@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property int $stock
  * @property string $main_image
  * @property bool $in_offer
+ * @property bool $available
  * @property int $discount
  * @property string $slug
  * @property int $category_id
