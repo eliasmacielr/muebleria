@@ -109,6 +109,9 @@ class ProductsTable extends Table
             ->integer('category_id')
             ->requirePresence('category_id', 'create');
 
+        $validator
+            ->boolean('available');
+
         return $validator;
     }
 
@@ -160,6 +163,10 @@ class ProductsTable extends Table
             'filterEmpty' => true,
         ]);
         $search->value('category_id', [
+            'multiValue' => true,
+            'filterEmpty' => true,
+        ]);
+        $search->value('available', [
             'multiValue' => true,
             'filterEmpty' => true,
         ]);
