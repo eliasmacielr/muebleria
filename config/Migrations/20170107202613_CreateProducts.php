@@ -43,6 +43,10 @@ class CreateProducts extends AbstractMigration
             'limit' => 200,
             'null' => false,
         ]);
+        $table->addColumn('available', 'boolean', [
+            'default' => true,
+            'null' => false,
+        ]);
         $table->addColumn('category_id', 'integer', [
             'limit' => 11,
             'null' => false,
