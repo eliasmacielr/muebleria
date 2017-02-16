@@ -119,6 +119,9 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        if ($this->request->data('password') == null) {
+            unset($this->request->data['password']);
+        }
         $user = $this->Users->patchEntity($this->Users->get($id), $this->request->data);
         if ($this->Users->save($user)) {
             $message = 'Se ha editado el registro';
