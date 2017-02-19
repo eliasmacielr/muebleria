@@ -2,8 +2,6 @@
 namespace App\Controller\Api;
 
 use App\Controller\AppController;
-use Cake\Network\Request;
-use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Users Controller
@@ -23,35 +21,39 @@ class UsersController extends AppController
         // It is widely used
         $request = $this->request;
 
-        // If request index and user is a staff
-        if ($request->params['action'] === 'index' && $user['role'] === 'staff') {
-            return false;
+        // If request index and user is not staff
+        if ($request->params['action'] === 'index' && $user['role'] !== 'staff') {
+            return true;
         }
 
-        if (isset($request->params['id'])) {
+        if ($request->param('id')) {
             // Only sadmin can access
-            if ($request->params['id'] == 1 && $user['id'] != 1) {
-                return false;
+            if ($request->params['id'] == 1 && $user['id'] == 1) {
+                return true;
             }
         }
 
-        // If request view and user is a staff
+        // If request view
         if ($request->params['action'] === 'view') {
             // Staff users can only access their own registry
-            if ($user['role'] === 'staff' && $user['id'] != $request->params['id']) {
-                return false;
+            if ($user['role'] === 'staff' && $user['id'] == $request->params['id']) {
+                return true;
+            }
+            // Users super-admin and admin can access but not to sadmin record
+            if (in_array($user['role'], ['super-admin', 'admin']) && $request->params['id'] != 1) {
+                return true;
             }
         }
 
         // If request add, edit and delete
         if (in_array($request->params['action'], ['add', 'edit', 'delete'])) {
-            // Staff user access denied
-            if ($user['role'] === 'staff') {
-                return false;
+            // Only super-admin and admin allowed
+            if (in_array($user['role'], ['super-admin', 'admin'])) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     /**
