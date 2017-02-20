@@ -179,7 +179,6 @@ class ProductsTable extends Table
             'field' => [
                 'Products.name',
                 'Products.description',
-                'Categories.name'
             ]
         ]);
         return $search;
