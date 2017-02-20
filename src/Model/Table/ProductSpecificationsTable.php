@@ -56,11 +56,13 @@ class ProductSpecificationsTable extends Table
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name')
+            ->maxLength('name', 50, "El campo admite hasta 50 caracteres")
             ->add('name', 'unique', ['rule' => ['validateUnique', ['scope' => 'product_id']], 'provider' => 'table', 'message' => 'Ya existe la especificación para el producto']);
 
         $validator
             ->requirePresence('value', 'create')
-            ->notEmpty('value');
+            ->notEmpty('value')
+            ->maxLength('value', 200, "El campo admite hasta 200 caracteres");
 
         $validator
             ->requirePresence('product_id', 'create')
