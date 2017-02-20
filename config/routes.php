@@ -94,7 +94,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             $routes->connect('/:slug', ['action' => 'edit', '_method' => ['PUT']], ['pass' => ['slug']]);
             $routes->connect('/:slug', ['action' => 'delete', '_method' => 'DELETE'], ['pass' => ['slug']]);
         });
-        $routes->scope('/setting', ['controller' => 'Settings'], function (RouteBuilder $routes) {
+        $routes->scope('/settings', ['controller' => 'Settings'], function (RouteBuilder $routes) {
             $routes->connect('/', ['action' => 'view', '_method' => ['GET']]);
             $routes->connect('/', ['action' => 'edit', '_method' => ['PUT']]);
         });
@@ -102,7 +102,7 @@ Router::scope('/', function (RouteBuilder $routes) {
         $routes->scope('/auth', ['controller' => 'Auth'], function (RouteBuilder $routes) {
             $routes->connect('/login', ['action' => 'login', '_method' => ['POST']]);
         });
-        $routes->scope('/email', ['controller' => 'Email'], function (RouteBuilder $routes) {
+        $routes->scope('/emails', ['controller' => 'Email'], function (RouteBuilder $routes) {
             $routes->connect('/send', ['action' => 'send', '_method' => ['POST']]);
         });
     });
