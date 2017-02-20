@@ -67,6 +67,7 @@ class CategoriesTable extends Table
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name')
+            ->maxLength('name', 50, "El campo admite hasta 50 caracteres")
             ->add('name', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'La categoria ya existe']);
 
         return $validator;

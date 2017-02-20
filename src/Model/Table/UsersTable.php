@@ -79,15 +79,18 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmpty('name')
+            ->maxLength('name', 50, "El campo admite hasta 50 caracteres");
 
         $validator
             ->requirePresence('last_name', 'create')
-            ->notEmpty('last_name');
+            ->notEmpty('last_name')
+            ->maxLength('last_name', 50, "El campo admite hasta 50 caracteres");
 
         $validator
             ->requirePresence('username', 'create')
             ->notEmpty('username')
+            ->maxLength('username', 20, "El campo admite hasta 20 caracteres")
             ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'Nombre de usuario no disponible'])
             ->add('username', 'custom', [
                 'rule' => [$this, 'checkUsername'],
@@ -97,6 +100,8 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('password', 'create')
+            ->maxLength('password', 50, "El campo admite hasta 50 caracteres")
+            ->minLength('password', 6, "El campo requiere de almenos 6 caracteres")
             ->notEmpty('password');
 
         $validator

@@ -1,8 +1,6 @@
 <?php
 namespace App\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -53,31 +51,39 @@ class SettingsTable extends Table
 
         $validator
             ->requirePresence('site_name', 'create')
-            ->notEmpty('site_name');
+            ->notEmpty('site_name')
+            ->maxLength('site_name', 200, "El campo admite hasta 200 caracteres");
 
         $validator
             ->requirePresence('site_cellphone', 'create')
-            ->notEmpty('site_cellphone');
+            ->notEmpty('site_cellphone')
+            ->maxLength('site_cellphone', 20, "El campo admite hasta 20 caracteres");
 
         $validator
             ->requirePresence('site_phone', 'create')
-            ->notEmpty('site_phone');
+            ->notEmpty('site_phone')
+            ->maxLength('site_phone', 20, "El campo admite hasta 20 caracteres");
+            ;
 
         $validator
             ->requirePresence('site_email', 'create')
-            ->notEmpty('site_email');
+            ->notEmpty('site_email')
+            ->maxLength('site_email', 255, "El campo admite hasta 255 caracteres");
 
         $validator
             ->requirePresence('social_facebook', 'create')
-            ->notEmpty('social_facebook');
+            ->notEmpty('social_facebook')
+            ->maxLength('social_facebook', 200, "El campo admite hasta 200 caracteres");
 
         $validator
             ->requirePresence('social_twitter', 'create')
-            ->notEmpty('social_twitter');
+            ->notEmpty('social_twitter')
+            ->maxLength('social_twitter', 200, "El campo admite hasta 200 caracteres");
 
         $validator
             ->requirePresence('social_instagram', 'create')
-            ->notEmpty('social_instagram');
+            ->notEmpty('social_instagram')
+            ->maxLength('social_instagram', 200, "El campo admite hasta 200 caracteres");
 
         $validator
             ->boolean('site_active')

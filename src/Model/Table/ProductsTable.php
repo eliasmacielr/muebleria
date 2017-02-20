@@ -79,11 +79,13 @@ class ProductsTable extends Table
         $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name')
+            ->maxLength('name', 50, "El campo admite hasta 50 caracteres")
             ->add('name', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'Ya existe otro producto con ese nombre']);
 
         $validator
             ->requirePresence('description', 'create')
-            ->notEmpty('description');
+            ->notEmpty('description')
+            ->maxLength('description', 1000, "El campo admite hasta 1000 caracteres");
 
         $validator
             ->decimal('price')
