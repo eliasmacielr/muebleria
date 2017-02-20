@@ -170,6 +170,16 @@ class ProductsTable extends Table
             'multiValue' => true,
             'filterEmpty' => true,
         ]);
+        $search->like('search', [
+            'before' => true,
+            'after' => true,
+            'filterEmpty' => true,
+            'field' => [
+                'Products.name',
+                'Products.description',
+                'Categories.name'
+            ]
+        ]);
         return $search;
     }
 }
