@@ -42,6 +42,7 @@ class ProductsController extends AppController
                 'ProductImages' => function (Query $query) {
                     return $query->where(['ProductImages.main' => true]);
                 },
+                'Categories',
             ],
             'finder' => [
                 'search' => $this->Products->filterParams($this->request->query),
