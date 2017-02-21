@@ -172,6 +172,10 @@ class ProductsTable extends Table
             'multiValue' => true,
             'filterEmpty' => true,
         ]);
+        $search->value('in_offer', [
+            'multiValue' => true,
+            'filterEmpty' => true,
+        ]);
         $search->like('search', [
             'before' => true,
             'after' => true,
