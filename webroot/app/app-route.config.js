@@ -1,7 +1,7 @@
 'use strict';
 
 angular.
-  module('myApp').
+  module('clickmueblesAdminApp').
   config(['$locationProvider', '$routeProvider',
     function config($locationProvider, $routeProvider) {
       $locationProvider.hashPrefix('!');
@@ -50,3 +50,32 @@ angular.
       );
     }
   );
+
+angular.
+  module('clickmueblesPublicApp').
+  config(['$locationProvider', '$routeProvider',
+    function config($locationProvider, $routeProvider) {
+      $locationProvider.hashPrefix('!');
+
+      $routeProvider.
+        when('/home', {
+          templateUrl: 'home.html'
+        }).
+        when('/productos', {
+          templateUrl: 'product.html'
+        }).
+        when('/categorias/:categoryId', {
+          templateUrl: 'category-product.html'
+        }).
+        when('/productos/:productSlug', {
+          templateUrl: 'single.html'
+        }).
+        when('/quienes-somos', {
+          templateUrl: 'we.html'
+        }).
+        when('/contacto', {
+          templateUrl: 'contact.html'
+        }).
+        otherwise('/home');
+    }
+  ]);

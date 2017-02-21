@@ -100,7 +100,7 @@
             <div ng-repeat="productImage in $ctrl.productImages" layout="row">
               <md-radio-button ng-value="productImage.id"
                   aria-label="productImage.file_name">
-                <img ng-src="{{productImage.file_path}}" alt="imagen-producto" style="height:120px;" />
+                <img ng-src="{{productImage.file_path}}" alt="{{productImage.file_name}}" style="height:120px;" />
               </md-radio-button>
               <md-button class="md-icon-button" aria-label="Eliminar imagen" ng-click="$ctrl.deleteImage(productImage)">
                 <md-icon md-svg-icon="img/icons/ic_clear_black_24px.svg"></md-icon>

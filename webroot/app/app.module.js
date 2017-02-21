@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('clickmueblesAdminApp', [
   'ngRoute',
   'ngMaterial',
   'md.data.table',
@@ -19,4 +19,11 @@ angular.module('myApp', [
   'productList',
   'settingList',
   'userList'
+]);
+
+angular.module('clickmueblesPublicApp', [
+  'ngRoute',
+  'core',
+  'hostLocation',
+  'publicAppCtrls'
 ]);
