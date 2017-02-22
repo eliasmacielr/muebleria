@@ -15,8 +15,8 @@
         "cakephp/plugin-installer": "*",
         "bcrowe/cakephp-api-pagination": "^1.1",
         "muffin/slug": "^1.1",
-        "davidyell/proffer": "^0.7",
-        "friendsofcake/search": "^2.3"
+        "friendsofcake/search": "^2.3",
+        "josegonzalez/cakephp-upload": "^3.6"
     },
     "require-dev": {
         "psy/psysh": "@stable",
