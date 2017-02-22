@@ -8,9 +8,16 @@ use Cake\Event\Event;
  * ProductSpecifications Controller
  *
  * @property \App\Model\Table\ProductSpecificationsTable $ProductSpecifications
+ * @property \App\Model\Table\ProductsTable $Products
  */
 class ProductSpecificationsController extends AppController
 {
+    public function initialize() {
+        parent::initialize();
+
+        $this->loadModel('Products');
+    }
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -31,13 +38,19 @@ class ProductSpecificationsController extends AppController
     /**
      * Index method
      *
-     * @param string|null $product_id Product id.
+     * @param string|null $product_id_slug Product id or slug.
      * @return \Cake\Network\Response|null
      */
-    public function index($product_id = null)
+    public function index($product_id_slug = null)
     {
-        $query = $this->ProductSpecifications->find()->where(['product_id' => $product_id]);
-        $productSpecifications = $this->paginate($query);
+        $query = $this->ProductSpecifications->find();
+        if (is_numeric($product_id_slug)) { // if is id
+            $query->where(['ProductSpecifications.product_id' => $product_id_slug]);
+        } else {
+            $product = $this->Products->find()->select(['id'])->where(['Products.slug' => $product_id_slug])->firstOrFail();
+            $query->where(['ProductSpecifications.product_id' => $product->id]);
+        }
+        $productSpecifications = $query;
         $status = true;
 
         $this->set(compact(['productSpecifications', 'status']));

@@ -3,14 +3,23 @@ namespace App\Controller\Api;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 
 /**
  * ProductImages Controller
  *
  * @property \App\Model\Table\ProductImagesTable $ProductImages
+ * @property \App\Model\Table\ProductsTable $Products
  */
 class ProductImagesController extends AppController
 {
+
+    public function initialize() {
+        parent::initialize();
+
+        $this->loadModel('Products');
+    }
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -31,13 +40,21 @@ class ProductImagesController extends AppController
     /**
      * Index method
      *
-     * @param string|null $product_id Product id.
+     * @param string|null $product_id_slug Product id or slug.
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function index($product_id = null)
+    public function index($product_id_slug = null)
     {
-        $productImages = $this->ProductImages->find()->where(['ProductImages.product_id' => $product_id]);
+        $query = $this->ProductImages->find();
+        if (is_numeric($product_id_slug)) { // if is id
+            $query->where(['ProductImages.product_id' => $product_id_slug]);
+        } else {
+            $product = $this->Products->find()->select(['id'])->where(['Products.slug' => $product_id_slug])->firstOrFail();
+            $query->where(['ProductImages.product_id' => $product->id]);
+        }
+        $productImages = $query->orderDesc('ProductImages.main');
+
         $status = true;
         $this->set(compact(['productImages', 'status']));
         $this->set('_serialize', ['productImages', 'status']);
