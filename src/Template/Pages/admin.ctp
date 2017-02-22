@@ -45,6 +45,9 @@
   <script src="app/core/category/category.module.js"></script>
   <script src="app/core/category/category.service.js"></script>
 
+  <script src="app/core/email/email.module.js"></script>
+  <script src="app/core/email/email.service.js"></script>
+
   <script src="app/core/image/image.module.js"></script>
   <script src="app/core/image/image.service.js"></script>
 
