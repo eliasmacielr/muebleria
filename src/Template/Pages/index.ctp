@@ -92,6 +92,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //the jScrollPane script -->
 <script src="https://use.fontawesome.com/0c95362910.js"></script>
 
+<!-- Start of Smartsupp Live Chat script -->
+<script type="text/javascript">
+	var _smartsupp = _smartsupp || {};
+	_smartsupp.key = 'd8fd84045997aeed69a54b0264403af02cb7ef50';
+	window.smartsupp||(function(d) {
+		var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+		s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+		c.type='text/javascript';c.charset='utf-8';c.async=true;
+		c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+	})(document);
+</script>
+
 </head>
 <body>
   <div ng-view ng-cloak></div>
