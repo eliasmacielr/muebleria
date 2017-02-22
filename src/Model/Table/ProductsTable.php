@@ -164,6 +164,16 @@ class ProductsTable extends Table
             },
             'filterEmpty' => true,
         ]);
+        $search->callback('discounts_range', [
+            'callback' => function (Query $query, array $args, Callback $filter) {
+                $discounts = $args['discounts_range'];
+                sort($discounts, SORT_NUMERIC);
+                $query->where(function (QueryExpression $expression, Query $query) use ($discounts) {
+                    return $expression->between('discount', $discounts[0], $discounts[1]);
+                });
+            },
+            'filterEmpty' => true,
+        ]);
         $search->value('category_id', [
             'multiValue' => true,
             'filterEmpty' => true,
