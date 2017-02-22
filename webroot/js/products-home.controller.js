@@ -2,7 +2,7 @@ publicAppCtrls.controller('productsHome',
   ['$scope', '$location', 'Product',
   function ($scope, $location, Product) {
 
-    Product.list({in_offer: 1}).$promise.then(
+    Product.list({in_offer: 1, available: 1}).$promise.then(
       function (response) {
         if (response.status) {
           $scope.productsInOffer = response.products;
