@@ -3,6 +3,7 @@
 // Define the `core` module
 angular.module('core', [
   'core.category',
+  'core.email',
   'core.image',
   'core.login',
   'core.product',
