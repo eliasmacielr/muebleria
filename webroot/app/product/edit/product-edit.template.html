@@ -146,6 +146,12 @@
           style="background-color: white;">
           <md-icon md-svg-src="img/icons/ic_add_black_24px.svg"></md-icon>
         </md-button>
+        <br>
+        <md-input-container class="md-block">
+          <md-checkbox name="productAvailable" ng-model="$ctrl.product.available" aria-label="Disponible">
+            Disponible/habilitado
+          </md-checkbox>
+        </md-input-container>
 
         <div layout="row" layout-align="end center">
           <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancelar</md-button>
