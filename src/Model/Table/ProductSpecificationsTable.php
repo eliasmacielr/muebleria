@@ -18,6 +18,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\ProductSpecification patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\ProductSpecification[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\ProductSpecification findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ProductSpecificationsTable extends Table
 {
@@ -38,6 +40,8 @@ class ProductSpecificationsTable extends Table
             'foreignKey' => 'product_id',
             'joinType' => 'INNER',
         ]);
+
+        $this->addBehavior('Timestamp');
     }
 
     /**
