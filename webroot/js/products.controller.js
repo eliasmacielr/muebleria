@@ -2,13 +2,27 @@ publicAppCtrls.controller('products',
   ['$scope', '$location', 'Product',
   function ($scope, $location, Product) {
 
-    Product.list().$promise.then(
+    Product.list({available: 1}).$promise.then(
       function (response) {
         if (response.status) {
           $scope.products = response.products;
         }
       }
     );
+
+    $scope.listProducts = function (d1, d2) {
+      //discounts_range[]=0&discounts_range[]=10
+      console.log('The function is being called');
+      var discountRange = d1 + ',' + d2;
+      Product.list({category_id: $scope.categoryId, available: 1, discount: discountRange}).
+        $promise.then(
+          function (response) {
+            if (response.status) {
+              $scope.products = response.products;
+            }
+          }
+        );
+    };
 
     $scope.viewProduct = function (productSlug) {
       $location.path('/productos/' + productSlug);
