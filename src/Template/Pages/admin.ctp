@@ -3,7 +3,7 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html ng-app="myApp" ng-cloak> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="clickmueblesAdminApp" ng-cloak> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@
   <!-- module -->
   <script type="text/javascript" src="app/bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
 
-  <!-- App modules -->
+  <!-- clickmueblesAdminApp modules -->
   <script src="app/app.module.js"></script>
   <script src="app/app-route.config.js"></script>
   <script src="app/app-theme.config.js"></script>

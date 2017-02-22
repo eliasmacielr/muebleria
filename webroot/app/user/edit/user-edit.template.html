@@ -10,32 +10,32 @@
     <md-dialog-content>
       <div class="md-dialog-content" layout="column">
 
-        <div layout="row">
-          <md-input-container flex>
-            <label>Nombre</label>
-            <input name="userName" ng-model="toEdit.user.name" ng-pattern="/^[A-Z][a-z]+$/" required>
-            <div ng-messages="userEditForm.userName.$error">
-              <div ng-message="required">Este campo es requerido.</div>
-              <div ng-message="pattern">El nombre debe ser solo alfabético y comenzar con mayúscula.</div>
-            </div>
-          </md-input-container>
+        <md-input-container class="md-block">
+          <label>Nombre</label>
+          <input name="userName" ng-model="toEdit.user.name" ng-pattern="/^[A-Z][a-z]+$/" required>
+          <div ng-messages="userEditForm.userName.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+            <div ng-message="pattern">El nombre debe ser solo alfabético y comenzar con mayúscula.</div>
+          </div>
+        </md-input-container>
 
-          <md-input-container flex>
-            <label>Apellido</label>
-            <input name="userLastName" ng-model="toEdit.user.last_name" ng-pattern="/^[A-Z][a-z]+$/" required>
-            <div ng-messages="userEditForm.userLastName.$error">
-              <div ng-message="required">Este campo es requerido.</div>
-              <div ng-message="pattern">El apellido debe ser solo alfabético y comenzar con mayúscula.</div>
-            </div>
-          </md-input-container>
-        </div>
+        <md-input-container class="md-block">
+          <label>Apellido</label>
+          <input name="userLastName" ng-model="toEdit.user.last_name" ng-pattern="/^[A-Z][a-z]+$/" required>
+          <div ng-messages="userEditForm.userLastName.$error">
+            <div ng-message="required">Este campo es requerido.</div>
+            <div ng-message="pattern">El apellido debe ser solo alfabético y comenzar con mayúscula.</div>
+          </div>
+        </md-input-container>
 
         <md-input-container class="md-block">
           <label>Nombre de usuario (username)</label>
-          <input name="userUsername" ng-model="toEdit.user.username" ng-pattern="/^[A-Za-z][A-Za-z0-9]*$/" required>
+          <input name="userUsername" ng-model="toEdit.user.username" ng-pattern="/^[A-Za-z][A-Za-z0-9]*$/"
+            md-maxlength="20" required>
           <div ng-messages="userEditForm.userUsername.$error">
             <div ng-message="required">Este campo es requerido.</div>
             <div ng-message="pattern">No debe contener caracteres especiales.</div>
+            <div ng-message="md-maxlength">El nombre de usuario no debe superar 20 caracteres.</div>
           </div>
         </md-input-container>
 

@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(HostLocation.origin + '/api/setting',
+      return $resource(HostLocation.origin + '/api/settings',
         {},
         {
           view: {
