@@ -14,11 +14,11 @@ class CreateProductImages extends AbstractMigration
     {
         $table = $this->table('product_images');
         $table->addColumn('file_name', 'string', [
-            'limit' => 200,
+            'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('file_dir', 'string', [
-            'limit' => 200,
+            'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('main', 'boolean', [
