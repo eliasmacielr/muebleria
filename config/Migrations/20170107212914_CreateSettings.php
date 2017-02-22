@@ -41,6 +41,18 @@ class CreateSettings extends AbstractMigration
             'limit' => 200,
             'null' => false,
         ]);
+        $table->addColumn('city', 'string', [
+            'limit' => 200,
+            'null' => false,
+        ]);
+        $table->addColumn('street', 'string', [
+            'limit' => 200,
+            'null' => false,
+        ]);
+        $table->addColumn('country', 'string', [
+            'limit' => 200,
+            'null' => false,
+        ]);
         $table->addColumn('site_active', 'boolean', [
             'default' => false,
             'null' => false,

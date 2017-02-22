@@ -86,6 +86,21 @@ class SettingsTable extends Table
             ->maxLength('social_instagram', 200, "El campo admite hasta 200 caracteres");
 
         $validator
+            ->requirePresence('street', 'create')
+            ->notEmpty('street')
+            ->maxLength('street', 200, "El campo admite hasta 200 caracteres");
+
+        $validator
+            ->requirePresence('city', 'create')
+            ->notEmpty('city')
+            ->maxLength('city', 200, "El campo admite hasta 200 caracteres");
+
+        $validator
+            ->requirePresence('country', 'create')
+            ->notEmpty('country')
+            ->maxLength('country', 200, "El campo admite hasta 200 caracteres");
+
+        $validator
             ->boolean('site_active')
             ->requirePresence('site_active', 'create')
             ->notEmpty('site_active');

@@ -14,6 +14,9 @@ use Cake\ORM\Entity;
  * @property string $social_facebook
  * @property string $social_twitter
  * @property string $social_instagram
+ * @property string $street
+ * @property string $city
+ * @property string $country
  * @property bool $site_active
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
