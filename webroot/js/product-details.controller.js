@@ -8,27 +8,23 @@ publicAppCtrls.controller('productDetails',
       function (response) {
         if (response.status) {
           $scope.product = response.product;
-          Image.view({productId: response.product.id}).$promise.then(
-            function (response) {
-              if (response.status) {
-                $scope.productImages = response.productImages;
-              }
-            }
-          );
-          Specification.view({productId: response.product.id}).$promise.then(
-            function (response) {
-              if (response.status) {
-                $scope.specifications = response.productSpecifications;
-              }
-            }
-          );
         }
       }
     );
-
-    $scope.viewProduct = function (productSlug) {
-      $location.path('/productos/' + productSlug);
-    };
+    Image.view({productId: $scope.productSlug}).$promise.then(
+      function (response) {
+        if (response.status) {
+          $scope.productImages = response.productImages;
+        }
+      }
+    );
+    Specification.view({productId: $scope.productSlug}).$promise.then(
+      function (response) {
+        if (response.status) {
+          $scope.specifications = response.productSpecifications;
+        }
+      }
+    );
 
     $scope.discountPrice = function (realPrice, discount) {
       var n = realPrice - (realPrice * (discount/100));
