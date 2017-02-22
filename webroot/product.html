@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <!-- Add pagination control -->
 			</div>
 			<div class="rsidebar span_1_of_left">
-				 <section  class="sky-form" ng-controller="categories">
+				 <section  class="sky-form" ng-controller="categories" ng-cloak>
 					 <div class="product_right">
 						 <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>CATEGORÍAS</h4>
 						 <div class="tab1" ng-repeat="category in categories">
@@ -108,19 +108,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					    </div>
 				 </section>
 
-				 <section class="sky-form">
+				 <section class="sky-form" ng-cloak>
 					 <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>DESCUENTOS</h4>
 					 <div class="row row1 scroll-pane">
 						 <div class="col col-4">
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Más del 50%</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>36% - 50%</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>21% - 35%</label>
-								<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>5% - 20%</label>
+               <form>
+                 <label class="checkbox"><input type="radio" name="discount" value="51" ng-model="radioValue" ng-change="listProducts(51, 100)"><i></i>Más del 50%</label>
+                 <label class="checkbox"><input type="radio" name="discount" value="36" ng-model="radioValue" ng-change="listProducts(36, 50)"><i></i>36% - 50%</label>
+                 <label class="checkbox"><input type="radio" name="discount" value="21" ng-model="radioValue" ng-change="listProducts(21, 35)"><i></i>21% - 35%</label>
+                 <label class="checkbox"><input type="radio" name="discount" value="5" ng-model="radioValue" ng-change="listProducts(5, 20)"><i></i>5% - 20%</label>
+               </form>
 						 </div>
 					 </div>
 				 </section>
 
-				 <section class="sky-form">
+				 <!-- <section class="sky-form">
 						<h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>PRECIO</h4>
 							<ul class="dropdown-menu1">
 								 <li><a href="">
@@ -128,9 +130,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<input type="text" id="amount" style="border: 0; font-weight: NORMAL;   font-family: 'Dosis-Regular';" />
 							 </a></li>
 						  </ul>
-				   </section>
+				   </section> -->
 				   <!---->
-					 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+					 <!-- <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 					 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 					<script type='text/javascript'>//<![CDATA[
 					$(window).load(function(){
@@ -144,7 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 });
 					$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
-					});//]]>
+					});//]]> -->
 					</script>
 					 <!---->
 			 </div>
