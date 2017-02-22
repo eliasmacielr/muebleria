@@ -6,8 +6,8 @@ angular.
   module('productEdit').
   component('productEdit', {
     templateUrl: 'app/product/edit/product-edit.template.html',
-    controller: ['$routeParams', '$scope', '$location', '$mdSidenav', '$mdDialog', '$mdToast', 'Product', 'Category', 'Image', 'Specification',
-      function ProductEditController($routeParams, $scope, $location, $mdSidenav, $mdDialog, $mdToast, Product, Category, Image, Specification) {
+    controller: ['$routeParams', '$scope', '$q', '$location', '$mdSidenav', '$mdDialog', '$mdToast', 'Product', 'Category', 'Image', 'Specification',
+      function ProductEditController($routeParams, $scope, $q, $location, $mdSidenav, $mdDialog, $mdToast, Product, Category, Image, Specification) {
 
         var self = this;
 
@@ -129,60 +129,48 @@ angular.
           );
         };
 
-        self.deleteNewSpecification = function(productNewSpecification) {
+        self.deleteNewSpecification = function (productNewSpecification) {
           var index = self.productNewSpecifications.indexOf(productNewSpecification);
           self.productNewSpecifications.splice(index, 1);
         };
 
         self.editProduct = function () {
-          var success = true;
-          Product.edit(
-            {productId: self.productId},
-            self.product,
-            function (response) {
-              success *= response.status;
-            }
-          );
+          var promises = [];
+
+          promises.push(Product.edit({productId: self.productId}, self.product));
 
           if (self.mainImageId) {
-            Image.markAsMain(
-              {productId: self.productId, action: 'mark-main', imageId: self.mainImageId},
-              self.product,
-              function (response) {
-                success *= response.status;
-              }
+            promises.push(
+              Image.markAsMain(
+                {productId: self.productId, action: 'mark-main', imageId: self.mainImageId},
+                self.product)
             );
           }
 
-          // for each specification
+          // edit and add specifications
           for(var i = 0; i < self.productSpecifications.length; i++) {
-            Specification.edit(
-              {productId: self.productId,
-              specificationId: self.productSpecifications[i].id},
-              self.productSpecifications[i],
-              function (response) {
-                success *= response.status;
-              }
+            promises.push(
+              Specification.edit(
+                {productId: self.productId, specificationId: self.productSpecifications[i].id},
+                self.productSpecifications[i])
             );
           }
-
           for(var i = 0; i < self.productNewSpecifications.length; i++) {
-            Specification.add(
-              {productId: self.productId},
-              self.productNewSpecifications[i],
-              function (response) {
-                success *= response.status;
-              }
+            promises.push(
+              Specification.add(
+                {productId: self.productId},
+                self.productNewSpecifications[i])
             );
           }
 
-          // TODO: fix this bug, execute all this when the tasks are done
-          if (success) {
-            $location.path('/productos');
-            self.messageToast('El producto se editó con éxito');
-          } else {
-            self.messageToast('Ocurrió un error');
-          }
+          $q.all(promises).then(
+            function (response) {
+              self.messageToast('El producto se editó con éxito');
+            },
+            function (reason) {
+              self.messageToast('Ocurrió un error');
+            }
+          );
 
         };
 
