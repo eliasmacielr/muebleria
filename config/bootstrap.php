@@ -222,7 +222,7 @@ if (Configure::read('debug')) {
 }
 
 Plugin::load('BryanCrowe/ApiPagination');
-Plugin::load('Proffer');
+Plugin::load('Josegonzalez/Upload');
 
 Plugin::load('Muffin/Slug');
 
