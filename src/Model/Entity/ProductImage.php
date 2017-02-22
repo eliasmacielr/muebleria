@@ -36,6 +36,9 @@ class ProductImage extends Entity
 
     public function _getFilePath()
     {
-        return 'resources/productimages/file_name/' . $this->_properties['file_dir'] . '/' . $this->_properties['file_name'];
+        if (isset($this->_properties['file_dir']) && isset($this->_properties['file_name'])) {
+            return str_replace('webroot/', '', $this->_properties['file_dir']).$this->_properties['file_name'];
+        }
+        return '';
     }
 }

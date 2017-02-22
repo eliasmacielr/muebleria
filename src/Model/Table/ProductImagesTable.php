@@ -8,6 +8,8 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
+use \Josegonzalez\Upload\Validation\DefaultValidation;
 
 /**
  * ProductImages Model
@@ -42,11 +44,20 @@ class ProductImagesTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Proffer.Proffer', [
+
+        $this->addBehavior('Josegonzalez/Upload.Upload', [
             'file_name' => [
-                'root' => WWW_ROOT . 'resources',
-                'dir' => 'file_dir'
-            ]
+                'keepFilesOnDelete' => false,
+                'restoreValueOnFailure' => false,
+                'path' => 'webroot{DS}resources{DS}{model}{DS}{field}{DS}',
+                'fields' => [
+                    'dir' => 'file_dir',
+                ],
+                'nameCallback' => function (array $data, array $settings) {
+                    $ext = pathinfo($data['name'], PATHINFO_EXTENSION);
+                    return Text::uuid().'-'.date('YmdHis').'.'.$ext;
+                },
+            ],
         ]);
 
         $this->belongsTo('Products', [
@@ -63,13 +74,35 @@ class ProductImagesTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->provider('upload', DefaultValidation::class);
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
             ->requirePresence('file_name', 'create')
-            ->notEmpty('file_name');
+            ->notEmpty('file_name')
+            ->add('file_name', 'fileCompletedUpload', [
+                'rule' => 'isCompletedUpload',
+                'message' => 'El archivo no se ha subido por completo',
+                'provider' => 'upload'
+            ])
+            ->add('file_name', 'fileFileUpload', [
+                'rule' => 'isFileUpload',
+                'message' => 'No se encontró el archivo ha guardar',
+                'provider' => 'upload'
+            ])
+            ->add('file_name', 'fileBelowMaxSize', [
+                'rule' => ['isBelowMaxSize', 1024*1024],
+                'message' => 'El archivo es muy grande se admite hasta 1MB',
+                'provider' => 'upload'
+            ])
+            ->add('file_name', 'custom', [
+                'rule' => function ($value, $context) {
+                    return in_array($value['type'], ['image/jpeg', 'image/pjpeg', 'image/png']);
+                },
+                'message' => 'Solo se admiten archivos .jpg, .jpeg y .png',
+            ]);
 
         return $validator;
     }

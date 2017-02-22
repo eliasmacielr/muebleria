@@ -85,16 +85,23 @@ class ProductImagesController extends AppController
      */
     public function add($product_id = null)
     {
-        $this->request->data['product_id'] = $product_id;
-        $productImage = $this->ProductImages->patchEntity($this->ProductImages->newEntity(), $this->request->data);
-        if ($this->ProductImages->save($productImage)) {
-            $message = 'Se ha agregado el registro';
-            $status = true;
+        // if no error when upload
+        if (!empty($this->request->data['file_name']) && $this->request->data['file_name']['error'] === UPLOAD_ERR_OK) {
+            $this->request->data['product_id'] = $product_id;
+            $productImage = $this->ProductImages->patchEntity($this->ProductImages->newEntity(), $this->request->data);
+            if ($this->ProductImages->save($productImage)) {
+                $message = 'Se ha agregado el registro';
+                $status = true;
+            } else {
+                $message = 'No se ha agregado el registro';
+                $status = false;
+                $errors = $this->ErrorAdapter->reduce($productImage->errors());
+            }
         } else {
-            $message = 'No se ha agregado el registro';
             $status = false;
-            $errors = $this->ErrorAdapter->reduce($productImage->errors());
+            $message = "Ocurrio un error al intentar subir el archivo, verifique el tamaño máximo de 1MB y si es .jpg o .png";
         }
+
         $this->set(compact(['productImage', 'status', 'message', 'errors']));
         $this->set('_serialize', ['productImage', 'status', 'message', 'errors']);
     }
