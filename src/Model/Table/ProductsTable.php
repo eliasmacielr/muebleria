@@ -156,7 +156,7 @@ class ProductsTable extends Table
         ]);
         $search->callback('btw', [
             'callback' => function (Query $query, array $args, Callback $filter) {
-                $prices = $args['btw'];
+                $prices = explode(',', $args['btw']);
                 sort($prices, SORT_NUMERIC);
                 $query->where(function (QueryExpression $expression, Query $query) use ($prices) {
                     return $expression->between('price', $prices[0], $prices[1]);
@@ -164,9 +164,9 @@ class ProductsTable extends Table
             },
             'filterEmpty' => true,
         ]);
-        $search->callback('discounts_range', [
+        $search->callback('discount', [
             'callback' => function (Query $query, array $args, Callback $filter) {
-                $discounts = $args['discounts_range'];
+                $discounts = explode(',', $args['discount']);
                 sort($discounts, SORT_NUMERIC);
                 $query->where(function (QueryExpression $expression, Query $query) use ($discounts) {
                     return $expression->between('discount', $discounts[0], $discounts[1]);
@@ -194,6 +194,11 @@ class ProductsTable extends Table
                 'Products.name',
                 'Products.description',
             ]
+        ]);
+        $search->value('category_slug', [
+            'multiValue' => true,
+            'filterEmpty' => true,
+            'field' => 'Categories.slug',
         ]);
         return $search;
     }
