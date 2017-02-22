@@ -24,7 +24,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <div class="clearfix"> </div>
 </div>
 <!---->
-<div class="contact" ng-controller="contact">
+<div class="contact" ng-controller="contact" ng-cloak>
 	  <div class="container">
 			<!--start contact-->
 			<h3 style="margin-top: 25px;">Contáctenos</h3>
@@ -53,26 +53,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="col-md-6 span_2_of_3">
 				  <div class="contact-form">
-					    <form>
+					    <form name="sendMailForm">
 					    	<div>
 						    	<span><label>NOMBRE</label></span>
-						    	<span><input name="userName" type="text" class="textbox"></span>
+						    	<span><input name="userName" type="text" class="textbox" ng-model="user.name" required></span>
 						    </div>
 						    <div>
 						    	<span><label>E-MAIL</label></span>
-						    	<span><input name="userEmail" type="text" class="textbox"></span>
+						    	<span><input name="userEmail" type="text" class="textbox" ng-model="user.email" required></span>
 						    </div>
 						    <div>
 						     	<span><label>TELÉFONO MÓVIL</label></span>
-						    	<span><input name="userPhone" type="text" class="textbox"></span>
+						    	<span><input name="userPhone" type="text" class="textbox" ng-model="user.phone" required></span>
 						    </div>
 						    <div>
 						    	<span><label>MENSAJE</label></span>
-						    	<span><textarea name="userMsg"> </textarea></span>
+						    	<span><textarea name="userMsg" ng-model="user.msg" required> </textarea></span>
 						    </div>
 						   <div>
-						   		<span><input type="submit" class="mybutton" value="Enviar"></span>
+						   		<span><input type="submit" class="mybutton" value="Enviar" ng-disabled="sendMailForm.$invalid" ng-click="sendMail()"></span>
 						  </div>
+              <div>
+                <p>{{responseMsg}}</p>
+              </div>
 					    </form>
 
 				    </div>
