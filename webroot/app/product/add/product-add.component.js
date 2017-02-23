@@ -12,7 +12,7 @@ angular.
         var self = this;
 
         self.product = {};
-        Category.list().$promise.then(
+        Category.list({paged: 0}).$promise.then(
           function (response) {
             self.categories = response;
           }
