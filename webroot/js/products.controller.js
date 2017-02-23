@@ -14,7 +14,7 @@ publicAppCtrls.controller('products',
       //discounts_range[]=0&discounts_range[]=10
       console.log('The function is being called');
       var discountRange = d1 + ',' + d2;
-      Product.list({category_id: $scope.categoryId, available: 1, discount: discountRange}).
+      Product.list({available: 1, discount: discountRange}).
         $promise.then(
           function (response) {
             if (response.status) {

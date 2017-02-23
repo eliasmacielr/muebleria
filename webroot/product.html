@@ -60,10 +60,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="clearfix"> </div>
 </div>
 <!--header//-->
-<div class="product-model">
+<div class="product-model" ng-controller="products">
 	 <div class="container">
 			<h2 style="margin-top: 25px;">Nuestros Productos</h2>
-		 <div class="col-md-9 product-model-sec" ng-controller="products">
+		 <div class="col-md-9 product-model-sec">
         <div ng-repeat="product in products">
           <a ng-click="viewProduct(product.slug)"><div class="product-grid"> <!-- href="single.html" -->
            <div class="more-product"><span> </span></div>
@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <section class="sky-form" ng-cloak>
 					 <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>DESCUENTOS</h4>
 					 <div class="row row1 scroll-pane">
-						 <div class="col col-4">
+             <div class="col col-4">
                <form>
                  <label class="checkbox"><input type="radio" name="discount" value="51" ng-model="radioValue" ng-change="listProducts(51, 100)"><i></i>Más del 50%</label>
                  <label class="checkbox"><input type="radio" name="discount" value="36" ng-model="radioValue" ng-change="listProducts(36, 50)"><i></i>36% - 50%</label>
@@ -175,13 +175,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="copywrite">
   <div class="container">
-    <div class="copy">
-      <p style="padding-top: 6px;">© 2015 Lighting. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-    </div>
-    <div style="float: right; margin: 0em 0;" ng-controller="settings">
+    <div style="float: left; margin: 0em 0;" ng-controller="settings">
        <a ng-href="https://{{setting.social_facebook}}" target="_blank"><i class="fa fa-facebook fa-lg fa-inverse" style="padding: 8px;"></i></a>
        <a ng-href="https://{{setting.social_twitter}}" target="_blank"><i class="fa fa-twitter fa-lg fa-inverse" style="padding: 8px;"></i></a>
        <a ng-href="https://{{setting.social_instagram}}" target="_blank"><i class="fa fa-instagram fa-lg fa-inverse" style="padding: 8px;"></i></a>
+    </div>
+    <div class="copy" style="float:right;">
+      <p style="padding-top: 6px;">© 2015 Lighting. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
     </div>
     <div class="clearfix"></div>
   </div>
