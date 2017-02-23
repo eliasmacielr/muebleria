@@ -11,6 +11,8 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="icon" type="image/png" href="img/icons/favicon-16x16.png" sizes="16x16">
+
   <link rel="stylesheet" href="app/bower_components/angular-material/angular-material.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
