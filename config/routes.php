@@ -102,7 +102,8 @@ Router::scope('/', function (RouteBuilder $routes) {
         $routes->scope('/auth', ['controller' => 'Auth'], function (RouteBuilder $routes) {
             $routes->connect('/login', ['action' => 'login', '_method' => ['POST']]);
         });
-        $routes->scope('/emails', ['controller' => 'Email'], function (RouteBuilder $routes) {
+        $routes->scope('/emails', ['controller' => 'Emails
+        '], function (RouteBuilder $routes) {
             $routes->connect('/send', ['action' => 'send', '_method' => ['POST']]);
         });
     });

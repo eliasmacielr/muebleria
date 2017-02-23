@@ -155,7 +155,7 @@
 				{
 					"name": "Send",
 					"request": {
-						"url": "localhost/muebleria/api/email/send",
+						"url": "localhost/muebleria/api/emails/send",
 						"method": "POST",
 						"header": [
 							{

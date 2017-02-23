@@ -6,7 +6,7 @@ use App\Form\ContactForm;
 use Cake\Event\Event;
 
 /**
- * Email Controller
+ * Emails Controller
  */
 class EmailsController extends AppController
 {
