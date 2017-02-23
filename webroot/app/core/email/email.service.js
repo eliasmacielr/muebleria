@@ -19,7 +19,7 @@ angular.
         'delete': {method:'DELETE'} };
       */
 
-      return $resource(HostLocation.origin + '/api/email/send',
+      return $resource(HostLocation.origin + '/api/emails/send',
         {},
         {
           send: {
