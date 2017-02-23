@@ -11,6 +11,8 @@ angular.
 
         var self = this;
 
+        self.userName = Auth.$storage.user.name;
+
         self.dashboard = function () {
           $location.path('/bandeja');
         };
@@ -31,6 +33,9 @@ angular.
           $location.path('/configuracion');
         };
 
+        self.openMenu = function ($mdMenu, ev) {
+          $mdMenu.open(ev);
+        };
 
         self.logout = function () {
           Auth.logout();

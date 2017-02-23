@@ -20,7 +20,7 @@ angular.
             }
           }
         );
-        Category.list().$promise.then(
+        Category.list({paged: 0}).$promise.then(
           function (response) {
             if (response.status) {
               self.categories = response.categories;
@@ -166,6 +166,7 @@ angular.
           $q.all(promises).then(
             function (response) {
               self.messageToast('El producto se editó con éxito');
+              $location.path('/productos');
             },
             function (reason) {
               self.messageToast('Ocurrió un error');
