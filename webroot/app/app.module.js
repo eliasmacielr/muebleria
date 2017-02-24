@@ -25,5 +25,6 @@ angular.module('clickmueblesPublicApp', [
   'ngRoute',
   'core',
   'hostLocation',
-  'publicAppCtrls'
+  'publicAppCtrls',
+  'clickmueblesDirectives'
 ]);

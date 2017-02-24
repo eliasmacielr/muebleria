@@ -1,0 +1,15 @@
+<div class="footer">
+	 <div class="container">
+		 <div class="footer-grids">
+			 <div class="col-md-3 ftr-grid" ng-controller="categories">
+					<h3>Categorías</h3>
+					<ul class="nav-bottom">
+						<li ng-repeat="category in categories">
+              <a ng-click="viewCategoryProducts(category.id)">{{category.name}}</a>
+            </li>
+					</ul>
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>

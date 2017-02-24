@@ -4,6 +4,8 @@ publicAppCtrls.controller('productDetails',
 
     $scope.productSlug = $routeParams.productSlug;
 
+    console.log($scope.productImages);
+
     Product.view({productId: $scope.productSlug}).$promise.then(
       function (response) {
         if (response.status) {
@@ -14,6 +16,9 @@ publicAppCtrls.controller('productDetails',
     Image.view({productId: $scope.productSlug}).$promise.then(
       function (response) {
         if (response.status) {
+          if (response.productImages[0]) {
+            $scope.selectedImage = response.productImages[0].file_path;
+          }
           $scope.productImages = response.productImages;
         }
       }
@@ -35,5 +40,8 @@ publicAppCtrls.controller('productDetails',
       return n.toLocaleString('de-DE');
     };
 
+    $scope.changeImg = function (image) {
+      $scope.selectedImage = image;
+    }
   }]
 );

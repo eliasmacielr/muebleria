@@ -4,25 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-
-<!--header-->
-<div class="header-top">
-	<div class="header-bottom">
-    <div class="logo">
-      <h1><a href="#">Clickmuebles</a></h1>
-    </div>
-    <!---->
-    <div class="top-nav" ng-controller="navigation">
-      <ul class="memenu skyblue"><li class="active"><a ng-click="home()">Home</a></li>
-        <li class="grid"><a ng-click="products()">Productos</a></li>
-        <li class="grid"><a ng-click="whoWeAre()">Quiénes somos</a></li>
-				<li class="grid"><a ng-click="contact()">Contacto</a></li>
-      </ul>
-		</div>
-		<!---->
-  </div>
-  <div class="clearfix"> </div>
-</div>
 <!---->
 <div class="contact">
 	  <div class="container">
@@ -107,33 +88,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       </div>
 	  </div>
  </div>
-<!---->
-<div class="footer">
-	 <div class="container">
-		 <div class="footer-grids">
-			 <div class="col-md-3 ftr-grid" ng-controller="categories">
-					<h3>Categorías</h3>
-					<ul class="nav-bottom">
-						<li ng-repeat="category in categories">
-              <a ng-click="viewCategoryProducts(category.id)">{{category.name}}</a>
-            </li>
-					</ul>
-			 </div>
-			 <div class="clearfix"></div>
-		 </div>
-	 </div>
-</div>
-<div class="copywrite">
-  <div class="container">
-    <div style="float: left; margin: 0em 0;" ng-controller="settings">
-       <a ng-href="https://{{setting.social_facebook}}" target="_blank"><i class="fa fa-facebook fa-lg fa-inverse" style="padding: 8px;"></i></a>
-       <a ng-href="https://{{setting.social_twitter}}" target="_blank"><i class="fa fa-twitter fa-lg fa-inverse" style="padding: 8px;"></i></a>
-       <a ng-href="https://{{setting.social_instagram}}" target="_blank"><i class="fa fa-instagram fa-lg fa-inverse" style="padding: 8px;"></i></a>
-    </div>
-    <div class="copy" style="float:right;">
-      <p style="padding-top: 6px;">© 2015 Lighting. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-</div>
-<!---->
+ <!-- footer -->
+ <div ng-include src="'partials/footer.html'"></div>

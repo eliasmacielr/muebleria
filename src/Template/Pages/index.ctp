@@ -1,4 +1,3 @@
-<?php $this->layout = 'angular' ?>
 <!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -11,7 +10,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- <title>Lighting A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title> -->
 <title>Clickmuebles</title>
 
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="js/imagezoom.js"></script>
+<script defer src="js/jquery.flexslider.js"></script>
+
 <script src="app/bower_components/angular/angular.js"></script>
+<script src="app/bower_components/angular-animate/angular-animate.js"></script>
 <script src="app/bower_components/angular-route/angular-route.js"></script>
 <script src="app/bower_components/angular-resource/angular-resource.js"></script>
 
@@ -61,15 +65,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="js/settings.controller.js"></script>
 <script src="js/contact.controller.js"></script>
 
+<script src="js/directives/main.directives.js"></script>
+<script src="js/directives/top-header.directive.js"></script>
+
 <link rel="icon" type="image/png" href="img/icons/favicon-16x16.png" sizes="16x16">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <!--theme style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<script src="js/jquery.min.js"></script>
 
 <!--//theme style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
@@ -103,9 +109,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 	})(document);
 </script>
-
+<script src="js/bootstrap.js"></script>
 </head>
 <body>
+  <!-- header and menu -->
+  <top-header></top-header>
   <div ng-view ng-cloak></div>
+  <div ng-include src="'partials/copyright.html'"></div>
 </body>
 </html>
