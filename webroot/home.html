@@ -4,25 +4,31 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/-->
 <div class="items">
-	 <div class="container">
-     <h2 style="font-family: Dosis-Medium;">Productos en promoción</h2>
-		 <div class="items-sec" ng-controller="productsHome">
-			 <div class="col-md-3 feature-grid" ng-repeat="product in productsInOffer">
-				 <a ng-click="viewProduct(product.slug)"><img ng-src="{{product.product_images[0].file_path}}" alt="{{product.product_images[0].file_name}}"/> <!-- href="single.html" -->
-					 <div class="arrival-info">
-						 <h4>{{product.name}}</h4>
-						 <p>Gs. {{discountPrice(product.price, product.discount)}}</p>
-						 <span class="pric1"><del>Gs. {{thousandSeparator(product.price)}}</del></span>
-						 <span class="disc">[{{product.discount}}% de descuento]</span>
-					 </div>
-					 <div class="viw">
-						<a ng-click="viewProduct(product.slug)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Ver</a> <!-- href="product.html" -->
-					 </div>
-				  </a>
-			 </div>
-			 <div class="clearfix"></div>
-		 </div>
-	 </div>
+  <div class="container">
+    <h2 style="font-family: Dosis-Medium;">Productos en promoción</h2>
+    <div class="items-sec" ng-controller="productsHome">
+
+      <div class="col-md-3 feature-grid" ng-repeat="product in productsInOffer">
+        <a ng-click="viewProduct(product.slug)"><img ng-src="{{product.product_images[0].file_path}}" alt="{{product.product_images[0].file_name}}"/>
+          <div class="arrival-info">
+            <h4>{{product.name}}</h4>
+            <p>Gs. {{discountPrice(product.price, product.discount)}}</p>
+            <span class="pric1"><del>Gs. {{thousandSeparator(product.price)}}</del></span>
+            <span class="disc">[{{product.discount}}% de descuento]</span>
+          </div>
+          <div class="viw">
+            <a ng-click="viewProduct(product.slug)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Ver</a>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-3" ng-if="{{productsInOffer.length == 0}}">
+        <h3>No se encontraron productos</h3>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </div>
 <!-- footer -->
 <div ng-include src="'partials/footer.html'"></div>
