@@ -1,49 +1,66 @@
 <div class="product" ng-controller="productDetails">
-	 <div class="container">
-		 <div class="product-price1">
-			 <div class="top-sing">
-				  <div class="col-md-7 single-top">
-						<div class="row">
-							<div class="col-md-12">
-								<img data-imagezoom="true" class="img-responsive" src="{{selectedImage}}">
-							</div>
-							<div ng-repeat="productImage in productImages" class="col-xs-4">
-								<img class="img-thumbnail" ng-click="changeImg(productImage.file_path)" ng-src="{{productImage.file_path}}">
-							</div>
-						</div>
-				  </div>
-					<div class="row">
-						<div class="col-md-5 single-top-in simpleCart_shelfItem">
- 					  <div class="single-para ">
- 						 <h4>{{product.name}}</h4> <!-- Lighting Wood Carved Mop Glass Double Wall Lamp -->
- 							<h5 class="item_price">Gs. {{product.price}}</h5>
- 							<p class="para">{{product.description}}</p>
- 							<div class="prdt-info-grid">
- 								 <ul>
- 									 <li ng-repeat="specification in specifications">- {{specification.name}} : {{specification.value}}</li>
- 									 <!-- <li>- Dimensions : (LXBXH) in cms of...</li>
- 									 <li>- Color : Brown</li>
- 									 <li>- Material : Wood</li> -->
- 								 </ul>
- 							</div>
- 							<!-- <div class="check">
- 							 <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Enter pin code for delivery &amp; availability</p>
- 							 <form class="navbar-form">
- 								  <div class="form-group">
- 									<input type="text" class="form-control" placeholder="Enter Pin code">
- 								  </div>
- 								  <button type="submit" class="btn btn-default">Verify</button>
- 							 </form>
- 						    </div>
- 							<a href="#" class="add-cart item_add">ADD TO CART</a> -->
- 					 </div>
- 				 </div>
-					</div>
+  <div class="container">
+    <div class="product-price1">
+			<div class="top-sing">
 
-				 <div class="clearfix"> </div>
-			 </div>
-	     </div>
-	 </div>
+        <div class="col-md-7 single-top">
+          <div class="row">
+
+            <div class="col-md-12">
+              <img data-imagezoom="true" class="img-responsive" src="{{selectedImage}}">
+            </div>
+
+            <div ng-repeat="productImage in productImages" class="col-xs-4">
+              <img class="img-thumbnail" ng-click="changeImg(productImage.file_path)" ng-src="{{productImage.file_path}}">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5 single-top-in simpleCart_shelfItem">
+            <div class="single-para ">
+              <h4>{{product.name}}</h4>
+              <h5 class="item_price">Gs. {{product.in_offer ? discountPrice(product.price, product.discount) : product.price}}
+                <del style="font-size:16px;color:black;" ng-if="product.in_offer">Gs. {{product.price}}</del>
+              </h5>
+              <p class="para">{{product.description}}</p>
+              <div class="prdt-info-grid">
+                <ul>
+                  <li ng-repeat="specification in specifications">- {{specification.name}} : {{specification.value}}</li>
+                </ul>
+              </div>
+              <a ng-click="openForm()" class="add-cart item_add">ME INTERESA</a>
+              <div class="contact-form" ng-show="interested">
+                <form name="sendMailForm">
+                  <div>
+                    <span><label>NOMBRE</label></span>
+                    <span><input name="userName" type="text" class="textbox" ng-model="user.name" required></span>
+                  </div>
+                  <div>
+                    <span><label>E-MAIL</label></span>
+                    <span><input name="userEmail" type="text" class="textbox" ng-model="user.email" required></span>
+                  </div>
+                  <div>
+                    <span><label>TELÉFONO MÓVIL</label></span>
+                    <span><input name="userPhone" type="text" class="textbox" ng-model="user.phone" required></span>
+                  </div>
+                  <div>
+                    <span><input class="btn btn-primary" value="Enviar" ng-disabled="sendMailForm.$invalid" ng-click="sendMail()"></span>
+                  </div>
+                  <div>
+                    <p>{{responseMsg}}</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"> </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- footer -->
 <div ng-include src="'partials/footer.html'"></div>
