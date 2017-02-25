@@ -25,9 +25,37 @@
       </div>
     </md-toolbar>
 
-    <md-content layout="row" flex>
+    <md-content>
 
-      
+        <md-list style="max-width:500px;">
+          <md-subheader class="md-no-sticky"><h2>Productos</h2></md-subheader>
+          <md-list-item class="md-2-line">
+            <div class="md-list-item-text">
+              <h3>Total</h3>
+            </div>
+            <div class="md-list-item-text">
+              <h3 style="float:right;">{{$ctrl.totalProducts}}</h3>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+          <md-list-item class="md-2-line">
+            <div class="md-list-item-text">
+              <h3>Disponible</h3>
+            </div>
+            <div class="md-list-item-text">
+              <h3 style="float:right;">{{$ctrl.availableProducts}}</h3>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+          <md-list-item class="md-2-line">
+            <div class="md-list-item-text">
+              <h3>En promoción</h3>
+            </div>
+            <div class="md-list-item-text">
+              <h3 style="float:right;">{{$ctrl.inOfferProducts}}</h3>
+            </div>
+          </md-list-item>
+        </md-list>
 
     </md-content>
 
