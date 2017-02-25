@@ -5,63 +5,62 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <div class="contact" ng-controller="contact" ng-cloak>
-	  <div class="container">
-			<!--start contact-->
-			<h3 style="margin-top: 25px;">Contáctenos</h3>
-		  <div class="section group">
-				<div class="col-md-6 span_1_of_3">
-					<div class="contact_info">
-			    	 	<h4>Nos puede encontrar aquí</h4>
-			    	 		<div class="map">
-					   			<iframe src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265&amp;output=embed"></iframe>
-					   		</div>
-      				</div>
-      			<div class="company_address">
-				     	<h4>Información:</h4>
-						    	<p>500 Lorem Ipsum Dolor Sit,</p>
-						   		<p>22-56-2-9 Sit Amet, Lorem,</p>
-						   		<p>USA</p>
-				   		<p>Teléfono: {{setting.site_phone}}</p>
-              <p>Teléfono móvil: {{setting.site_cellphone}}</p>
-				 	 	  <p>Email: <a ng-href="mailto:{{setting.site_email}}">{{setting.site_email}}</a></p>
-				   		<p>Nos puede seguir en:
-                <a ng-href="https://{{setting.social_facebook}}">Facebook</a>,
-                <a ng-href="https://{{setting.social_twitter}}">Twitter</a>,
-                <a ng-href="https://{{setting.social_instagram}}">Instagram</a>
-              </p>
-				   </div>
-				</div>
-				<div class="col-md-6 span_2_of_3">
-				  <div class="contact-form">
-					    <form name="sendMailForm">
-					    	<div>
-						    	<span><label>NOMBRE</label></span>
-						    	<span><input name="userName" type="text" class="textbox" ng-model="user.name" required></span>
-						    </div>
-						    <div>
-						    	<span><label>E-MAIL</label></span>
-						    	<span><input name="userEmail" type="text" class="textbox" ng-model="user.email" required></span>
-						    </div>
-						    <div>
-						     	<span><label>TELÉFONO MÓVIL</label></span>
-						    	<span><input name="userPhone" type="text" class="textbox" ng-model="user.phone" required></span>
-						    </div>
-						    <div>
-						    	<span><label>MENSAJE</label></span>
-						    	<span><textarea name="userMessage" ng-model="user.message" required> </textarea></span>
-						    </div>
-						   <div>
-						   		<span><input class="btn btn-primary" value="Enviar" ng-disabled="sendMailForm.$invalid" ng-click="sendMail()"></span>
-						  </div>
-              <div>
-                <p>{{responseMsg}}</p>
-              </div>
-					    </form>
-
-				    </div>
-  				</div>
-		  </div>
-	  </div>
- </div>
+  <div class="container">
+    <!--start contact-->
+    <h3 style="margin-top: 25px;">Contáctenos</h3>
+    <div class="section group">
+      <div class="col-md-6 span_1_of_3">
+        <div class="contact_info">
+          <h4>Nos puede encontrar aquí</h4>
+          <div class="map">
+            <iframe src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=es&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265&amp;output=embed"></iframe>
+          </div>
+        </div>
+        <div class="company_address">
+          <h4>Información:</h4>
+          <p>500 Lorem Ipsum Dolor Sit,</p>
+          <p>22-56-2-9 Sit Amet, Lorem,</p>
+          <p>USA</p>
+          <p>Teléfono: {{setting.site_phone}}</p>
+          <p>Teléfono móvil: {{setting.site_cellphone}}</p>
+          <p>Email: <a ng-href="mailto:{{setting.site_email}}">{{setting.site_email}}</a></p>
+          <p>Nos puede seguir en:
+            <a ng-href="https://{{setting.social_facebook}}">Facebook</a>,
+            <a ng-href="https://{{setting.social_twitter}}">Twitter</a>,
+            <a ng-href="https://{{setting.social_instagram}}">Instagram</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 span_2_of_3">
+        <div class="contact-form">
+          <form name="sendMailForm">
+            <div>
+              <span><label>NOMBRE</label></span>
+              <span><input name="userName" type="text" class="textbox" ng-model="user.name" required></span>
+            </div>
+            <div>
+              <span><label>E-MAIL</label></span>
+              <span><input name="userEmail" type="text" class="textbox" ng-model="user.email" required></span>
+            </div>
+            <div>
+              <span><label>TELÉFONO MÓVIL</label></span>
+              <span><input name="userPhone" type="text" class="textbox" ng-model="user.phone" required></span>
+            </div>
+            <div>
+              <span><label>MENSAJE</label></span>
+              <span><textarea name="userMessage" ng-model="user.message" required> </textarea></span>
+            </div>
+            <div>
+              <span><input class="btn btn-primary" value="Enviar" ng-disabled="sendMailForm.$invalid" ng-click="sendMail()"></span>
+            </div>
+            <div>
+              <p>{{responseMsg}}</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- footer -->
 <div ng-include src="'partials/footer.html'"></div>
