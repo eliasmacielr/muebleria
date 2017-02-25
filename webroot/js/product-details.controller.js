@@ -4,8 +4,6 @@ publicAppCtrls.controller('productDetails',
 
     $scope.productSlug = $routeParams.productSlug;
 
-    console.log($scope.productImages);
-
     Product.view({productId: $scope.productSlug}).$promise.then(
       function (response) {
         if (response.status) {
@@ -43,5 +41,26 @@ publicAppCtrls.controller('productDetails',
     $scope.changeImg = function (image) {
       $scope.selectedImage = image;
     }
+
+    $scope.openForm = function () {
+      $scope.interested = true;
+    };
+
+    $scope.sendMail = function () {
+      $scope.user.msg = $scope.product.id.toString();
+      Email.send($scope.user,
+        function (response) {
+          if (response.status) {
+            $scope.responseMsg = "El mensaje ha sido enviado";
+          } else {
+            $scope.responseMsg = "El mensaje no pudo enviarse";
+          }
+        },
+        function (reason) {
+          $scope.responseMsg = "El mensaje no pudo enviarse";
+        }
+      );
+    };
+
   }]
 );
