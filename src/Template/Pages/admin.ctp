@@ -114,7 +114,7 @@
 </head>
 <body>
 
-  <div ng-view layout-fill></div>
+  <div ng-view layout-fill autoscroll="true"></div>
 
 </body>
 </html>

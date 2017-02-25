@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
   <!-- header and menu -->
   <top-header></top-header>
-  <div ng-view ng-cloak></div>
+  <div ng-view ng-cloak autoscroll="true"></div>
   <div ng-include src="'partials/copyright.html'"></div>
 </body>
 </html>
