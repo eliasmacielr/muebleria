@@ -7,8 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html ng-app="clickmueblesPublicApp">
 <head>
-<!-- <title>Lighting A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title> -->
-<title>Clickmuebles</title>
+<title>ClickMuebles</title>
 
 <script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/imagezoom.js"></script>
