@@ -2,7 +2,19 @@ publicAppCtrls.controller('products',
   ['$scope', '$location', 'Product',
   function ($scope, $location, Product) {
 
-    Product.list({available: 1}).$promise.then(
+    $scope.query = {
+      available: 1
+    };
+
+    var bookmark;
+
+    $scope.filter = {
+      options: {
+        debounce: 500
+      }
+    };
+
+    Product.list($scope.query).$promise.then(
       function (response) {
         if (response.status) {
           $scope.products = response.products;
@@ -10,11 +22,32 @@ publicAppCtrls.controller('products',
       }
     );
 
+    $scope.$watch('query.search', function (newValue, oldValue) {
+      if(!oldValue) {
+        bookmark = $scope.query.page;
+      }
+
+      if(newValue !== oldValue) {
+        $scope.query.page = 1;
+      }
+
+      if(!newValue) {
+        $scope.query.page = bookmark;
+      }
+
+      Product.list($scope.query).$promise.then(
+        function (response) {
+          if (response.status) {
+            $scope.products = response.products;
+          }
+        }
+      );
+    });
+
     $scope.listProducts = function (d1, d2) {
-      //discounts_range[]=0&discounts_range[]=10
-      console.log('The function is being called');
       var discountRange = d1 + ',' + d2;
-      Product.list({available: 1, discount: discountRange}).
+      $scope.query.discount = discountRange;
+      Product.list($scope.query).
         $promise.then(
           function (response) {
             if (response.status) {

@@ -2,13 +2,48 @@ publicAppCtrls.controller('productsHome',
   ['$scope', '$location', 'Product',
   function ($scope, $location, Product) {
 
-    Product.list({in_offer: 1, available: 1}).$promise.then(
+    $scope.query = {
+      in_offer: 1,
+      available: 1
+    };
+
+    var bookmark;
+
+    $scope.filter = {
+      options: {
+        debounce: 500
+      }
+    };
+
+    Product.list($scope.query).$promise.then(
       function (response) {
         if (response.status) {
           $scope.productsInOffer = response.products;
         }
       }
     );
+
+    $scope.$watch('query.search', function (newValue, oldValue) {
+      if(!oldValue) {
+        bookmark = $scope.query.page;
+      }
+
+      if(newValue !== oldValue) {
+        $scope.query.page = 1;
+      }
+
+      if(!newValue) {
+        $scope.query.page = bookmark;
+      }
+
+      Product.list($scope.query).$promise.then(
+        function (response) {
+          if (response.status) {
+            $scope.productsInOffer = response.products;
+          }
+        }
+      );
+    });
 
     $scope.viewProduct = function (productSlug) {
       $location.path('/productos/' + productSlug);
