@@ -5,7 +5,7 @@ angular.
   config(['$mdThemingProvider',
     function config($mdThemingProvider) {
       $mdThemingProvider.theme('default')
-      .primaryPalette('blue-grey')
-      .accentPalette('teal');
+      .primaryPalette('red')
+      .accentPalette('deep-orange');
     }
   ]);
