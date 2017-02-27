@@ -107,6 +107,7 @@ Router::scope('/', function (RouteBuilder $routes) {
         });
     });
 
+    $routes->connect('/:route/**', ['controller' => 'Public', 'action' => 'index']);
     /*
      * Connect catchall routes for all controllers.
      *

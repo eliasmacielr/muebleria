@@ -7,6 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html ng-app="clickmueblesPublicApp">
 <head>
+<base href="/muebleria/">
 <title>ClickMuebles</title>
 
 <script src="js/jquery-1.12.4.min.js"></script>
@@ -57,7 +58,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="js/main.controller.js"></script>
 <script src="js/categories.controller.js"></script>
 <script src="js/category-products.controller.js"></script>
-<script src="js/navigation.controller.js"></script>
 <script src="js/products-home.controller.js"></script>
 <script src="js/products.controller.js"></script>
 <script src="js/product-details.controller.js"></script>
@@ -109,6 +109,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	})(document);
 </script>
 <script src="js/bootstrap.js"></script>
+<style>
+	ul.memenu li a {
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
   <!-- header and menu -->

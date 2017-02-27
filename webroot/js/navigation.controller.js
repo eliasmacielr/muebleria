@@ -3,7 +3,7 @@ publicAppCtrls.controller('navigation',
   function ($scope, $location) {
 
     $scope.home = function () {
-      $location.path('/home');
+      $location.path('/');
     };
 
     $scope.products = function () {
@@ -17,6 +17,5 @@ publicAppCtrls.controller('navigation',
     $scope.contact = function () {
       $location.path('/contacto');
     };
-
   }]
 );

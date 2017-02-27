@@ -58,6 +58,9 @@ angular.
       $locationProvider.hashPrefix('!');
 
       $routeProvider.
+        when('/', {
+          templateUrl: 'home.html'
+        }).
         when('/home', {
           templateUrl: 'home.html'
         }).
@@ -77,5 +80,8 @@ angular.
           templateUrl: 'contact.html'
         }).
         otherwise('/home');
+
+        // use the HTML5 History API
+        $locationProvider.html5Mode(true);
     }
   ]);
