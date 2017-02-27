@@ -22,13 +22,15 @@
             <div class="single-para ">
               <h4>{{product.name}}</h4>
               <h5 class="item_price">Gs. {{product.in_offer ? discountPrice(product.price, product.discount) : product.price}}
-                <del style="font-size:16px;color:black;" ng-if="product.in_offer">Gs. {{product.price}}</del>
+                <del style="font-size:16px;color:#ADADAD;" ng-if="product.in_offer">Gs. {{thousandSeparator(product.price)}}</del>
               </h5>
               <p class="para">{{product.description}}</p>
               <div class="prdt-info-grid">
                 <ul>
                   <li ng-repeat="specification in specifications">- {{specification.name}} : {{specification.value}}</li>
                 </ul>
+                <br>
+                <p>Quedan {{product.stock}} en stock</p>
               </div>
               <a ng-click="openForm()" class="add-cart item_add">ME INTERESA</a>
               <div class="contact-form" ng-show="interested">
