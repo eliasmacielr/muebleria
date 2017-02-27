@@ -3,10 +3,16 @@ Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/-->
-<div class="items">
+<div class="items" ng-controller="productsHome">
   <div class="container">
+    <form style="float:right;">
+      <div>
+        <span><label style="font-family: Dosis-Medium;">Buscar</label></span>
+        <span><input name="search" type="text" class="textbox" ng-model="query.search" ng-model-options="filter.options"></span>
+      </div>
+    </form>
     <h2 style="font-family: Dosis-Medium;">Productos en promoción</h2>
-    <div class="items-sec" ng-controller="productsHome">
+    <div class="items-sec" >
 
       <div class="col-md-3 feature-grid" ng-repeat="product in productsInOffer">
         <a ng-click="viewProduct(product.slug)"><img ng-src="{{product.product_images[0].file_path}}" alt="{{product.product_images[0].file_name}}"/>
@@ -22,8 +28,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/-->
         </a>
       </div>
 
-      <div class="col-md-3" ng-if="{{productsInOffer.length == 0}}">
-        <h3>No se encontraron productos</h3>
+      <div class="items" ng-if="productsInOffer.length == 0">
+        <div class="container">
+          <h4 style="text-align:center;">[No se encontraron productos]</h4>
+        </div>
       </div>
 
       <div class="clearfix"></div>

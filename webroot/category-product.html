@@ -1,6 +1,18 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!--header//-->
-<div class="product-model">
-  <div class="container" ng-controller="categoryProducts">
+<div class="product-model" ng-controller="categoryProducts">
+  <div class="container">
+    <form style="float:right;">
+      <div>
+        <span><label style="font-family: Dosis-Medium;">Buscar</label></span>
+        <span><input name="search" type="text" class="textbox" ng-model="query.search" ng-model-options="filter.options"></span>
+      </div>
+    </form>
     <h2 style="margin-top: 25px;">Nuestros Productos</h2>
     <div class="col-md-9 product-model-sec">
 
@@ -33,8 +45,8 @@
       </div>
     </div>
 
-    <div class="col-md-3" ng-if="{{products.length == 0}}">
-      <h3>No se encontraron productos</h3>
+    <div class="product-model" ng-if="products.length == 0">
+      <h4 style="text-align:center;">[No se encontraron productos]</h4>
     </div>
 
     <!-- Add pagination control -->
@@ -59,10 +71,26 @@
         <div class="row row1 scroll-pane">
           <div class="col col-4">
             <form>
-              <label class="checkbox"><input type="radio" name="discount" value="51" ng-model="radioValue" ng-change="listProducts(51, 100)"><i></i>Más del 50%</label>
-              <label class="checkbox"><input type="radio" name="discount" value="36" ng-model="radioValue" ng-change="listProducts(36, 50)"><i></i>36% - 50%</label>
-              <label class="checkbox"><input type="radio" name="discount" value="21" ng-model="radioValue" ng-change="listProducts(21, 35)"><i></i>21% - 35%</label>
-              <label class="checkbox"><input type="radio" name="discount" value="5" ng-model="radioValue" ng-change="listProducts(5, 20)"><i></i>5% - 20%</label>
+              <label class="checkbox">
+                <input type="radio" name="discount" value="0" ng-model="radioValue" ng-change="listProducts(0, 100)">
+                <i></i>Todos
+              </label>
+              <label class="checkbox">
+                <input type="radio" name="discount" value="51" ng-model="radioValue" ng-change="listProducts(51, 100)">
+                <i></i>Más del 50%
+              </label>
+              <label class="checkbox">
+                <input type="radio" name="discount" value="36" ng-model="radioValue" ng-change="listProducts(36, 50)">
+                <i></i>36% - 50%
+              </label>
+              <label class="checkbox">
+                <input type="radio" name="discount" value="21" ng-model="radioValue" ng-change="listProducts(21, 35)">
+                <i></i>21% - 35%
+              </label>
+              <label class="checkbox">
+                <input type="radio" name="discount" value="5" ng-model="radioValue" ng-change="listProducts(5, 20)">
+                <i></i>5% - 20%
+              </label>
             </form>
           </div>
         </div>

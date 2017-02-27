@@ -7,40 +7,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--header//-->
 <div class="product-model" ng-controller="products">
   <div class="container">
+    <form style="float:right;">
+      <div>
+        <span><label style="font-family: Dosis-Medium;">Buscar</label></span>
+        <span><input name="search" type="text" class="textbox" ng-model="query.search" ng-model-options="filter.options"></span>
+      </div>
+    </form>
     <h2 style="margin-top: 25px;">Nuestros Productos</h2>
     <div class="col-md-9 product-model-sec">
 
       <div ng-repeat="product in products">
         <a ng-click="viewProduct(product.slug)"><div class="product-grid">
           <div class="more-product"><span> </span></div>
-          <div class="product-img b-link-stripe b-animate-go  thickbox">
+          <div class="product-img b-link-stripe b-animate-go thickbox">
             <img ng-src="{{product.product_images[0].file_path}}" alt="{{product.product_images[0].file_name}}" class="img-responsive">
             <div class="b-wrapper">
               <h4 class="b-animate b-from-left  b-delay03">
                 <button><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Ver</button>
               </h4>
             </div>
-          </div></a>
-          <div class="product-info simpleCart_shelfItem">
-            <div class="product-info-cust prt_name">
-              <h4>{{product.name}}</h4>
-              <span class="item_price">Gs.
-                {{product.in_offer ? discountPrice(product.price, product.discount) : thousandSeparator(product.price)}}
-              </span>
-              <div class="ofr" ng-if="product.in_offer">
-                <p class="pric1"><del>Gs. {{thousandSeparator(product.price)}}</del></p>
-                <p class="disc">[{{product.discount}}% de descuento]</p>
-              </div>
-              <div class="clearfix"> </div>
+          </div>
+        </a>
+        <div class="product-info simpleCart_shelfItem">
+          <div class="product-info-cust prt_name">
+            <h4>{{product.name}}</h4>
+            <span class="item_price">Gs.
+              {{product.in_offer ? discountPrice(product.price, product.discount) : thousandSeparator(product.price)}}
+            </span>
+            <div class="ofr" ng-if="product.in_offer">
+              <p class="pric1"><del>Gs. {{thousandSeparator(product.price)}}</del></p>
+              <p class="disc">[{{product.discount}}% de descuento]</p>
             </div>
 
+            <div class="clearfix"> </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-3" ng-if="{{products.length == 0}}">
-        <h3>No se encontraron productos</h3>
-      </div>
+    <div class="product-model" ng-if="products.length == 0">
+      <h4 style="text-align:center;">[No se encontraron productos]</h4>
+    </div>
 
       <!-- Add pagination control -->
 
@@ -64,10 +71,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <div class="row row1 scroll-pane">
             <div class="col col-4">
               <form>
-                <label class="checkbox"><input type="radio" name="discount" value="51" ng-model="radioValue" ng-change="listProducts(51, 100)"><i></i>Más del 50%</label>
-                <label class="checkbox"><input type="radio" name="discount" value="36" ng-model="radioValue" ng-change="listProducts(36, 50)"><i></i>36% - 50%</label>
-                <label class="checkbox"><input type="radio" name="discount" value="21" ng-model="radioValue" ng-change="listProducts(21, 35)"><i></i>21% - 35%</label>
-                <label class="checkbox"><input type="radio" name="discount" value="5" ng-model="radioValue" ng-change="listProducts(5, 20)"><i></i>5% - 20%</label>
+                <label class="checkbox">
+                  <input type="radio" name="discount" value="0" ng-model="radioValue" ng-change="listProducts(0, 100)">
+                  <i></i>Todos
+                </label>
+                <label class="checkbox">
+                  <input type="radio" name="discount" value="51" ng-model="radioValue" ng-change="listProducts(51, 100)">
+                  <i></i>Más del 50%
+                </label>
+                <label class="checkbox">
+                  <input type="radio" name="discount" value="36" ng-model="radioValue" ng-change="listProducts(36, 50)">
+                  <i></i>36% - 50%
+                </label>
+                <label class="checkbox">
+                  <input type="radio" name="discount" value="21" ng-model="radioValue" ng-change="listProducts(21, 35)">
+                  <i></i>21% - 35%
+                </label>
+                <label class="checkbox">
+                  <input type="radio" name="discount" value="5" ng-model="radioValue" ng-change="listProducts(5, 20)">
+                  <i></i>5% - 20%
+                </label>
               </form>
             </div>
           </div>
