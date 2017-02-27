@@ -6,8 +6,8 @@ angular.
   module('productList').
   component('productList', {
     templateUrl: 'app/product/list/product-list.template.html',
-    controller: ['$routeParams', '$location', '$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
-      function ProductListController($routeParams, $location, $scope, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
+    controller: ['$routeParams', '$location', '$scope', '$q', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
+      function ProductListController($routeParams, $location, $scope, $q, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
 
         var self = this;
 
@@ -17,7 +17,7 @@ angular.
           limit: 5,
           page: 1,
           sort: 'name',
-          name: ''
+          search: ''
         };
 
         var bookmark;
@@ -41,7 +41,7 @@ angular.
           $scope.promise = Product.list($scope.query, success).$promise;
         };
 
-        $scope.$watch('query.name', function (newValue, oldValue) {
+        $scope.$watch('query.search', function (newValue, oldValue) {
           if(!oldValue) {
             bookmark = $scope.query.page;
           }
@@ -60,11 +60,6 @@ angular.
         // View
         self.viewProduct = function (product) {
           self.product = product;
-          // Category.view({categoryId: product.category_id}).$promise.then(
-          //   function (response) {
-          //     self.product.category = response.category.name;
-          //   }
-          // );
           $mdSidenav('right').toggle();
         };
 
@@ -107,26 +102,25 @@ angular.
           Product.delete({productId: productId});
         };
 
-        self.deleteProducts = function() {
-          var allDeleted = true;
-          for(var i = 0; i < $scope.selected.length; i++) {
-            self.deleteProduct(
-              $scope.selected[i].id,
-              function (response) {
-                allDeleted *= response.status;
-              }
+        self.deleteProducts = function () {
+          var promises = [];
+
+          for (var i = 0; i < $scope.selected.length; i++) {
+            promises.push(
+              Product.delete({productId: ($scope.selected[i].id)})
             );
-            var index = $scope.products.products.indexOf($scope.selected[i]);
-            $scope.products.products.splice(index, 1); // delete one element
           }
 
-          // TODO: fix this bug, execute all this when the deletion is done
-          $scope.products.pagination.count -= $scope.selected.length; // update count
-          $scope.selected = []; // empty self.selected array
+          $q.all(promises).then(
+            function (response) {
+              self.messageToast('Los productos se eliminaron con éxito');
+            },
+            function (reason) {
+              self.messageToast('Ocurrió un error');
+            }
+          );
 
-          if (allDeleted) {
-            self.messageToast('Se han borrado los registros');
-          }
+          $location.path('/productos');
         };
 
         // Show toast
