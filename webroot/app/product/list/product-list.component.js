@@ -11,7 +11,7 @@ angular.
 
         var self = this;
 
-        $scope.selected = []; // list of selected products in the table
+        $scope.selected = [];
 
         $scope.query = {
           limit: 5,
@@ -120,7 +120,7 @@ angular.
             }
           );
 
-          $location.path('/productos');
+          $scope.getProducts();
         };
 
         // Show toast
