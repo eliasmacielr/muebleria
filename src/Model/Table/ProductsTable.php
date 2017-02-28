@@ -182,14 +182,15 @@ class ProductsTable extends Table
             'multiValue' => true,
             'filterEmpty' => true,
         ]);
-        $search->like('search', [
-            'before' => true,
-            'after' => true,
+        $search->callback('search', [
+            'callback' => function (Query $query, array $args, Callback $filter) {
+                if (is_numeric($args['search'])) {
+                    $query->orWhere(['Products.id' => $args['search']]);
+                }
+                $query->orWhere(['Products.name LIKE' => '%'.$args['search'].'%' ])
+                    ->orWhere(['Products.description LIKE' => '%'.$args['search'].'%']);
+            },
             'filterEmpty' => true,
-            'field' => [
-                'Products.name',
-                'Products.description',
-            ]
         ]);
         $search->value('category_slug', [
             'multiValue' => true,
