@@ -49,8 +49,6 @@ angular.
       };
 
       service.setCredentials = function (user) {
-        //service.user = user;
-        //service.logged_in = true;
         service.$storage.user = user;
         service.$storage.logged_in = true;
         service.$storage.authHeader = 'Basic ' +
