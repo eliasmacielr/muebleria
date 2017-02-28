@@ -129,7 +129,10 @@ class ProductImagesTable extends Table
      */
     public function beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)
     {
-        $this->query()->update($this->table())->set(['main' => false])->where(['product_id' => $entity->product_id, 'main' => true])->execute()->closeCursor();
+        // Only mark all main image to false when entity is not new and if the entity is mark as main
+        if (!$entity->isNew() && $entity->get('main') == true) {
+            $this->query()->update($this->table())->set(['main' => false])->where(['product_id' => $entity->product_id, 'main' => true])->execute()->closeCursor();
+        }
         return true;
     }
 }
