@@ -44,16 +44,24 @@
         <div layout="row">
           <md-input-container flex>
             <label>Contraseña</label>
-            <input name="userPassword" ng-model="toEdit.user.password" type="password">
+            <input name="userPassword" ng-model="toEdit.user.password" minlength="6" type="password">
+            <div ng-messages="userEditForm.userPassword.$error">
+              <div ng-message-exp="['minlength']">
+                Debe tener al menos 6 caracteres
+              </div>
+            </div>
           </md-input-container>
 
           <md-input-container flex>
             <label>Confirmar contraseña</label>
-            <input name="userPassword2" ng-model="toEdit.user.password2" type="password"
+            <input name="userPassword2" ng-model="toEdit.user.password2" minlength="6" type="password"
               ng-pattern="{{toEdit.user.password}}" ng-required="toEdit.user.password != null && toEdit.user.password != ''"
               ng-disabled="toEdit.user.password == null || toEdit.user.password == ''">
             <div ng-messages="userEditForm.userPassword2.$error">
               <div ng-message="pattern">Las contraseñas no coinciden.</div>
+              <div ng-message-exp="['minlength']">
+                Debe tener al menos 6 caracteres
+              </div>
             </div>
           </md-input-container>
         </div>

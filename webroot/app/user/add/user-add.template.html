@@ -42,19 +42,25 @@
         <div layout="row">
           <md-input-container flex>
             <label>Contraseña</label>
-            <input name="userPassword" ng-model="user.password" type="password" required>
+            <input name="userPassword" ng-model="user.password" minlength="6" type="password" required>
             <div ng-messages="userAddForm.userPassword.$error">
               <div ng-message="required">Este campo es requerido.</div>
+              <div ng-message-exp="['minlength']">
+                Debe tener al menos 6 caracteres
+              </div>
             </div>
           </md-input-container>
 
           <md-input-container flex>
             <label>Confirmar contraseña</label>
-            <input name="userPassword2" ng-model="user.password2" type="password"
+            <input name="userPassword2" ng-model="user.password2" minlength="6" type="password"
               ng-pattern="{{user.password}}" required>
             <div ng-messages="userAddForm.userPassword2.$error">
               <div ng-message="required">Este campo es requerido.</div>
               <div ng-message="pattern">Las contraseñas no coinciden.</div>
+              <div ng-message-exp="['minlength']">
+                Debe tener al menos 6 caracteres
+              </div>
             </div>
           </md-input-container>
         </div>
