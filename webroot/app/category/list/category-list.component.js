@@ -6,12 +6,12 @@ angular.
   module('categoryList').
   component('categoryList', {
     templateUrl: 'app/category/list/category-list.template.html',
-    controller: ['$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'Category',
-      function CategoryListController($scope, $mdDialog, $mdSidenav, $mdToast, Category) {
+    controller: ['$scope', '$q','$mdDialog', '$mdSidenav', '$mdToast', 'Category',
+      function CategoryListController($scope, $q, $mdDialog, $mdSidenav, $mdToast, Category) {
 
         var self = this;
 
-        $scope.selected = []; // list of selected categories in the table
+        $scope.selected = [];
 
         $scope.query = {
           limit: 5,
@@ -65,9 +65,9 @@ angular.
             parent: angular.element(document.body),
             targetEvent: ev
           })
-          .then(function (answer) { // hide
+          .then(function (answer) {
             self.messageToast(answer);
-          }, function () { // cancel
+          }, function () {
             self.messageToast('No se agregaron registros nuevos');
           });
         };
@@ -81,9 +81,9 @@ angular.
             parent: angular.element(document.body),
             targetEvent: ev
           })
-          .then(function (answer) { // hide
+          .then(function (answer) {
             self.messageToast(answer);
-          }, function () { // cancel
+          }, function () {
             self.messageToast('No se ha editado el registro');
           });
         };
@@ -150,7 +150,7 @@ angular.
             ).$promise.then(
               function (response) {
                 if (response.status) {
-                  self.categories.categories[index] = response.category; // replace edited element
+                  self.categories.categories[index] = response.category;
                 }
                 $scope.answer(response.message);
               }
@@ -170,30 +170,25 @@ angular.
           };
         };
 
-        self.deleteCategory = function (categoryId) {
-          Category.delete({categoryId: categoryId});
-        };
-
         self.deleteCategories = function () {
-          var allDeleted = true;
+          var promises = [];
+
           for (var i = 0; i < $scope.selected.length; i++) {
-            self.deleteCategory(
-              $scope.selected[i].id,
-              function(response) {
-                allDeleted *= response.status;
-              }
+            promises.push(
+              Category.delete({categoryId: $scope.selected[i].id})
             );
-            var index = self.categories.categories.indexOf($scope.selected[i]);
-            self.categories.categories.splice(index, 1); // delete one element
           }
 
-          // TODO: fix this bug, execute all this when the deletion is done
-          self.categories.pagination.count -= $scope.selected.length; // update count
-          $scope.selected = []; // empty $scope.selected array
+          $q.all(promises).then(
+            function (response) {
+              self.messageToast('Se han borrado los registros');
+            },
+            function (reason) {
+              self.messageToast('Ocurrió un error');
+            }
+          );
 
-          if (allDeleted) {
-            self.messageToast('Se han borrado los registros');
-          }
+          $scope.getCategories();
         };
 
         self.messageToast = function (message) {
@@ -205,7 +200,6 @@ angular.
           );
         };
 
-        // Navigation sidenav
         $scope.showLeftSidenav = function () {
           $mdSidenav('left').toggle();
         };
