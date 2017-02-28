@@ -11,7 +11,7 @@ angular.
 
         var self = this;
 
-        self.userName = Auth.$storage.user.name;
+        self.username = Auth.$storage.user.username;
 
         self.dashboard = function () {
           $location.path('/bandeja');
