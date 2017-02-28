@@ -14,10 +14,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="js/imagezoom.js"></script>
 <script defer src="js/jquery.flexslider.js"></script>
 
-<script src="app/bower_components/angular/angular.js"></script>
-<script src="app/bower_components/angular-animate/angular-animate.js"></script>
-<script src="app/bower_components/angular-route/angular-route.js"></script>
-<script src="app/bower_components/angular-resource/angular-resource.js"></script>
+<script src="app/bower_components/angular/angular.min.js"></script>
+<script src="app/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="app/bower_components/angular-route/angular-route.min.js"></script>
+<script src="app/bower_components/angular-resource/angular-resource.min.js"></script>
 
 <!-- clickmueblesPublicApp modules -->
 <script src="app/app.module.js"></script>

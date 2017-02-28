@@ -21,14 +21,14 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-  <script src="app/bower_components/angular/angular.js"></script>
-  <script src="app/bower_components/angular-route/angular-route.js"></script>
-  <script src="app/bower_components/angular-resource/angular-resource.js"></script>
-  <script src="app/bower_components/angular-animate/angular-animate.js"></script>
-  <script src="app/bower_components/angular-aria/angular-aria.js"></script>
-  <script src="app/bower_components/angular-messages/angular-messages.js"></script>
-  <script src="app/bower_components/angular-material/angular-material.js"></script>
-  <script src="app/bower_components/ngstorage/ngStorage.js"></script>
+  <script src="app/bower_components/angular/angular.min.js"></script>
+  <script src="app/bower_components/angular-route/angular-route.min.js"></script>
+  <script src="app/bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="app/bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="app/bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="app/bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="app/bower_components/angular-material/angular-material.min.js"></script>
+  <script src="app/bower_components/ngstorage/ngStorage.min.js"></script>
 
   <!--md-data-table  -->
   <!-- style sheet -->
