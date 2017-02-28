@@ -63,6 +63,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="js/product-details.controller.js"></script>
 <script src="js/settings.controller.js"></script>
 <script src="js/contact.controller.js"></script>
+<script src="js/navigation.controller.js"></script>
 
 <script src="js/directives/main.directives.js"></script>
 <script src="js/directives/top-header.directive.js"></script>
@@ -83,8 +84,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/simpleCart.min.js"> </script>
 <!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="js/memenu.js"></script>
-<script>$(document).ready(function(){$(".memenu").memenu();});</script>
 <!-- /start menu -->
 <!-- the jScrollPane script -->
 <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>

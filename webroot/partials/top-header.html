@@ -1,15 +1,15 @@
-<div class="header-top">
+<div class="header-top" ng-controller="navigation">
   <div class="header-bottom">
     <div class="logo">
-      <h1><a class="goto-home"><img style="max-width: 150px; min-width:80px" ng-src="img/cm_logo_home.png" alt=""></a></h1>
+      <h1><a ng-click="home()"><img style="max-width: 150px; min-width:80px" ng-src="img/cm_logo_home.png" alt=""></a></h1>
     </div>
     <!---->
     <div class="top-nav">
       <ul class="memenu skyblue">
-          <li class="grid"><a class="goto-home">Home</a></li>
-          <li class="grid"><a class="goto-products">Productos</a></li>
-          <li class="grid"><a class="goto-who">Quiénes somos</a></li>
-  				<li class="grid"><a class="goto-contact">Contacto</a></li>
+          <li class="grid"><a ng-click="home()">Home</a></li>
+          <li class="grid"><a ng-click="products()">Productos</a></li>
+          <li class="grid"><a ng-click="whoWeAre()">Quiénes somos</a></li>
+  				<li class="grid"><a ng-click="contact()">Contacto</a></li>
       </ul>
 		</div>
     <div class="clearfix"> </div>
