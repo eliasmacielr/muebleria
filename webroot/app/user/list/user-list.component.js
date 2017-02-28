@@ -5,19 +5,18 @@ angular.
   module('userList').
   component('userList', {
     templateUrl: 'app/user/list/user-list.template.html',
-    controller: ['$scope', '$mdDialog', '$mdSidenav', '$mdToast', 'User',
-      function UserListController($scope, $mdDialog, $mdSidenav, $mdToast, User) {
+    controller: ['$scope', '$location', '$q', '$mdDialog', '$mdSidenav', '$mdToast', 'User',
+      function UserListController($scope, $location, $q, $mdDialog, $mdSidenav, $mdToast, User) {
 
         var self = this;
 
-        /* -------------------- */
-        $scope.selected = []; // list of selected users in the table
+        $scope.selected = [];
 
         $scope.query = {
-          //order = 'name',
           limit: 5,
           page: 1,
-          sort: 'name'
+          sort: 'name',
+          search: ''
         };
 
         $scope.limitOptions = [5, 10, 15];
@@ -32,7 +31,6 @@ angular.
 
         self.roles = ['Admin', 'Staff'];
 
-        /* esto agregué */
         var bookmark;
 
         $scope.filter = {
@@ -56,10 +54,6 @@ angular.
 
           $scope.getUsers();
         });
-        /* hasta acá */
-
-        /* -------------------- */
-        // var self = this;
 
         self.showSearch = false;
 
@@ -71,9 +65,9 @@ angular.
             parent: angular.element(document.body),
             targetEvent: ev
           })
-          .then(function (answer) { // hide
+          .then(function (answer) {
             self.messageToast(answer);
-          }, function () { // cancel
+          }, function () {
           });
         };
 
@@ -86,9 +80,9 @@ angular.
             parent: angular.element(document.body),
             targetEvent: ev
           })
-          .then(function (answer) { // hide
+          .then(function (answer) {
             self.messageToast(answer);
-          }, function () { // cancel
+          }, function () {
             self.messageToast('No se ha editado el registro');
           });
         };
@@ -159,7 +153,7 @@ angular.
               $scope.toEdit.user,
               function (response) {
                 if (response.status) {
-                  self.users.users[index] = response.user; // replace edited element
+                  self.users.users[index] = response.user;
                 }
                 $scope.answer(response.message);
               }
@@ -184,25 +178,24 @@ angular.
         };
 
         self.deleteUsers = function () {
-          var allDeleted = true;
+          var promises = [];
+
           for (var i = 0; i < $scope.selected.length; i++) {
-            self.deleteUser(
-              $scope.selected[i].id,
-              function(response) {
-                allDeleted *= response.status;
-              }
+            promises.push(
+              User.delete({userId: $scope.selected[i].id})
             );
-            // TODO: fix these bugs
-            var index = self.users.users.indexOf($scope.selected[i]);
-            self.users.users.splice(index, 1); // delete one element
           }
 
-          self.users.pagination.count -= $scope.selected.length; // update count
-          $scope.selected = []; // empty $scope.selected array
+          $q.all(promises).then(
+            function (response) {
+              self.messageToast('Se han borrado los registros');
+            },
+            function (reason) {
+              self.messageToast('Ocurrió un error');
+            }
+          );
 
-          if (allDeleted) {
-            self.messageToast('Se han borrado los registros');
-          }
+          $scope.getUsers();
         };
 
         self.messageToast = function (message) {
