@@ -10,8 +10,8 @@ publicAppCtrls.controller('categories',
       }
     );
 
-    $scope.viewCategoryProducts = function (categoryId) {
-      $location.path('/categorias/' + categoryId);
+    $scope.viewCategoryProducts = function (categorySlug) {
+      $location.path('/categorias/' + categorySlug);
     };
 
   }]

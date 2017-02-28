@@ -2,11 +2,11 @@ publicAppCtrls.controller('categoryProducts',
   ['$routeParams', '$scope', '$location', 'Product',
   function ($routeParams, $scope, $location, Product) {
 
-    $scope.categoryId = $routeParams.categoryId;
+    $scope.categorySlug = $routeParams.categorySlug;
 
     $scope.query = {
-      category_id: $scope.categoryId,
-      available: 1
+      available: 1,
+      category_slug: $scope.categorySlug
     };
 
     var bookmark;
