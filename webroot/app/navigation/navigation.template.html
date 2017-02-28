@@ -1,10 +1,15 @@
-<md-toolbar class="md-theme-light">
-  <h1 class="md-toolbar-tools">Navegación</h1>
+<md-toolbar class="md-theme-light" style="background-color:white">
+  <h1><a ng-click="$ctrl.dashboard()"><img class="logo" ng-src="img/cm_logo_home.png" alt=""></a></h1>
 
-  <form>
-    <md-button ng-click="$ctrl.logout()">
-      Logout
-    </md-button>
+  <form style="background-color:#ADADAD;" layout="column" flex>
+    <p class="username">
+      {{$ctrl.username}}
+    </p>
+    <div layout="row" layout-align="begin center" flex>
+      <md-button ng-click="$ctrl.logout()">
+        Logout
+      </md-button>
+    </div>
   </form>
 
 </md-toolbar>
