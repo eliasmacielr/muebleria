@@ -67,7 +67,7 @@ angular.
         when('/productos', {
           templateUrl: 'product.html'
         }).
-        when('/categorias/:categoryId', {
+        when('/categorias/:categorySlug', {
           templateUrl: 'category-product.html'
         }).
         when('/productos/:productSlug', {
