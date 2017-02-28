@@ -9,7 +9,7 @@ input[type=text]:focus {
 }
 
 md-checkbox.md-checked .md-icon {
-  background-color: white; /* #2F4F4F; DarkSlateGrey */
+  background-color: white;
   border-color: #808080;
 }
 
@@ -32,4 +32,18 @@ form {
 
 md-icon.navigation svg {
   fill: #757575;
+}
+
+img.logo {
+  max-width: 200px;
+  min-width: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p.username {
+  background-color: #ADADAD;
+  margin-left: 25px;
+  font-size: 18px;
 }
