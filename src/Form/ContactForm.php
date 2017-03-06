@@ -50,8 +50,10 @@ class ContactForm extends Form
     protected function _execute(array $contact)
     {
         $email = new Email('default');
+        if (isset($contact['product']) && is_numeric($contact['product'])) {
+            $contact['message'] = 'Esta interesado en el producto #' . $contact['product'];
+        }
         $email->emailFormat('html')->template('contact')->viewVars($contact)
-            ->from([$contact['email'] => $contact['name']])
             ->subject($contact['title'])
             ->send();
         return true;

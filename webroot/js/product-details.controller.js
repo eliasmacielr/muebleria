@@ -1,6 +1,6 @@
 publicAppCtrls.controller('productDetails',
-  ['$routeParams', '$scope', '$location', 'Product', 'Image', 'Specification',
-  function ($routeParams, $scope, $location, Product, Image, Specification) {
+  ['$routeParams', '$scope', '$location', 'Product', 'Image', 'Specification', 'Email',
+  function ($routeParams, $scope, $location, Product, Image, Specification, Email) {
 
     $scope.productSlug = $routeParams.productSlug;
 
@@ -47,7 +47,7 @@ publicAppCtrls.controller('productDetails',
     };
 
     $scope.sendMail = function () {
-      $scope.user.msg = $scope.product.id.toString();
+      $scope.user.product = $scope.product.id.toString();
       Email.send($scope.user,
         function (response) {
           if (response.status) {

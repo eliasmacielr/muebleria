@@ -180,11 +180,11 @@ return [
         'default' => [
             'className' => 'Smtp',
             // The following keys are used in SMTP transports
-            'host' => 'ssl://smtp.gmail.com',
+            'host' => 'ssl://mail.clickmuebles.com.py',
             'port' => 465,
             'timeout' => 30,
-            'username' => 'siac582@gmail.com',
-            'password' => 'al.serMail.693',
+            'username' => 'soporte@clickmuebles.com.py',
+            'password' => 'soportecm12345',
             'client' => null,
             'tls' => null,
             'context' => [
@@ -210,8 +210,8 @@ return [
     'Email' => [
         'default' => [
             'transport' => 'default',
-            'to' => 'siac215@gmail.com',
-            // 'from' => 'you@localhost',
+            'to' => 'alcalux.sa@gmail.com',
+            'from' => 'soporte@clickmuebles.com.py',
             'charset' => 'utf-8',
             'headerCharset' => 'utf-8',
         ],
