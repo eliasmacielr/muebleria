@@ -6,8 +6,8 @@ angular.
   module('productList').
   component('productList', {
     templateUrl: 'app/product/list/product-list.template.html',
-    controller: ['$routeParams', '$location', '$scope', '$q', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
-      function ProductListController($routeParams, $location, $scope, $q, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
+    controller: ['$routeParams', '$route', '$location', '$scope', '$q', '$mdDialog', '$mdSidenav', '$mdToast', 'Product', 'Category', 'Image',
+      function ProductListController($routeParams, $route, $location, $scope, $q, $mdDialog, $mdSidenav, $mdToast, Product, Category, Image) {
 
         var self = this;
 
@@ -22,7 +22,7 @@ angular.
 
         var bookmark;
 
-        $scope.filter = {
+        $scope.search = {
           options: {
             debounce: 500
           }
@@ -107,20 +107,19 @@ angular.
 
           for (var i = 0; i < $scope.selected.length; i++) {
             promises.push(
-              Product.delete({productId: ($scope.selected[i].id)})
+              Product.delete({productId: $scope.selected[i].id})
             );
           }
 
           $q.all(promises).then(
             function (response) {
-              self.messageToast('Los productos se eliminaron con éxito');
+              self.messageToast('Se han borrado los registros');
+              $route.reload();
             },
             function (reason) {
-              self.messageToast('Ocurrió un error');
+              self.messageToast('No se pudieron borrar los registros');
             }
           );
-
-          $scope.getProducts();
         };
 
         // Show toast
