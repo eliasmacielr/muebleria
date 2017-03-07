@@ -12,7 +12,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/imagezoom.js"></script>
-<script defer src="js/jquery.flexslider.js"></script>
 
 <script src="app/bower_components/angular/angular.min.js"></script>
 <script src="app/bower_components/angular-animate/angular-animate.min.js"></script>
@@ -80,21 +79,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- start menu -->
-<script src="js/simpleCart.min.js"> </script>
-<!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <!-- /start menu -->
 <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
 <!-- the jScrollPane script -->
-<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
-		<script type="text/javascript" id="sourcecode">
-			$(function()
-			{
-				$('.scroll-pane').jScrollPane();
-			});
-		</script>
-<!-- //the jScrollPane script -->
 <script src="https://use.fontawesome.com/0c95362910.js"></script>
 
 <!-- Start of Smartsupp Live Chat script -->
