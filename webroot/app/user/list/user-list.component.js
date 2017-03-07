@@ -5,8 +5,8 @@ angular.
   module('userList').
   component('userList', {
     templateUrl: 'app/user/list/user-list.template.html',
-    controller: ['$scope', '$location', '$q', '$mdDialog', '$mdSidenav', '$mdToast', 'User',
-      function UserListController($scope, $location, $q, $mdDialog, $mdSidenav, $mdToast, User) {
+    controller: ['$scope', '$route', '$location', '$q', '$mdDialog', '$mdSidenav', '$mdToast', 'User',
+      function UserListController($scope, $route, $location, $q, $mdDialog, $mdSidenav, $mdToast, User) {
 
         var self = this;
 
@@ -33,7 +33,7 @@ angular.
 
         var bookmark;
 
-        $scope.filter = {
+        $scope.search = {
           options: {
             debounce: 500
           }
@@ -189,13 +189,12 @@ angular.
           $q.all(promises).then(
             function (response) {
               self.messageToast('Se han borrado los registros');
+              $route.reload();
             },
             function (reason) {
-              self.messageToast('Ocurrió un error');
+              self.messageToast('No se pudieron borrar los registros');
             }
           );
-
-          $scope.getUsers();
         };
 
         self.messageToast = function (message) {
