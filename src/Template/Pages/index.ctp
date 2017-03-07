@@ -99,8 +99,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- Start of Smartsupp Live Chat script -->
 <script type="text/javascript">
-	var _smartsupp = _smartsupp || {};
-	_smartsupp.key = 'd8fd84045997aeed69a54b0264403af02cb7ef50';
+var _smartsupp = _smartsupp || {};
+	_smartsupp.key = '3c5ccb7b69e49c6aa3361c1223c6505879600274';
 	window.smartsupp||(function(d) {
 		var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
 		s=d.getElementsByTagName('script')[0];c=d.createElement('script');
