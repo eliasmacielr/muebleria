@@ -22,7 +22,7 @@ angular.
 
         var bookmark;
 
-        $scope.filter = {
+        $scope.search = {
           options: {
             debounce: 500
           }
@@ -99,7 +99,7 @@ angular.
             .cancel('Cancelar');
 
           $mdDialog.show(confirm).then(function () {
-            self.deleteCategories();
+            self.deleteCategory();
           }, function () {
             self.messageToast('No se borraron registros');
           });
@@ -170,25 +170,20 @@ angular.
           };
         };
 
-        self.deleteCategories = function () {
-          var promises = [];
-
-          for (var i = 0; i < $scope.selected.length; i++) {
-            promises.push(
-              Category.delete({categoryId: $scope.selected[i].id})
-            );
-          }
-
-          $q.all(promises).then(
+        self.deleteCategory = function () {
+          Category.delete({categoryId: $scope.selected[0].id}).$promise.then(
             function (response) {
-              self.messageToast('Se han borrado los registros');
+              if (response.status) {
+                self.messageToast('Se borró el registro');
+                $scope.getCategories();
+              } else {
+                self.messageToast(response.message);
+              }
             },
             function (reason) {
-              self.messageToast('Ocurrió un error');
+              self.messageToast('No se pudo borrar el registro');
             }
           );
-
-          $scope.getCategories();
         };
 
         self.messageToast = function (message) {
