@@ -37,11 +37,11 @@
               <h2><span>Productos</span></h2>
               <span flex></span>
               <!-- Search -->
-              <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch; query.search = ''"> <!-- TODO: lógica más apropiada -->
+              <md-button class="md-icon-button" aria-label="Buscar" ng-click="$ctrl.showSearch = !$ctrl.showSearch; query.search = ''">
                 <md-icon md-svg-icon="img/icons/ic_search_black_24px.svg"></md-icon>
               </md-button>
               <form class"ng-pristine ng-valid flex">
-                <input type="text" ng-model="query.search" ng-model-options="filter.options" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
+                <input type="text" ng-model="query.search" ng-model-options="search.options" class="ng-pristine ng-valid ng-touched" aria-invalid="false" ng-show="$ctrl.showSearch">
               </form>
               <!-- Add -->
               <md-button class="md-icon-button" aria-label="Crear" ng-click="$ctrl.addProduct()">
@@ -79,7 +79,7 @@
                 <tr md-row md-select="product" md-select-id="id"
                 ng-repeat="product in products.products
                   | orderBy: query.sort
-                  | limitTo: query.limit"> <!-- | limitTo: query.limit : (query.page -1) * query.limit -->
+                  | limitTo: query.limit : (query.page -1) * query.limit">
                   <td md-cell>{{product.name}}</td>
                   <td md-cell>#{{product.id}}</td>
                   <td md-cell>{{product.price}}</td>
