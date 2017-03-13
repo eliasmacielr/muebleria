@@ -3,7 +3,9 @@ publicAppCtrls.controller('products',
   function ($scope, $location, Product) {
 
     $scope.query = {
-      available: 1
+      available: 1,
+      limit: 9,
+      page: 1
     };
 
     var bookmark;
@@ -14,13 +16,31 @@ publicAppCtrls.controller('products',
       }
     };
 
-    Product.list($scope.query).$promise.then(
-      function (response) {
-        if (response.status) {
-          $scope.products = response.products;
+    $scope.listProductsPage = function () {
+      Product.list($scope.query).$promise.then(
+        function (response) {
+          if (response.status) {
+            $scope.products = response.products;
+            $scope.pages = createArray(response.pagination.pageCount);
+          }
         }
+      );
+    };
+
+    function createArray(n) {
+      var a = new Array(n);
+      for (var i = 0; i < n; i++) {
+        a[i] = i+1;
       }
-    );
+      return a;
+    };
+
+    $scope.listProductsPage();
+
+    $scope.fetchPage = function (page) {
+      $scope.query.page = page;
+      $scope.listProductsPage();
+    };
 
     $scope.$watch('query.search', function (newValue, oldValue) {
       if(!oldValue) {
@@ -35,13 +55,7 @@ publicAppCtrls.controller('products',
         $scope.query.page = bookmark;
       }
 
-      Product.list($scope.query).$promise.then(
-        function (response) {
-          if (response.status) {
-            $scope.products = response.products;
-          }
-        }
-      );
+      $scope.listProductsPage();
     });
 
     $scope.listProducts = function (d1, d2) {

@@ -49,7 +49,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <h4 style="text-align:center;">[No se encontraron productos]</h4>
     </div>
 
-      <!-- Add pagination control -->
+    <div class="col-md-12">
+      <nav class="row flex-center" style="float:right;">
+        <ul class="pagination">
+
+          <li ng-repeat="page in pages" class="page-item">
+            <a class="page-link" ng-click="fetchPage(page)">{{page}}</a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
 
     </div>
 

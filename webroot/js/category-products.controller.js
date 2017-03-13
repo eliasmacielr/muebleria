@@ -6,7 +6,9 @@ publicAppCtrls.controller('categoryProducts',
 
     $scope.query = {
       available: 1,
-      category_slug: $scope.categorySlug
+      category_slug: $scope.categorySlug,
+      limit: 9,
+      page: 1
     };
 
     var bookmark;
@@ -17,13 +19,31 @@ publicAppCtrls.controller('categoryProducts',
       }
     };
 
-    Product.list($scope.query).$promise.then(
-      function (response) {
-        if (response.status) {
-          $scope.products = response.products;
+    $scope.listProductsPage = function () {
+      Product.list($scope.query).$promise.then(
+        function (response) {
+          if (response.status) {
+            $scope.products = response.products;
+            $scope.pages = createArray(response.pagination.pageCount);
+          }
         }
+      );
+    };
+
+    function createArray(n) {
+      var a = new Array(n);
+      for (var i = 0; i < n; i++) {
+        a[i] = i+1;
       }
-    );
+      return a;
+    };
+
+    $scope.listProductsPage();
+
+    $scope.fetchPage = function (page) {
+      $scope.query.page = page;
+      $scope.listProductsPage();
+    };
 
     $scope.listProducts = function (d1, d2) {
       var discountRange = d1 + ',' + d2;
@@ -51,13 +71,7 @@ publicAppCtrls.controller('categoryProducts',
         $scope.query.page = bookmark;
       }
 
-      Product.list($scope.query).$promise.then(
-        function (response) {
-          if (response.status) {
-            $scope.products = response.products;
-          }
-        }
-      );
+      $scope.listProductsPage();
     });
 
     $scope.viewProduct = function (productSlug) {
