@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Entity\ProtocolTrait;
 
 /**
  * Setting Entity
@@ -23,6 +24,7 @@ use Cake\ORM\Entity;
  */
 class Setting extends Entity
 {
+    use ProtocolTrait;
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -37,4 +39,38 @@ class Setting extends Entity
         '*' => true,
         'id' => false
     ];
+
+    protected $_hidden = [
+        'id'
+    ];
+
+    /**
+     * Set facebook url
+     * @param string $url
+     * @return string
+     */
+    public function _setSocialFacebook($url)
+    {
+        return $this->removeProtocol($url);
+    }
+
+    /**
+     * Set twitter url
+     * @param string $url
+     * @return string
+     */
+    public function _setSocialTwitter($url)
+    {
+        return $this->removeProtocol($url);
+    }
+
+    /**
+     * Set instagram url
+     * @param string $url
+     * @return string
+     */
+    public function _setSocialInstagram($url)
+    {
+        return $this->removeProtocol($url);
+    }
 }

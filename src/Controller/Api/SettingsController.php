@@ -11,7 +11,6 @@ use Cake\Event\Event;
  */
 class SettingsController extends AppController
 {
-
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -27,8 +26,7 @@ class SettingsController extends AppController
     public function isAuthorized(array $user)
     {
         $request = $this->request;
-        if ($user['role'] === 'staff')
-        {
+        if ($request->param('action') === 'edit' && !in_array($user['role'], ['super-admin', 'admin'])) {
             return false;
         }
         return true;
