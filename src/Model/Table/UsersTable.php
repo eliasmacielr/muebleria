@@ -175,10 +175,10 @@ class UsersTable extends Table
      public function findFilterRole(Query $query, array $options)
      {
          if ($options['user']['role'] === 'super-admin') {
-             return $query->where([$this->aliasField('username').' !=' => 'sadmin'])->where([$this->aliasField('username').' !=' => $options['user']['username']]);
+             return $query->where([$this->aliasField('username').' !=' => 'sadmin']);
          } elseif ($options['user']['role'] === 'admin') {
-             return $query->where([$this->aliasField('role').' !=' => 'super-admin'])->where([$this->aliasField('username').' !=' => $options['user']['username']]);
+             return $query->where([$this->aliasField('role').' !=' => 'super-admin']);
          }
-         return $query->where([$this->aliasField('role').' !=' => 'super-admin'])->where([$this->aliasField('role').' !=' => 'admin'])->where([$this->aliasField('username').' !=' => $options['user']['username']]);
+         return $query->where([$this->aliasField('role').' !=' => 'super-admin'])->where([$this->aliasField('role').' !=' => 'admin']);
      }
 }
