@@ -79,7 +79,7 @@
                 <tr md-row md-select="user" md-select-id="id"
                 ng-repeat="user in $ctrl.users.users
                   | orderBy: query.sort
-                  | limitTo: query.limit : (query.page - 1) * query.limit">
+                  | limitTo: query.limit">
                   <td md-cell>{{user.name}}</td>
                   <td md-cell>{{user.last_name}}</td>
                   <td md-cell>{{user.username}}</td>

@@ -75,7 +75,7 @@
                 <tr md-row md-select="category" md-select-id="id"
                 ng-repeat="category in $ctrl.categories.categories
                   | orderBy: query.sort
-                  | limitTo: query.limit : (query.page - 1) * query.limit">
+                  | limitTo: query.limit">
                   <td md-cell>{{category.name}}</td>
                   <td md-cell>
                     <md-button class="md-icon-button" aria-label="Editar" ng-click="editCategoryDialog($event, category)">
