@@ -18,6 +18,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="app/bower_components/angular-route/angular-route.min.js"></script>
 <script src="app/bower_components/angular-resource/angular-resource.min.js"></script>
 
+<!-- UI Bootstrap -->
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
 <!-- clickmueblesPublicApp modules -->
 <script src="app/app.module.js"></script>
 <script src="app/app-route.config.js"></script>
