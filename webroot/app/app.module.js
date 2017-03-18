@@ -23,6 +23,7 @@ angular.module('clickmueblesAdminApp', [
 
 angular.module('clickmueblesPublicApp', [
   'ngRoute',
+  'ui.bootstrap',
   'core',
   'hostLocation',
   'publicAppCtrls',
