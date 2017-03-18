@@ -49,15 +49,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       <h4 style="text-align:center;">[No se encontraron productos]</h4>
     </div>
 
-    <!-- Add pagination control -->
-    <div class="col-md-12">
+    <div class="col-md-12" ng-if="products.length > 0">
       <nav class="row flex-center" style="float:right;">
-        <ul class="pagination">
-
-          <li ng-repeat="page in pages" class="page-item">
-            <a class="page-link" ng-click="fetchPage(page)">{{page}}</a>
-          </li>
-
+        <ul uib-pagination
+          boundary-links="true"
+          total-items="total"
+          ng-model="query.page"
+          class="pagination-sm"
+          previous-text="&lsaquo;"
+          next-text="&rsaquo;"
+          first-text="&laquo;"
+          last-text="&raquo;">
         </ul>
       </nav>
     </div>

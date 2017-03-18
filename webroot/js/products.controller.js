@@ -21,18 +21,10 @@ publicAppCtrls.controller('products',
         function (response) {
           if (response.status) {
             $scope.products = response.products;
-            $scope.pages = createArray(response.pagination.pageCount);
+            $scope.total = response.pagination.count;
           }
         }
       );
-    };
-
-    function createArray(n) {
-      var a = new Array(n);
-      for (var i = 0; i < n; i++) {
-        a[i] = i+1;
-      }
-      return a;
     };
 
     $scope.listProductsPage();
@@ -66,6 +58,7 @@ publicAppCtrls.controller('products',
           function (response) {
             if (response.status) {
               $scope.products = response.products;
+              $scope.total = response.pagination.count;
             }
           }
         );
