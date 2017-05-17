@@ -87,16 +87,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- the jScrollPane script -->
 <script src="https://use.fontawesome.com/0c95362910.js"></script>
 
-<!-- Start of Smartsupp Live Chat script -->
+<!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
-	_smartsupp.key = '3c5ccb7b69e49c6aa3361c1223c6505879600274';
-	window.smartsupp||(function(d) {
-		var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-		s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-		c.type='text/javascript';c.charset='utf-8';c.async=true;
-		c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-	})(document);
+_smartsupp.key = '7d0779ae825e80f6c949dad80b5b22447e574a2c';
+window.smartsupp||(function(d) {
+	var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+	s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+	c.type='text/javascript';c.charset='utf-8';c.async=true;
+	c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
 </script>
 <script src="js/bootstrap.js"></script>
 <!-- Analytics -->
