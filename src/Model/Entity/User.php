@@ -60,4 +60,9 @@ class User extends Entity
         $hasher = new DefaultPasswordHasher();
         return $hasher->hash($password);
     }
+
+    public function _setRole($role)
+    {
+        return strtolower($role);
+    }
 }
