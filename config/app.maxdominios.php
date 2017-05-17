@@ -210,7 +210,7 @@ return [
     'Email' => [
         'default' => [
             'transport' => 'default',
-            'to' => 'alcalux.sa@gmail.com',
+            'to' => ['clickmuebles17@hotmail.com'],
             'from' => 'soporte@clickmuebles.com.py',
             'charset' => 'utf-8',
             'headerCharset' => 'utf-8',
